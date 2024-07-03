@@ -1,0 +1,10 @@
+.headerNav{
+  align-items: center;
+  width: 100px;
+  background-color: #ffd000;
+  color: #1a1446;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  min-height: 80px;
+}

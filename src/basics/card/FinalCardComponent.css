@@ -1,0 +1,10 @@
+.component{
+    background: #ffff;
+    width: 400px;
+    height: 500px;
+    border-radius: 30px;
+}
+
+.title{
+    color: red;
+}
