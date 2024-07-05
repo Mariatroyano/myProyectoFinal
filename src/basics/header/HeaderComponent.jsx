@@ -13,7 +13,7 @@ export const HeaderComponent = ({ notifications, username, onLogOut, onSeeDetail
         <button
           type="button"
           className=""
-          onClick={''}
+          onClick={()=>{}}
         >
           <img src={''} alt="icon" />
         </button>
@@ -28,7 +28,7 @@ export const HeaderComponent = ({ notifications, username, onLogOut, onSeeDetail
         <button
           type="button"
           className=""
-          onClick={''}
+          onClick={()=>{}}
         >
           <img src={''} alt="" />
         </button>

@@ -1,10 +1,14 @@
 .component{
-    background: #ffff;
-    width: 400px;
-    height: 500px;
+    background: #ede4e4;
+    width: 300px;
+    height: 300px;
     border-radius: 30px;
 }
 
 .title{
-    color: red;
+    color: rgb(24, 21, 21);
+}
+.icon{
+    width: 90px;
+    height: 90px;
 }

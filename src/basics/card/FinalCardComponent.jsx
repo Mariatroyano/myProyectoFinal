@@ -1,5 +1,5 @@
 import './FinalCardComponent.css'
-export const FinalCardComponent = ({nombreProducto, precioProducto,desacripcion, icon}) =>{
+export const FinalCardComponent = ({nombreProducto,precio, desacripcion, icon}) =>{
 
 
     return(
@@ -8,16 +8,16 @@ export const FinalCardComponent = ({nombreProducto, precioProducto,desacripcion,
                 {nombreProducto}
             </div>
             <br/>
-            <hr/>
             <div>
-                {icon}
-            </div>
-            <div className='title'>
-                {precioProducto}
+                <img src={icon} alt='hola' className='icon'/>
             </div>
             <br/>
+            <hr/>
             <div className='title'>
                 {desacripcion}
+            </div>
+            <div className='title'>
+                {precio}
             </div>
         </div>
     )
