@@ -6,6 +6,10 @@
   margin: 0 auto;
   text-align: center;
 }
+.componentsCard{
+  display: flex;
+  flex-direction: row;
+}
 
 .logo {
   height: 6em;

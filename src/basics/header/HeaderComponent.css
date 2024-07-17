@@ -1,9 +1,21 @@
-.headerNav{
-  align-items: center;
-  background-color: #f0d031;
-  color: #1a1446;
+.headerNav {
+  background-color: #ffffff;
+  margin: 0px 0px 16px;
+  padding: 16px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  min-height: 80px;
+  flex-direction: row;
+  min-width: 1000px;
+  min-height: 100px;
+  /* display: flex; */
+  /* justify-content: space-between; */
+}
+
+.header__logo {
+  color: rgb(15, 13, 13);
+  width: 4rem;
+  animation: rotate 2s linear infinite;
+}
+.titulo{
+  color: rgb(15, 11, 11);
+
 }

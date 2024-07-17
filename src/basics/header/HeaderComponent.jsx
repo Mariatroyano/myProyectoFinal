@@ -1,40 +1,21 @@
 import './HeaderComponent.css';
+import Formulario from '../../collections/app/Formulario'
+import imgen from 'C:/Users/Maria Troyano/Desktop/Proyecto-Final/proyecto-final/public/logo.jpg'
 
-export const HeaderComponent = ({ notifications, username, onLogOut, onSeeDetail, ...props }) => {
-
-
+export const HeaderComponent = ({ notifications, username, onLogOut, onSeeDetail, LoGo,img,...props }) => {
   return (
     <nav className=" headerNav">
       <img src={''} alt="" className="" />
 
-      <section className="">
-        <span className="">{username}</span>
+      <img className="header__logo" src={imgen} alt="p" /> 
+       <h1 className='titulo'>Eleganza </h1>
+      <Formulario/>
 
-        <button
-          type="button"
-          className=""
-          onClick={()=>{}}
-        >
-          <img src={''} alt="icon" />
-        </button>
-        <button
-          type="tertiary"
-          className=""
-          onClick={onLogOut}
-        >
-          Cerrar sesión
-        </button>
-
-        <button
-          type="button"
-          className=""
-          onClick={()=>{}}
-        >
-          <img src={''} alt="" />
-        </button>
-      </section>
     </nav>
   );
 }
+
+
+
 
 
