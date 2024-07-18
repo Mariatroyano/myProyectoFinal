@@ -1,61 +1,40 @@
-
-import React, { useEffect, useState } from 'react';
-import { FinalCardComponent } from '../../basics/card/FinalCardComponent';
-import './MainScreen.css';
+import React, { useEffect, useState } from "react";
+import { FinalCardComponent } from "../../basics/card/FinalCardComponent";
+import "./MainScreen.css";
+import { useFetch } from "../../date";
 
 function MainScreen() {
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [products, setProducts] = useState([]);
-  const [addedItems, setAddedItems] = useState([]);
-
-  useEffect(() => {
-    setLoading(true);
-    fetch("https://fakestoreapi.com/products")
-      .then(response => response.json())
-      .then(resp => {
-        console.log(resp);
-        setProducts(resp);
-        setLoading(false);
-      })
-      .catch(error => {
-        setError(error);
-        setLoading(false);
-      });
-  }, []);
-
-  const addItem = (product) => {
-    setAddedItems([...addedItems, product]);
-  };
-
-  const removeItem = (product) => {
-    setAddedItems(addedItems.filter(item => item.id !== product.id));
-  };
-
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  const [addedItems, ] = useState([]);
+  const {
+    data: products,
+    loading,
+    error,
+  } = useFetch("https://fakestoreapi.com/products");
 
   return (
     <div className="card__body">
-      {/* <h1></h1> */}
-      <div className='contend'>
-        {products.map(product => (
-          <FinalCardComponent
-            key={product.id}
-            nombreProducto={product.title}
-            icon={product.image}
-            descripcion={product.description}
-            precio={`$${product.price}`}
-            product={product}
-            addedItems={addedItems}
-            addItem={addItem}
-            removeItem={removeItem}
-          />
-        ))}
+      {loading && <p>Loading...</p>}
+      {error && <p></p>}
+      {products.length <= 0 && !loading && <p>No hay productos</p>}
+      <div className="card__body1">
+        {products.map((product, index) => {
+          return (
+            <div className="contend">
+              <FinalCardComponent
+                key={product.id}
+                nombreProducto={product.title}
+                icon={product.image}
+                descripcion={product.description}
+                precio={`$${product.price}`}
+                product={product}
+                addedItems={addedItems}
+              />
+            </div>
+          );
+        })}
       </div>
     </div>
   );
 }
 
 export default MainScreen;
-

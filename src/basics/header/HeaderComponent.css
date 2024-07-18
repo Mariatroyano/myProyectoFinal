@@ -1,13 +1,10 @@
 .headerNav {
   background-color: #ffffff;
-  margin: 0px 0px 16px;
   padding: 16px;
   display: flex;
   flex-direction: row;
-  min-width: 1000px;
-  min-height: 100px;
-  /* display: flex; */
-  /* justify-content: space-between; */
+  height: 100px;
+  width: 97.49%;
 }
 
 .header__logo {
@@ -15,7 +12,7 @@
   width: 4rem;
   animation: rotate 2s linear infinite;
 }
-.titulo{
-  color: rgb(15, 11, 11);
-
+.titulo {
+  color: rgb(14, 13, 13);
+  font-size: 50px;
 }
