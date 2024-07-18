@@ -1,3 +1,3 @@
-const hhh = ()=>{
-    console.log('hola')
-}
+const hhh = () => {
+  console.log("hola");
+};
