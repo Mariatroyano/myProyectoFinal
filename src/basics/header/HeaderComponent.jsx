@@ -1,6 +1,6 @@
 import "./HeaderComponent.css";
 import Formulario from "../../collections/app/Formulario";
-import imgen from "C:/Users/Maria Troyano/Desktop/Proyecto-Final/proyecto-final/public/logo.jpg";
+import imgen from "../../../public/logo.jpg";
 
 export const HeaderComponent = ({
   notifications,
