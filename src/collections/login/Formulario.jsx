@@ -2,6 +2,8 @@ import React from "react";
 import { useEffect, useState } from "react";
 import "./Formulario.css";
 import { Link, Outlet } from "react-router-dom";
+import { auth, providerGogle } from "../../fireBase/credenciales";
+import { signInWithPopup } from "firebase/auth";
 
 export default function Formulario({ Logeado, setLogeado }) {
   const [first, setfirst] = useState(false);
@@ -10,6 +12,14 @@ export default function Formulario({ Logeado, setLogeado }) {
     console.log(true);
     setfirst(true);
     setLogeado(true);
+  };
+
+  const iniciarGoogle = async () => {
+    try {
+      await signInWithPopup(auth, providerGogle);
+    } catch (error) {
+      console.error("Error al iniciar con google", error);
+    }
   };
   return (
     <>
@@ -43,6 +53,7 @@ export default function Formulario({ Logeado, setLogeado }) {
               </Link>
             )}
           </div>
+          <button onClick={iniciarGoogle}>Iniciar sesión con Google</button>
         </div>
       }
       <Outlet />
