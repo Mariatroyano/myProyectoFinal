@@ -1,7 +1,7 @@
-// import ReactDOM from 'recat-dom';
+
 
 import { useEffect, useState } from "react";
-//import { Route, BrowserRouter as Router,Router,Router } from "react-router-dom";
+
 
 export const useFetch = (url) => {
   const [data, setData] = useState([]);
@@ -26,14 +26,3 @@ export const useFetch = (url) => {
 
   return { data, loading, error };
 };
-// ReactDOM.render(
-//     <Router>
-//         <Routes>
-//             <Route path="/" element={<login/>}/>
-//             <Route path="/login" element={<login/>}/>
-//             <Route path="/register" element={<Register/>}/>
-//             <Route path="/products" element={<App/>}/>
-//         </Routes>
-//     </Router>,
-//     document.getElementById('root')
-// );

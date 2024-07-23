@@ -1,15 +1,21 @@
-import { HeaderComponent } from "../../basics/header/HeaderComponent";
+import { HeaderComponent } from "../header/HeaderComponent";
 import MainScreen from "../screen/MainScreen";
 
-function App() {
+function App({Logeado = false, setLogeado}) {
   return (
     <>
-      <div className="HeaderComponent">
-        <HeaderComponent />
-      </div>
-      <div className="componentsCard">
-        <MainScreen />
-      </div>
+      {Logeado ? (
+        <>
+          <div className="HeaderComponent">
+            <HeaderComponent />
+          </div>
+          <div className="componentsCard">
+            <MainScreen />
+          </div>
+        </>
+      ) : (
+        <h1>No esta logeado</h1>
+      )}
     </>
   );
 }

@@ -1,0 +1,27 @@
+html,
+body {
+  background-color: rgb(235, 227, 227);
+  margin: 0;
+  padding: 0;
+}
+h2{
+    color: aliceblue;
+}
+label{
+    color: rgb(23, 25, 27);
+}
+.form-container {
+    display: flex;
+    align-items: center;
+    width: 30%;
+    height: 90%;
+    background-color: rgb(239, 248, 246);
+    border-radius: 60px;
+    z-index: 5;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .div_input{
+    display: flex;
+    justify-content: space-between;
+  }

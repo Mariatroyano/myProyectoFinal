@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { FinalCardComponent } from "../../basics/card/FinalCardComponent";
+import { FinalCardComponent } from "../card/FinalCardComponent";
 import "./MainScreen.css";
-import { useFetch } from "../../date";
+import { useFetch } from "../..";
+
 
 function MainScreen() {
   const [addedItems, ] = useState([]);
@@ -19,7 +20,7 @@ function MainScreen() {
       <div className="card__body1">
         {products.map((product, index) => {
           return (
-            <div className="contend">
+            <div key={index} className="contend">
               <FinalCardComponent
                 key={product.id}
                 nombreProducto={product.title}
