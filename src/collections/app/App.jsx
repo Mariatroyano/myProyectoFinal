@@ -14,7 +14,7 @@ function App({Logeado = false, setLogeado}) {
           </div>
         </>
       ) : (
-        <h1>No esta logeado</h1>
+        <h1>Error..No Te Encuentras Logeado </h1>
       )}
     </>
   );

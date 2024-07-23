@@ -33,7 +33,7 @@ export const FinalCardComponent = ({
           setIsAdded(!isAdded);
         }}
       >
-        {isAdded ? "ADD" : "CANCEL"}
+        {isAdded ? "Comprar" : "CANCEL"}
       </button>
     </div>
   );

@@ -7,7 +7,6 @@ function Register() {
 
   const handleRegister = (e) => {
     e.preventDefault();
-    // Aquí puedes agregar la lógica de registro
     navigate("/login");
   };
 
@@ -44,9 +43,9 @@ function Register() {
             <label className="label">Password:</label>
             <input type="password" required />
           </div>
-          <button type="submit">Register</button>
+          <button type="submit">Registrarce</button>
         </form>
-        <Link to="/login">Iniciar sesión</Link>
+        <Link to="/products">Iniciar sesión</Link>
       </div>
     </div>
   );

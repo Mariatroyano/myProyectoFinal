@@ -32,7 +32,7 @@ export default function Formulario({ Logeado, setLogeado }) {
               <input
                 className="input"
                 type="email"
-                placeholder="Email o numero celular"
+                placeholder="Correo Electronico"
               />
               <br />
               <br />
@@ -52,6 +52,11 @@ export default function Formulario({ Logeado, setLogeado }) {
                 <button>Products</button>
               </Link>
             )}
+            <div>
+              <p>
+                ¿No Tienes Cuenta?<Link to='/register'>Registrate</Link>
+              </p>
+            </div>
           </div>
           <button onClick={iniciarGoogle}>Iniciar sesión con Google</button>
         </div>

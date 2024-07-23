@@ -1,5 +1,4 @@
 import "./HeaderComponent.css";
-import Formulario from "../login/Formulario";
 import imgen from "../../../public/logo.jpg";
 
 export const HeaderComponent = ({
@@ -17,7 +16,7 @@ export const HeaderComponent = ({
 
       <img className="header__logo" src={imgen} alt="p" />
       <h1 className="titulo">Eleganza </h1>
-      {/* <Formulario /> */}
+  
     </nav>
   );
 };

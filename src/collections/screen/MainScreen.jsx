@@ -14,7 +14,7 @@ function MainScreen() {
 
   return (
     <div className="card__body">
-      {loading && <p>Loading...</p>}
+      {loading && <p>Cragando.....</p>}
       {error && <p></p>}
       {products.length <= 0 && !loading && <p>No hay productos</p>}
       <div className="card__body1">
