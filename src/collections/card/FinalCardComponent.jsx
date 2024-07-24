@@ -2,30 +2,29 @@ import React, { useState, useEffect } from "react";
 import "./FinalCardComponent.css";
 
 export const FinalCardComponent = ({
-  nombreProducto,
-  precio,
-  descripcion,
-  icon,
-  product,
-  addedItems,
+  title,
+  price,
+  description,
+  image,
   addItem,
   removeItem,
 }) => {
   const [isAdded, setIsAdded] = useState(true);
+  const [addedItems] = useState([]);
 
   useEffect(() => {
     const item = addedItems.filter((addedItem) => addedItem.id === product.id);
     setIsAdded(item.length === 0);
-  }, [addedItems, product]);
+  }, [addedItems]);
 
   return (
     <div className="card">
-      <div className="title">{nombreProducto}</div>
+      <div className="title">{title}</div>
       <div>
-        <img src={icon} alt={nombreProducto} className="cardImg" />
+        <img src={image} alt={title} className="cardImg" />
       </div>
-      <div className="card-descripcion">{descripcion}</div>
-      <div className="card-price-add">{precio}</div>
+      <div className="card-descripcion">{description}</div>
+      <div className="card-price-add">{price}</div>
       <button
         className={isAdded ? "add-item-btn" : "remove-item-btn"}
         onClick={() => {
@@ -33,7 +32,7 @@ export const FinalCardComponent = ({
           setIsAdded(!isAdded);
         }}
       >
-        {isAdded ? "Comprar" : "CANCEL"}
+        {isAdded ? "ADD " : "CANCLE"}
       </button>
     </div>
   );

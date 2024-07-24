@@ -6,7 +6,7 @@ import Register from "../collections/register";
 import App from "../collections/app/App";
 
 export default function Routers() {
-  const [Logeado, setLogeado] = useState(false);
+  const [Logeado, setLogeado] = useState(true);
   return (
     <Router>
       <Routes>

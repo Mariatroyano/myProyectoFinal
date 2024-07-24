@@ -5,7 +5,6 @@ import { useFetch } from "../..";
 
 
 function MainScreen() {
-  const [addedItems, ] = useState([]);
   const {
     data: products,
     loading,
@@ -28,7 +27,7 @@ function MainScreen() {
                 descripcion={product.description}
                 precio={`$${product.price}`}
                 product={product}
-                addedItems={addedItems}
+                // addedItems={addedItems}
               />
             </div>
           );

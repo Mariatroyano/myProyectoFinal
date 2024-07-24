@@ -42,7 +42,7 @@
 .add-item-btn,
 .remove-item-btn {
   color: rgb(243, 235, 235);
-  background-color: black;
+  background-color: rgb(15, 13, 13);
   width: 300px;
   min-height: 40px !important;
   max-height: 40px !important;
