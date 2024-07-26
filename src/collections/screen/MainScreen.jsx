@@ -3,7 +3,6 @@ import { FinalCardComponent } from "../card/FinalCardComponent";
 import "./MainScreen.css";
 import { useFetch } from "../..";
 
-
 function MainScreen() {
   const {
     data: products,
@@ -20,15 +19,7 @@ function MainScreen() {
         {products.map((product, index) => {
           return (
             <div key={index} className="contend">
-              <FinalCardComponent
-                key={product.id}
-                nombreProducto={product.title}
-                icon={product.image}
-                descripcion={product.description}
-                precio={`$${product.price}`}
-                product={product}
-                // addedItems={addedItems}
-              />
+              <FinalCardComponent {...product} />
             </div>
           );
         })}
