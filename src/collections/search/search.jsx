@@ -21,7 +21,7 @@ const Search = ({ products }) => {
         <input
           className="search__input"
           type="text"
-          placeholder="Busca por producto,coleccion..."
+          placeholder="Busca Por Producto..."
           value={Value}
           onChange={(e) => onChangeData(e)}
         />
