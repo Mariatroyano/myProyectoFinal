@@ -33,7 +33,7 @@
   cursor: pointer;
   float: right;
   position: absolute;
-  right: 0; /* Alinea el botón al borde derecho */
+  right: 0; 
 }
 
 .buscador{

@@ -6,7 +6,7 @@
   flex-direction: column;
 }
 .card__body1 {
-  background-color: rgb(214, 227, 227);
+  background-color: rgb(248, 253, 253);
   border-top: 15px solid rgb(0, 0, 0);
   display: flex;
   flex-wrap: wrap;
