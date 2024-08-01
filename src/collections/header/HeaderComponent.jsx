@@ -21,15 +21,15 @@ export const HeaderComponent = ({
 }) => {
   const { data: products } = useFetch("https://fakestoreapi.com/products");
   return (
-    <nav className=" headerNav">
-      <div className="div">
-        <img src={""} alt="" className="" />
+    <nav className=" bg-white p-14 flex h-48 w-full justify-between">
+      <div className="flex flex-wrap ">
+        <img src={""} alt=""  />
 
-        <img className="header__logo" src={imgen} alt="p" />
-        <h1 className="titulo">Eleganza </h1>
+        <img className="bg-black w-20 h-35  animate-pulse" src={imgen} alt="p" />
+        <h1 className="text-black text-4xl ">Eleganza </h1>
       </div>
-      <div className="buscador">
-        <div className="nav-right">
+      <div className="flex flex-row ">
+        <div >
           <Search products={products} />
         </div>
       </div>

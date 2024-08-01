@@ -79,7 +79,7 @@ function MainScreen() {
         {error && <p></p>}
         {products && (
           <div>
-            <h2>productos en {category}</h2>
+
             <ul>
               {Array.isArray(products) ? (
                 products.map((product) => {

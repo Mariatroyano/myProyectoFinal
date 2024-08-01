@@ -1,27 +1,27 @@
-.headerNav {
-  background-color: #ffffff;
-  padding: 16px;
+/* .headerNav { */
+  /* background-color: #ffffff; */
+  /* padding: 56px;
   display: flex;
-  height: 100px;
-  width: 100%;
-  justify-content: space-between;
-}
+  height: 200px;
+  width: 100%; */
+  /* justify-content: space-between; */
 
-.header__logo {
+
+/* .header__logo {
   color: rgb(15, 13, 13);
   width: 50px;
   height: 80px;
   animation: rotate 2s linear infinite;
-}
-.titulo {
+} */
+/* .titulo {
   color: rgb(14, 13, 13);
   font-size: 40px;
-}
-.div {
+} */
+/* .div {
   display: flex;
   flex-wrap: wrap;
-}
-.Button_carrito {
+} */
+/* .Button_carrito {
   justify-content: space-between;
   width: fit-content;
   padding: 1rem 2rem;
@@ -33,11 +33,10 @@
   cursor: pointer;
   float: right;
   position: absolute;
-  right: 0; 
-}
-
-.buscador{
+  right: 0;
+} */
+/* 
+.buscador {
   display: flex;
   flex-direction: row;
-  
-}
+} */

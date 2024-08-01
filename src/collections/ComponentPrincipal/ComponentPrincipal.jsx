@@ -7,9 +7,9 @@ export const ComponentPrincipal = ({
 }) => {
 
   return (
-    <div className="card">
+    <div >
       <div className="title">{title}</div>
-      <div className="w-24 h-24 animate-bounce" >
+      <div className="w-34 h-50" >
         <img src={image} alt={title} />
       </div>
 
