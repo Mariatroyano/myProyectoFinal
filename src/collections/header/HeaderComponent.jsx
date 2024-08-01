@@ -13,7 +13,6 @@ export const HeaderComponent = ({
   onSeeDetail,
   LoGo,
   img,
-  addedItems,
   isModalOpen,
   openModal,
   closeModal,
@@ -25,8 +24,8 @@ export const HeaderComponent = ({
       <div className="flex flex-wrap ">
         <img src={""} alt=""  />
 
-        <img className="bg-black w-20 h-35  animate-pulse" src={imgen} alt="p" />
-        <h1 className="text-black text-4xl ">Eleganza </h1>
+        <img className="bg-black w-24 h-35  animate-pulse" src={imgen} alt="p" />
+        <h1 className="text-black text-4xl w-30 h-45 ">Eleganza </h1>
       </div>
       <div className="flex flex-row ">
         <div >
@@ -35,11 +34,10 @@ export const HeaderComponent = ({
       </div>
       <div>
         <CartButtonComponent
-          itemCount={addedItems?.length}
           onCartClick={openModal}
         />
         {isModalOpen && (
-          <CartModalComponent items={addedItems} onClose={closeModal} />
+          <CartModalComponent onClose={closeModal} />
         )}
       </div>
     </nav>

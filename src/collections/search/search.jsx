@@ -19,7 +19,7 @@ const Search = ({ products }) => {
     <div className="Buscador">
       <div>
         <input
-          className="search__input bg-gray-700"
+          className="search__input "
           type="text"
           placeholder="Busca Por Producto..."
           value={Value}

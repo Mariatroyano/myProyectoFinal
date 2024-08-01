@@ -1,17 +1,20 @@
 import React from "react";
 import "./CartModalComponent.css";
+import useCartStore from "../../store/cart/useCartStore";
 
-export const CartModalComponent = ({ items, onClose }) => {
+export const CartModalComponent = ({  onClose }) => {
+  const Products = useCartStore(state=>state.cart)
+
   return (
     <div className="modal">
       <div className="modal-content">
         <span className="close" onClick={onClose}>&times;</span>
         <h2>Carrito de Compras</h2>
-        {items.length === 0 ? (
+        {Products .length === 0 ? (
           <p>No hay productos en el carrito.</p>
         ) : (
           <ul>
-            {items.map((item) => (
+            {Products.map((item) => (
               <li key={item.id}>
                 <img src={item.image} alt={item.title} className="modal-item-img" />
                 <div>{item.title}</div>

@@ -1,14 +1,14 @@
 .search__input {
-  width: 100%;
+  width: 200%;
   padding: 10px 20px;
-  border-color: var(--color-primary);
+  border: black solid 2px ;
   border-radius: 0.5rem;
   justify-content: center;
   height: 30px;
 }
 .Buscador {
   
-  background-color: #ffffff;
+  background-color: #bc2727;
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;

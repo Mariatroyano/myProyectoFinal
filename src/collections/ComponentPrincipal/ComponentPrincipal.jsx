@@ -9,7 +9,7 @@ export const ComponentPrincipal = ({
   return (
     <div >
       <div className="title">{title}</div>
-      <div className="w-34 h-50" >
+      <div className="w-25 h-34" >
         <img src={image} alt={title} />
       </div>
 

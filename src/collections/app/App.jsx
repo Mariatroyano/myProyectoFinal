@@ -6,7 +6,6 @@ import { useFetch } from "../..";
 import "../../index.css";
 
 function App({ Logeado = false, setLogeado }) {
-  const [addedItems, setIsAddedItems] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -28,7 +27,6 @@ function App({ Logeado = false, setLogeado }) {
       {Logeado ? (
         <>
           <HeaderComponent
-            addedItems={addedItems}
             isModalOpen={isModalOpen}
             openModal={openModal}
             closeModal={closeModal}

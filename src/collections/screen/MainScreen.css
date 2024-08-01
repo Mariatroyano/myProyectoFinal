@@ -7,7 +7,7 @@
 }
 .card__body1 {
   background-color: rgb(248, 253, 253);
-  border-top: 15px solid rgb(0, 0, 0);
+  padding-top: 20px;
   display: flex;
   flex-wrap: wrap;
   width: 100%;
