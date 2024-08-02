@@ -26,25 +26,13 @@ export default function Formulario({ Logeado, setLogeado }) {
       {
         <div className="body-div">
           <div className="form-container">
-            <h1>Iniciar Sesión</h1>
+            <h1>¡Hola! Para agregar al <br />carrito, 
+            ingresa a tu cuenta</h1>
 
             <form onSubmit={(e) => FuncionSubmit(e)} className="form">
-              <input
-                className="input"
-                type="email"
-                placeholder="Correo Electronico"
-              />
-              <br />
-              <br />
-              <input
-                className="input"
-                type="password"
-                placeholder="Contraseña"
-              />
-              <br />
-              <br />
+              
               <button type="submit" className="button">
-                Iniciar Sesión
+                Ingresar
               </button>
             </form>
             {first && (
@@ -54,7 +42,7 @@ export default function Formulario({ Logeado, setLogeado }) {
             )}
             <div>
               <p>
-                ¿No Tienes Cuenta?<Link to='/register'>Registrate</Link>
+                ¿No Tienes Cuenta?<Link to='/register'>Crear Cuenta</Link>
               </p>
             </div>
           </div>

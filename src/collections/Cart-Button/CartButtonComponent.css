@@ -1,0 +1,25 @@
+.cart-button {
+  top: 16px;
+  right: 16px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+   border-radius: 1000px;
+   height: 50px;
+   width: 200px;
+
+}
+
+.item-count {
+  background-color: red;
+  color: white;
+  border-radius: 50%;
+  padding: 4px 8px;
+  margin-left: 8px;
+}
+.imagen {
+  width: 10%;
+  height: 50%;
+
+}

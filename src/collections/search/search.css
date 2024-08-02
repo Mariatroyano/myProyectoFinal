@@ -1,0 +1,52 @@
+.search__input {
+  width: 200%;
+  padding: 10px 20px;
+  border: black solid 2px ;
+  border-radius: 0.5rem;
+  justify-content: center;
+  height: 30px;
+}
+.Buscador {
+  
+  background-color: #bc2727;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  height: auto;
+  max-height: 500px;
+}
+.Div_ProductsFiltrados {
+  max-width: 70%;
+  height: auto;
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+}
+.Div_Button_title_search {
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  height: 70%;
+  max-width: 300px;
+  scrollbar-color: transparent transparent;
+}
+.Button_title_search {
+  border: none;
+  border-bottom: 2px solid #828181;
+  border-right: 2px solid #828181;
+  border-top: 0.5px solid #d2d2d2;
+  border-radius: 0px 2.5px 4px 0;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 4px;
+  background-color: #ffffffec;
+  display: -webkit-box; /* Soporte para WebKit */
+  -webkit-line-clamp: 2; /* Limita a 2 líneas */
+  -webkit-box-orient: vertical; /* Orientación vertical */
+  overflow: hidden; /* Oculta el desbordamiento */
+  text-overflow: ellipsis; /* Puntos suspensivos para desbordamiento */
+  line-height: 17px;
+  display: flex; /* Soporte para otros navegadores */
+  flex-direction: column; /* Alineación vertical */
+  max-height: 34px; /* Altura máxima para 2 líneas */
+}
