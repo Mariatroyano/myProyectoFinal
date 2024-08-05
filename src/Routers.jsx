@@ -15,7 +15,7 @@ export default function Routers() {
           path="/"
           element={<Formulario Logeado={Logeado} setLogeado={setLogeado} />}
         />
-        {/* <Route path="/login" element={<Formulario />} /> */}
+     
         <Route path="/register" element={<Register />} />
         <Route
           path="/products"

@@ -16,9 +16,9 @@ export const CartModalComponent = ({  onClose }) => {
           <ul>
             {Products.map((item) => (
               <li key={item.id}>
-                <img src={item.image} alt={item.title} className="modal-item-img" />
-                <div>{item.title}</div>
-                <div>{item.price}</div>
+                <img src={item.IMAGEN} alt={item.title} className="modal-item-img" />
+                <div>{item.TITULO}</div>
+                <div>{item.PRECIO}</div>
               </li>
             ))}
           </ul>

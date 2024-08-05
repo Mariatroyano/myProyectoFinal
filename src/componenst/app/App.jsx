@@ -16,11 +16,7 @@ function App({ Logeado = false, setLogeado }) {
     setIsModalOpen(false);
   };
 
-  // const {
-  //   data: products,
-  //   loading,
-  //   error,
-  // } = useFetch("https://fakestoreapi.com/products");
+  
 
   return (
     <>
@@ -31,9 +27,7 @@ function App({ Logeado = false, setLogeado }) {
             openModal={openModal}
             closeModal={closeModal}
           />
-          {/* <div className="nav-right">
-              <Search products={products} />
-            </div> */}
+         
 
           <MainScreen />
         </>

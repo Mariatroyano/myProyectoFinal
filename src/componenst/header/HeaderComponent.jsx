@@ -18,7 +18,7 @@ export const HeaderComponent = ({
   closeModal,
   ...props
 }) => {
-  const { data: products } = useFetch("https://fakestoreapi.com/products");
+  const { data: products } = useFetch("https://api-productos-categorias.vercel.app/products");
   return (
     <nav className=" bg-white p-14 flex h-48 w-full justify-between">
       <div className="flex flex-wrap ">
