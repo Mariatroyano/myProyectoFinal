@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FinalCardComponent } from "../card/FinalCardComponent";
+import { FinalCardComponent } from "../card/FinalCardComponent.jsx";
 import "./MainScreen.css";
-import { useFetch } from "../..";
+import { useFetch } from "../../index.js";
 import setLocalStorage from "../../utils/setLocalStorage.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
@@ -14,7 +14,7 @@ import useCartStore from "../../store/cart/useCartStore.js";
 function MainScreen() {
   const [category, setCategory] = useState(null);
   const url = "https://fakestoreapi.com/products";
-  const addProducToCart = useCartStore(state=>state.addProducToCart)
+  const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setactivo] = useState(false);
 
   const {
@@ -32,8 +32,8 @@ function MainScreen() {
 
   const handleAddItem = (newProduct) => {
     // if (!cart?.some((productInCart) => productInCart.id == newProduct.id)) {
-      addProducToCart(newProduct)
-      // setLocalStorage([...cart, newProduct]);
+    addProducToCart(newProduct);
+    // setLocalStorage([...cart, newProduct]);
     // } else {
     //   alert("El producto ya fue agregado.");
     // }
@@ -45,7 +45,7 @@ function MainScreen() {
     console.log("categoria seleccionada", value);
   };
 
-  useFetch
+  useFetch;
 
   return (
     <>
