@@ -6,7 +6,7 @@ function GetCategoiras({ category, handleAddItem, products }) {
  
   const [ropa_mujer, setropa_mujer] = useState([]);
   const Ropa_Mujer = () => {
-    const j = products.filter((item) => item.CATEGORIA == category);
+    const j = products.filter((item) => item.category == category);
     setropa_mujer(j);
   };
 

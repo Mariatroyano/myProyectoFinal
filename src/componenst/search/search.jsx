@@ -8,10 +8,12 @@ const Search = ({ products }) => {
   const onChangeData = (e) => {
     setValue(e.target.value);
     const es = e.target.value;
-    const d = products.filter((e) => e.title.toLowerCase().includes(es.toLowerCase()));
+    const d = products.filter((e) =>
+      e.title.toLowerCase().includes(es.toLowerCase())
+    );
     setProductsFiltrados(d);
-    console.log(d);
-    console.log(Value);
+    // console.log(d);
+    // console.log(Value);
   };
 
   console.log(Value);
@@ -42,7 +44,9 @@ const Search = ({ products }) => {
           {ProductsFiltrados.map((item, i) => (
             <div key={i}>
               <>
-                <FinalCardComponent {...item} />
+                <div>
+                  <FinalCardComponent {...item} />
+                </div>
                 <br />
               </>
             </div>

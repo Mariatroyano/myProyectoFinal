@@ -1,31 +1,29 @@
-
 import "./FinalCardComponent.css";
 
 export const FinalCardComponent = ({
-  TITULO,
-  PRECIO,
-  DESCRIPCION,
-  IMAGEN,
+  title,
+  price,
+  description,
+  image,
   isAdded,
-  onAddProduct
- 
+  onAddProduct,
 }) => {
-
   return (
     <div className="card">
-      <div className="title">{TITULO}</div>
-      <div>
-        <img src={IMAGEN} alt={TITULO} className="cardImg" />
+      <div >
+        <div className="title">{title}</div>
+        <div>
+          <img src={image} alt={title} className="cardImg" />
+        </div>
+        <p className="card-descripcion text-black">{description} </p>
+        <p className="card-price-add text-black">{price}</p>
+        <button
+          className={isAdded ? "remove-item-btn" : "add-item-btn"}
+          onClick={onAddProduct}
+        >
+          {isAdded ? "Agregado" : "Comprar"}
+        </button>
       </div>
-      <div className="card-descripcion">{DESCRIPCION}</div>
-      <div className="card-price-add">{PRECIO}</div>
-      <button
-        className={isAdded ? "remove-item-btn" : "add-item-btn"}
-        onClick={onAddProduct}
-      >
-        {isAdded ? "Agregado" : "Agregar"}
-      </button>
     </div>
   );
 };
-
