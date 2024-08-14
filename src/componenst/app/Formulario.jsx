@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import "./Formulario.css";
+import React, { useState } from "react";
 
 export default function Formulario() {
   const [activo, setActivo] = useState(false);
@@ -8,49 +6,42 @@ export default function Formulario() {
   return (
     <>
       <button
-        className="iniciar-sesion"
-        onClick={(e) => {
-          setActivo(true);
-        }}
+        className="text-gray-200 bg-gray-800 w-24 h-24 absolute top-8 right-5"
+        onClick={() => setActivo(true)}
       >
         Iniciar Sesion
       </button>
       {activo && (
-        <div className="body-div">
+        <div className="absolute inset-0 flex items-center justify-center z-30">
           <div
-            className="button-modal"
-            onClick={(e) => {
-              setActivo(false);
-            }}
+            className="absolute inset-0 bg-gray-700 opacity-70"
+            onClick={() => setActivo(false)}
           />
-
-          <div className="form-container">
-            <h1>Registrarse</h1>
-
-            <form className="form">
+          <div className="flex flex-col items-center w-1/3 h-9/10 bg-gray-100 rounded-3xl z-40">
+            <h1 className="text-black">Registrarse</h1>
+            <form className="flex flex-col items-center w-full p-4">
               <input
-                className="input"
+                className="mb-4 p-2 border border-gray-300 rounded"
                 type="email"
                 placeholder="Email o numero celular"
               />
-              <br />
-              <br />
               <input
-                className="input"
+                className="mb-4 p-2 border border-gray-300 rounded"
                 type="password"
                 placeholder="Contraseña"
               />
-              <br />
-              <br />
-              <button type="button" className="button">
+              <button
+                type="button"
+                className="mb-4 p-2 bg-gray-600 text-white rounded"
+              >
                 Iniciar Sesión
               </button>
-              <br />
-              <br />
-              <a className="text-align-center" href="Olvidaste la contraseña?">
+              <a
+                className="text-center text-blue-500"
+                href="Olvidaste la contraseña?"
+              >
                 Olvidaste la contraseña?
               </a>
-              <br />
             </form>
           </div>
         </div>
