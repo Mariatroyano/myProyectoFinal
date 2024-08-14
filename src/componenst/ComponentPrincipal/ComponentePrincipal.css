@@ -9,8 +9,8 @@
     margin: 10px;
     flex-direction: column;
     justify-content: space-between;
-    border: 2px solid black;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgb(126, 97, 97);
+    box-shadow: 4px 4px 8px rgba(84, 78, 78, 0.5);
   }
   .cardImgPrincipal {
     width: 200px;

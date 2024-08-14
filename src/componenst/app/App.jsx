@@ -31,11 +31,12 @@ function App({ Logeado = false, setLogeado }) {
          
 
           <MainScreen />
-          <Footer/>
+         
         </>
       ) : (
         <h1>Error..No Te Encuentras Logeado </h1>
       )}
+      
     </>
   );
 }

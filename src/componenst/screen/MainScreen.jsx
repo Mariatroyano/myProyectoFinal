@@ -7,9 +7,12 @@ import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx
 import img from "../../../public/imagenpersonaje.webp";
 import img2 from "../../../public/imagen2.webp";
 import img3 from "../../../public/imagen4.webp";
+import electrodomesticos from "../../../public/electrodomesticos.png";
+import ropamujer from "../../../public/ropamujer.webp";
+import ropahombre from "../../../public/ropahombre.webp";
+import joyeria from "../../../public/joyeria.jpg";
 import useCartStore from "../../store/cart/useCartStore.js";
-// import electrodomesticos from "../../../public/electrodomeesticos.jpg"
-
+import Footer from "../Footer/Footer.jsx";
 
 function MainScreen() {
   const [category, setCategory] = useState(null);
@@ -18,8 +21,6 @@ function MainScreen() {
   const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setactivo] = useState(false);
   const { data: products, loading, error } = useFetch(url);
-
-
 
   const categories = [
     { name: "Joyas", value: "jewelery" },
@@ -56,14 +57,23 @@ function MainScreen() {
 
   return (
     <>
-      <p className="flex justify-center items-center ">Categorías del Eleganza</p>
+      <p className="parrafo">
+        Categorías de Eleganza
+      </p>
+      <div className="fotosCategorias">
+        <img src={joyeria} className="electrodomesticos" alt={""} />
+        <img src={electrodomesticos} className="electrodomesticos" alt={""} />
+        <img src={ropahombre} className="electrodomesticos" alt={""} />
+        <img src={ropamujer} className="electrodomesticos" alt={""} />
+      </div>
+
       <nav className="relative">
         {!activo && (
           <>
             <div className="flex justify-center items-center h-24 gap-x-0.5">
               {categories.map((categ, index) => (
                 <button
-                  className="bg-white text-black px-4 py-2 rounded-tr-lg"
+                  className=" text-white px-20 py-2 rounded-tr-lg"
                   key={index}
                   onClick={() => handleCategory(categ.value)}
                 >
@@ -71,7 +81,7 @@ function MainScreen() {
                 </button>
               ))}
             </div>
-            <div className="relative h-[1000px] overflow-hidden rounded-lg">
+            <div className="relative h-[1000px]  overflow-hidden rounded-lg">
               {slides.map((slide, index) => (
                 <div
                   key={index}
@@ -161,6 +171,7 @@ function MainScreen() {
             ))}
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
