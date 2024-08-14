@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./MainScreen.css";
 import { useFetch } from "../../index.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
@@ -19,14 +18,14 @@ function MainScreen() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "https://fakestoreapi.com/products";
   const addProducToCart = useCartStore((state) => state.addProducToCart);
-  const [activo, setactivo] = useState(false);
+  const [activo, setActivo] = useState(false);
   const { data: products, loading, error } = useFetch(url);
 
   const categories = [
-    { name: "Joyas", value: "jewelery" },
-    { name: "Electrodomésticos", value: "electronics" },
-    { name: "Moda Hombre", value: "men's clothing" },
-    { name: "Moda Mujer", value: "women's clothing" },
+    { name: "Joyas", value: "jewelery", image: joyeria },
+    { name: "Electrodomésticos", value: "electronics", image: electrodomesticos },
+    { name: "Moda Hombre", value: "men's clothing", image: ropahombre },
+    { name: "Moda Mujer", value: "women's clothing", image: ropamujer },
   ];
 
   const handleAddItem = (newProduct) => {
@@ -35,8 +34,8 @@ function MainScreen() {
 
   const handleCategory = (value) => {
     setCategory(value);
-    setactivo(!activo);
-    console.log("categoria seleccionada", value);
+    setActivo(!activo);
+    console.log("Categoria seleccionada", value);
   };
 
   const slides = [img, img2, img3];
@@ -57,14 +56,21 @@ function MainScreen() {
 
   return (
     <>
-      <p className="parrafo">
-        Categorías de Eleganza
-      </p>
-      <div className="fotosCategorias">
-        <img src={joyeria} className="electrodomesticos" alt={""} />
-        <img src={electrodomesticos} className="electrodomesticos" alt={""} />
-        <img src={ropahombre} className="electrodomesticos" alt={""} />
-        <img src={ropamujer} className="electrodomesticos" alt={""} />
+      <p className="text-4xl text-center mb-8">Categorías de Eleganza</p>
+      <div className="flex justify-center items-center mb-2 space-x-6">
+        {categories.map((cat) => (
+          <button
+            key={cat.value}
+            className="w-40 h-40 rounded-2xl overflow-hidden"
+            onClick={() => handleCategory(cat.value)}
+          >
+            <img
+              src={cat.image}
+              className="w-full h-full object-cover"
+              alt={cat.name}
+            />
+          </button>
+        ))}
       </div>
 
       <nav className="relative">
@@ -73,7 +79,7 @@ function MainScreen() {
             <div className="flex justify-center items-center h-24 gap-x-0.5">
               {categories.map((categ, index) => (
                 <button
-                  className=" text-white px-20 py-2 rounded-tr-lg"
+                  className="text-white px-12 py-2 rounded-tr-lg hover:bg-blue-700"
                   key={index}
                   onClick={() => handleCategory(categ.value)}
                 >
@@ -81,7 +87,7 @@ function MainScreen() {
                 </button>
               ))}
             </div>
-            <div className="relative h-[1000px]  overflow-hidden rounded-lg">
+            <div className="relative h-[1000px] overflow-hidden rounded-lg">
               {slides.map((slide, index) => (
                 <div
                   key={index}
@@ -91,7 +97,7 @@ function MainScreen() {
                 >
                   <img
                     src={slide}
-                    className="block w-[100%] h-[1000px]"
+                    className="block w-full h-full object-cover"
                     alt={`Slide ${index + 1}`}
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -131,7 +137,12 @@ function MainScreen() {
 
         {activo && (
           <>
-            <button onClick={() => setactivo(!activo)}>X</button>
+            <button
+              className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded"
+              onClick={() => setActivo(!activo)}
+            >
+              X
+            </button>
             <GetCategoiras
               category={category}
               handleAddItem={handleAddItem}
@@ -140,40 +151,34 @@ function MainScreen() {
           </>
         )}
       </nav>
-      <div>
-        <h1
-          className="text-white w-full h-28 text-center"
-          style={{ fontSize: "100px" }}
-        >
-          Ofertas
-        </h1>
+      <div className="text-center my-8">
+        <h1 className="text-white text-6xl">Ofertas</h1>
       </div>
-      <div className="card__body">
-        {loading && <p>Cargando.....</p>}
-        {error && <p>Ocurrió un error.</p>}
+      <div className="bg-gray-200 p-8">
+        {loading && <p className="text-white">Cargando.....</p>}
+        {error && <p className="text-white">Ocurrió un error.</p>}
         {(!products || products.length <= 0) && !loading && (
-          <p>No hay productos</p>
+          <p className="text-white">No hay productos</p>
         )}
-        <div className="card__body1 absolute">
+        <div className="flex flex-wrap justify-around mt-4">
           {products &&
             products.map((product, i) => (
-              <div key={i} className="contend">
-                <div>
-                  <ComponentPrincipal
-                    {...product}
-                    isAdded={getLocalStorage()?.some(
-                      (productInCart) => productInCart?.id === product?.id
-                    )}
-                    onAddProduct={() => handleAddItem(product)}
-                  />
-                </div>
+              <div key={i} className="w-96 mb-4">
+                <ComponentPrincipal
+                  {...product}
+                  isAdded={getLocalStorage()?.some(
+                    (productInCart) => productInCart?.id === product?.id
+                  )}
+                  onAddProduct={() => handleAddItem(product)}
+                />
               </div>
             ))}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 }
 
 export default MainScreen;
+

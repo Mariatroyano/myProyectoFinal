@@ -1,61 +1,56 @@
 import React, { useState } from "react";
-import "./search.css";
 import { FinalCardComponent } from "../card/FinalCardComponent";
+
 const Search = ({ products }) => {
-  const [Value, setValue] = useState("");
-  const [ProductsFiltrados, setProductsFiltrados] = useState([]);
+  const [value, setValue] = useState("");
+  const [productsFiltrados, setProductsFiltrados] = useState([]);
 
   const onChangeData = (e) => {
-    setValue(e.target.value);
-    const es = e.target.value;
-    const d = products.filter((e) =>
-      e.title.toLowerCase().includes(es.toLowerCase())
+    const searchValue = e.target.value;
+    setValue(searchValue);
+
+    // Filtra los productos basados en el valor de búsqueda
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(searchValue.toLowerCase())
     );
-    setProductsFiltrados(d);
-    // console.log(d);
-    // console.log(Value);
+    setProductsFiltrados(filteredProducts);
   };
 
-  console.log(Value);
   return (
-    <div className="Buscador">
-      <div>
+    <div className="flex flex-col md:flex-row max-h-[500px]">
+      <div className="flex flex-col w-full md:w-auto">
         <input
-          className="search__input "
+          className="w-full md:w-[200%] px-12 py-2 bg-[#f3efef] border border-[#ccc] rounded-lg h-8 mb-4 text-black"
           type="text"
           placeholder="Busca Por Producto..."
-          value={Value}
-          onChange={(e) => onChangeData(e)}
+          value={value}
+          onChange={onChangeData}
         />
-        {Value != "" && (
-          <div className="Div_Button_title_search">
-            {ProductsFiltrados.map((item, i) => (
-              <>
-                <button key={i} className="Button_title_search">
-                  {item.title}
-                </button>
-              </>
+        {value && (
+          <div className="flex flex-col max-w-xs overflow-y-scroll h-[70%] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent">
+            {productsFiltrados.map((item, i) => (
+              <button
+                key={i}
+                className="border-b-2 border-r-2 border-[#828181] border-t border-[#d2d2d2] rounded-tr-lg w-full min-h-[40px] mt-1 bg-[#ffffffec] text-left truncate"
+              >
+                {item.title}
+              </button>
             ))}
           </div>
         )}
       </div>
-      {Value != "" && (
-        <div className="Div_ProductsFiltrados">
-          {ProductsFiltrados.map((item, i) => (
-            <div key={i}>
-              <>
-                <div>
-                  <FinalCardComponent {...item} />
-                </div>
-                <br />
-              </>
-            </div>
-          ))}
-          <div>
-            {ProductsFiltrados.length <= 0
-              ? "Nose encontraron los productos"
-              : ""}
-          </div>
+
+      {value && (
+        <div className="flex flex-wrap max-w-[70%] overflow-auto">
+          {productsFiltrados.length > 0 ? (
+            productsFiltrados.map((item, i) => (
+              <div key={i} className="w-full md:w-1/3 lg:w-1/4 p-2">
+                <FinalCardComponent {...item} />
+              </div>
+            ))
+          ) : (
+            <div className="w-full text-center text-black">No se encontraron los productos</div>
+          )}
         </div>
       )}
     </div>

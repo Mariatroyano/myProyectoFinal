@@ -1,6 +1,5 @@
-import "./HeaderComponent.css";
 import imgen from "../../../public/logo.jpg";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { CartButtonComponent } from "../Cart-Button/Cart-Button.jsx";
 import { CartModalComponent } from "../Modal-components/Modal.jsx";
 import Search from "../search/search.jsx";
@@ -19,26 +18,21 @@ export const HeaderComponent = ({
   ...props
 }) => {
   const { data: products } = useFetch("https://api-productos-categorias.vercel.app/products");
-  return (
-    <nav className=" bg-white p-14 flex h-48 w-full justify-between">
-      <div className="flex flex-wrap ">
-        <img src={""} alt=""  />
 
-        <img className="bg-black w-24 h-35  animate-pulse" src={imgen} alt="p" />
-        <h1 className="text-black text-4xl w-30 h-45 ">Eleganza </h1>
+  return (
+    <nav className="bg-white p-6 flex items-center justify-between shadow-lg">
+      <div className="flex items-center">
+        <img src={imgen} alt="Logo" className="w-24 h-24 mr-4 object-contain animate-pulse" />
+        <h1 className="text-black text-4xl font-bold">Eleganza</h1>
       </div>
-      <div className="flex flex-row ">
-        <div >
+      <div className="flex-1 mx-8">
+        <div className="flex justify-center">
           <Search products={products} />
         </div>
       </div>
-      <div>
-        <CartButtonComponent
-          onCartClick={openModal}
-        />
-        {isModalOpen && (
-          <CartModalComponent onClose={closeModal} />
-        )}
+      <div className="flex items-center space-x-6">
+        <CartButtonComponent onCartClick={openModal} />
+        {isModalOpen && <CartModalComponent onClose={closeModal} />}
       </div>
     </nav>
   );

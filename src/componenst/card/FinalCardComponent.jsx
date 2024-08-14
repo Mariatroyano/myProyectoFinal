@@ -1,5 +1,3 @@
-import "./FinalCardComponent.css";
-
 export const FinalCardComponent = ({
   title,
   price,
@@ -9,26 +7,25 @@ export const FinalCardComponent = ({
   onAddProduct,
 }) => {
   return (
-    <div className="card bg-white p-4 w-[300px] h-[400px] rounded-md transition-transform duration-300 flex flex-col justify-between m-2">
-    <div>
-      <div className="title text-blue-900">{title}</div>
-      <div>
-        <img src={image} alt={title} className="cardImg w-[100px] ml-[90px]" />
+    <div className="card bg-white p-4 w-[300px] h-[400px] rounded-md shadow-lg transition-transform duration-300 flex flex-col justify-between m-2">
+      <div className="flex flex-col h-full">
+        <div className="flex justify-center mb-4">
+          <img src={image} alt={title} className="w-[150px] h-[150px] object-cover rounded-md" />
+        </div>
+        <div className="flex flex-col flex-grow">
+          <h3 className="title text-blue-900 text-xl font-semibold mb-2 truncate">{title}</h3>
+          <p className="card-descripcion text-black text-center text-sm overflow-hidden truncate mb-2">{description}</p>
+          <p className="card-price-add text-black text-center text-lg font-bold mb-4">{price}</p>
+        </div>
+        <button
+          className={`${
+            isAdded ? 'bg-gray-800 text-gray-200' : 'bg-black text-gray-100'
+          } w-full h-[40px] rounded-md mt-2`}
+          onClick={onAddProduct}
+        >
+          {isAdded ? 'Agregado' : 'Comprar'}
+        </button>
       </div>
-      <p className="card-descripcion text-black text-center overflow-hidden text-ellipsis">
-        {description}
-      </p>
-      <p className="card-price-add text-black flex items-center justify-between">{price}</p>
-      <button
-        className={`${
-          isAdded ? 'bg-black text-gray-100' : 'bg-black text-gray-100'
-        } w-[250px] h-[30px] rounded-md ml-2`}
-        onClick={onAddProduct}
-      >
-        {isAdded ? 'Agregado' : 'Comprar'}
-      </button>
     </div>
-  </div>
-  
   );
 };

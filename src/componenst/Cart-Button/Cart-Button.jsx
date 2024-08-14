@@ -4,10 +4,22 @@ import useCartStore from "../../store/cart/useCartStore";
 
 export const CartButtonComponent = ({ onCartClick }) => {
   const countProducts = useCartStore((state) => state.cart.length);
+
   return (
-    <button className="bg-[#f3efef] border border-[#ccc] p-2 cursor-pointer rounded-full h-[50px] w-[200px] relative top-[6px] right-[16px]" onClick={onCartClick}>
-      <img className="w-[10%] h-[50%] absolute top-0 left-0" src={imagen} alt="Cart" />
-      <span className="bg-red-500 text-white rounded-full px-2 py-1 absolute top-[5px] left-[80px]">{countProducts}</span>
+    <button
+      className="bg-[#f3efef] border border-[#ccc] p-2 cursor-pointer rounded-full relative flex items-center justify-center w-16 h-16"
+      onClick={onCartClick}
+    >
+      <img
+        className="w-10 h-10"
+        src={imagen}
+        alt="Cart"
+      />
+      {countProducts > 0 && (
+        <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+          {countProducts}
+        </span>
+      )}
     </button>
   );
 };
