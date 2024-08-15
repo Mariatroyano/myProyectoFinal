@@ -3,9 +3,9 @@ import { useFetch } from "../../index.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
-import img from "../../../public/imagenpersonaje.webp";
-import img2 from "../../../public/imagen2.webp";
-import img3 from "../../../public/imagen4.webp";
+import img from "../../../public/imagenPersonaje.webp";
+import img2 from "../../../public/imagen2.jpg";
+import img3 from "../../../public/imagen3.webp";
 import electrodomesticos from "../../../public/electrodomesticos.png";
 import ropamujer from "../../../public/ropamujer.webp";
 import ropahombre from "../../../public/ropahombre.webp";
@@ -100,7 +100,7 @@ function MainScreen() {
                     className="block w-full h-full object-cover"
                     alt={`Slide ${index + 1}`}
                   />
-                  <div className="absolute inset-0 flex items-center justify-center">
+                  {/* <div className="absolute inset-0 flex items-center justify-center">
                     <span
                       style={{ top: "90px", left: "30px" }}
                       className="text-8xl text-slate-950 font-bold absolute p-4 rounded"
@@ -113,7 +113,7 @@ function MainScreen() {
                     >
                       Eleganza with style
                     </span>
-                  </div>
+                  </div> */}
                 </div>
               ))}
 

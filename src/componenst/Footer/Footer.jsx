@@ -1,25 +1,32 @@
-import React from 'react';
+import React from "react";
+import { Link, Outlet } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-900 text-gray-200 py-6">
+    <footer className="bg-black text-gray-200 py-6">
       <div className="container mx-auto text-center">
         <p className="mb-4">
-          ¿Preguntas? Llama al <a href="tel:123456789" className="text-blue-400 hover:text-blue-300">123456789</a>
+          Copyright © 2024 - Todos los Derechos Reservados. Eleganza marca
+          propia de INCOCO SA Nit. 891401345-1 - Tienda de Ropa para Hombre y
+          Mujer, Pereira - Colombia
+          <a href="" className="text-blue-400 hover:text-blue-300"></a>
         </p>
         <ul className="list-none p-0 m-0 flex flex-wrap justify-center">
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Preguntas frecuentes</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Centro de ayuda</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Cuenta</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Prensa</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Relaciones con inversionistas</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Términos de uso</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Privacidad</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Preferencias de cookies</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Información corporativa</a></li>
-          <li className="mx-2"><a href="#" className="text-gray-200 hover:text-blue-400">Contáctanos</a></li>
+          ¿
+          <li className="mx-2">
+          <Link to="/PolitPrivacidad" className="text-gray-200 hover:text-blue-400">
+              Politicas y Privacidad
+            </Link>
+          </li>
+      
+          <li className="mx-2">
+            <Link to="/Terminos" className="text-gray-200 hover:text-blue-400">
+              Términos y Condiciones
+            </Link>
+          </li>
         </ul>
       </div>
+      <Outlet/>
     </footer>
   );
 };
