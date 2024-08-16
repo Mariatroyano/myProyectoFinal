@@ -10,7 +10,7 @@ export const FinalCardComponent = ({
     <div className="card bg-white p-4 w-[300px] h-[400px] rounded-md shadow-lg transition-transform duration-300 flex flex-col justify-between m-2">
       <div className="flex flex-col h-full">
         <div className="flex justify-center mb-4">
-          <img src={image} alt={title} className="w-[150px] h-[150px] object-cover rounded-md" />
+          <img src={image} alt={title} className="max-w-[150px] max-h-[150px]  rounded-md" />
         </div>
         <div className="flex flex-col flex-grow">
           <h3 className="title text-blue-900 text-xl font-semibold mb-2 truncate">{title}</h3>

@@ -1,8 +1,13 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
-export const ComponentPrincipal = ({ title, image, price }) => {
+export const ComponentPrincipal = ({ title, image, price, id }) => {
+  const navigate = useNavigate()
+  const navegacion = ()=>{
+    navigate(`/producto/${id}`)
+  }
   return (
-    <div className="bg-white p-4 w-72 h-96 rounded-lg  border-[#7e6161] shadow-lg flex flex-col justify-between m-2">
+    <div onClick={navegacion} className="bg-white p-4 w-72 h-96 rounded-lg  border-[#7e6161] shadow-lg flex flex-col justify-between m-2">
       <div className="flex flex-col items-center">
         <img
           src={image}

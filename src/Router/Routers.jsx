@@ -5,6 +5,7 @@ import Formulario from "../componenst/login/login";
 import { Register } from "../componenst/Formulario";
 import Terminos from "../componenst/Footer/Terminos";
 import PolitPrivacidad from "../componenst/Footer/PolitPrivacidad";
+import ProductoDetal from "../pages/ProductoDetal/ProductoDetal";
 
 export default function Routers() {
   const [Logeado, setLogeado] = useState(true);
@@ -19,6 +20,7 @@ export default function Routers() {
         <Route path="/register" element={<Register />} />
         <Route path="/Terminos" element={<Terminos />} />
         <Route path="/PolitPrivacidad" element={<PolitPrivacidad/>} />
+        <Route path="/producto/:id" element={<ProductoDetal/>} />
         <Route
           path="/products"
           element={<App Logeado={Logeado} setLogeado={setLogeado} />}

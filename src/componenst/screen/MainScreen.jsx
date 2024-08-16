@@ -16,7 +16,7 @@ import Footer from "../Footer/Footer.jsx";
 function MainScreen() {
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const url = "https://fakestoreapi.com/products";
+  const url = "http://localhost:5814/productos";
   const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setActivo] = useState(false);
   const { data: products, loading, error } = useFetch(url);
@@ -100,20 +100,6 @@ function MainScreen() {
                     className="block w-full h-full object-cover"
                     alt={`Slide ${index + 1}`}
                   />
-                  {/* <div className="absolute inset-0 flex items-center justify-center">
-                    <span
-                      style={{ top: "90px", left: "30px" }}
-                      className="text-8xl text-slate-950 font-bold absolute p-4 rounded"
-                    >
-                      The feature of health
-                    </span>
-                    <span
-                      style={{ top: "200px", left: "30px" }}
-                      className="text-5xl text-slate-950 font-bold absolute p-4 rounded"
-                    >
-                      Eleganza with style
-                    </span>
-                  </div> */}
                 </div>
               ))}
 

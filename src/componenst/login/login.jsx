@@ -4,6 +4,8 @@ import { auth, providerGogle } from "../../fireBase/credenciales";
 import { signInWithPopup } from "firebase/auth";
 
 export default function Formulario({ Logeado, setLogeado }) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [first, setFirst] = useState(false);
   const navigate = useNavigate();
 
@@ -34,6 +36,22 @@ export default function Formulario({ Logeado, setLogeado }) {
             carrito, ingresa a tu cuenta
           </h1>
           <form onSubmit={handleFormSubmit} className="w-full flex flex-col items-center">
+            <input
+              type="email"
+              placeholder="Correo Electrónico"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+            <input
+              type="password"
+              placeholder="Contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
             <button type="submit" className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition">
               Ingresar
             </button>
