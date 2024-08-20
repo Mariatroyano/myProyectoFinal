@@ -19,8 +19,8 @@ function MainScreen() {
   const url = "http://localhost:5814/productos";
   const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setActivo] = useState(false);
-  const { data: products, loading, error } = useFetch(url);
-
+  const { data: products, loading, error } = useFetch(url)
+   
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
     { name: "Electrodomésticos", value: "electronics", image: electrodomesticos },
