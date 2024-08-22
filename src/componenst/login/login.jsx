@@ -1,21 +1,57 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { auth, providerGogle } from "../../fireBase/credenciales";
-import { signInWithPopup } from "firebase/auth";
+import {
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+// import {  } from "firebase/auth";
 
 export default function Formulario({ Logeado, setLogeado }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [first, setFirst] = useState(false);
-  const navigate = useNavigate();
+  const [users, setUsers] = useState(null);
+  const [registrar, setRegistar] = useState(false);
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUsers(user);
+        console.log("Usuario Registrado");
+      } else {
+        console.log("Usuario no encontrado");
+      }
+    });
+  }, []);
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      if (users) {
+        await fetch("http://localhost:3000/Usuarios", {
+          method: "POST",
+          header: { "content-Type": "aplication/json" },
+          body: JSON.stringify({ UID_Usuario: users.uid, Email: email }),
+        });
+      }
+    } catch (error) {
+      console.log("Error al regitrar cuenta", error);
+    }
+
     setFirst(true);
     setLogeado(true);
     navigate("/products");
   };
-
+  const IngresarUser = async (e) => {
+    e.preventDefault();
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      console.log(" ingresastes a la cuneta");
+    } catch (error) {
+      console.log("Error al ingresar a la cuenta", error);
+    }
+  };
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, providerGogle);
@@ -23,9 +59,14 @@ export default function Formulario({ Logeado, setLogeado }) {
       navigate("/products");
     } catch (error) {
       console.error("Error al iniciar con Google:", error);
-      alert("Hubo un problema al iniciar sesión con Google. Por favor, intenta nuevamente.");
+      alert(
+        "Hubo un problema al iniciar sesión con Google. Por favor, intenta nuevamente."
+      );
     }
   };
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   return (
     <>
@@ -35,13 +76,18 @@ export default function Formulario({ Logeado, setLogeado }) {
             ¡Hola! Para agregar al <br />
             carrito, ingresa a tu cuenta
           </h1>
-          <form onSubmit={handleFormSubmit} className="w-full flex flex-col items-center">
+          <form
+            onSubmit={(e) => {
+              registrar ? handleFormSubmit(e) : IngresarUser(e);
+            }}
+            className="w-full flex flex-col items-center"
+          >
             <input
               type="email"
               placeholder="Correo Electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               required
             />
             <input
@@ -49,11 +95,21 @@ export default function Formulario({ Logeado, setLogeado }) {
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500  text-black "
               required
             />
-            <button type="submit" className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition">
+            <button
+              type="submit"
+              className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition"
+            >
               Ingresar
+            </button>
+            <button
+              type="button"
+              onClick={() => setRegistar(!registrar)}
+              className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition"
+            >
+              {registrar ? "¿quieres Ingresar?" : "¿quieres Registrate?"}
             </button>
           </form>
           {first && (

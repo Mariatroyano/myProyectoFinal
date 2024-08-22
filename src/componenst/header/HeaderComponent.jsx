@@ -4,6 +4,8 @@ import { CartButtonComponent } from "../Cart-Button/Cart-Button.jsx";
 import { CartModalComponent } from "../Modal-components/Modal.jsx";
 import Search from "../search/search.jsx";
 import { useFetch } from "../../index.js";
+import { signOut } from "firebase/auth";
+import { auth } from "../../fireBase/credenciales.js";
 
 export const HeaderComponent = ({
   notifications,
@@ -17,12 +19,26 @@ export const HeaderComponent = ({
   closeModal,
   ...props
 }) => {
-  const { data: products } = useFetch("https://api-productos-categorias.vercel.app/products");
-
+  const { data: products } = useFetch(
+    "https://api-productos-categorias.vercel.app/products"
+  );
+  const cerrarSesion = async () => {
+    try {
+      await signOut(auth);
+      console.log("Se cerro la sesion");
+    } catch (error) {
+      console.log("no Se cerro la sesion");
+    }
+  };
   return (
     <nav className="bg-white p-6 flex items-center justify-between shadow-lg">
       <div className="flex items-center">
-        <img src={imgen} alt="Logo" className="w-24 h-24 mr-4 object-contain animate-pulse" />
+        <button onClick={cerrarSesion} className="text-black">Cerrar Sesion</button>
+        <img
+          src={imgen}
+          alt="Logo"
+          className="w-24 h-24 mr-4 object-contain animate-pulse"
+        />
         <h1 className="text-black text-4xl font-bold">Eleganza</h1>
       </div>
       <div className="flex-1 mx-8">
