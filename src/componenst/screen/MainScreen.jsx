@@ -12,14 +12,19 @@ import ropahombre from "../../../public/ropahombre.webp";
 import joyeria from "../../../public/joyeria.jpg";
 import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
+import products from '../../data/data-product.js'
 
 function MainScreen() {
+  console.log(products);
+  
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "http://localhost:5814/productos";
   const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setActivo] = useState(false);
-  const { data: products, loading, error } = useFetch(url)
+  // const { data, loading, error } = useFetch(url)
+  const loading = false;
+  const error  = null;
    
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
