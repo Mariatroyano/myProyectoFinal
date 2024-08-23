@@ -3,7 +3,7 @@ import { useFetch } from "../../index.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
-import img from "../../../public/imagenPersonaje.webp";
+import img from "../../../public/imagenpersonaje.webp";
 import img2 from "../../../public/imagen2.jpg";
 import img3 from "../../../public/imagen3.webp";
 import electrodomesticos from "../../../public/electrodomesticos.png";
@@ -12,11 +12,11 @@ import ropahombre from "../../../public/ropahombre.webp";
 import joyeria from "../../../public/joyeria.jpg";
 import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
-import products from '../../data/data-product.js'
+import products from "../../data/data-product.js";
 
 function MainScreen() {
   console.log(products);
-  
+
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "http://localhost:5814/productos";
@@ -24,11 +24,15 @@ function MainScreen() {
   const [activo, setActivo] = useState(false);
   // const { data, loading, error } = useFetch(url)
   const loading = false;
-  const error  = null;
-   
+  const error = null;
+
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
-    { name: "Electrodomésticos", value: "electronics", image: electrodomesticos },
+    {
+      name: "Electrodomésticos",
+      value: "electronics",
+      image: electrodomesticos,
+    },
     { name: "Moda Hombre", value: "men's clothing", image: ropahombre },
     { name: "Moda Mujer", value: "women's clothing", image: ropamujer },
   ];
@@ -61,7 +65,7 @@ function MainScreen() {
 
   return (
     <>
-      <p className="text-4xl text-center mb-8">Categorías de Eleganza</p>
+      <p className="text-4xl text-center mb-8 ">Categorías de Eleganza</p>
       <div className="flex justify-center items-center mb-2 space-x-6">
         {categories.map((cat) => (
           <button
@@ -172,4 +176,3 @@ function MainScreen() {
 }
 
 export default MainScreen;
-
