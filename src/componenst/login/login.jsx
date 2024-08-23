@@ -7,34 +7,40 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-// import {  } from "firebase/auth";
 
 export default function Formulario({ Logeado, setLogeado }) {
   const [first, setFirst] = useState(false);
-  const [users, setUsers] = useState(null);
   const [registrar, setRegistar] = useState(false);
+  const navigate = useNavigate();
+  
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUsers(user);
+        console.log(user);
+        navigate("/products");
         console.log("Usuario Registrado");
       } else {
         console.log("Usuario no encontrado");
       }
     });
-  }, []);
+  }, [navigate]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      if (users) {
-        await fetch("http://localhost:3000/Usuarios", {
-          method: "POST",
-          header: { "content-Type": "aplication/json" },
-          body: JSON.stringify({ UID_Usuario: users.uid, Email: email }),
-        });
-      }
+      const usarioCredenciales = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log(usarioCredenciales);
+
+      const user = usarioCredenciales.user;
+      await fetch("http://localhost:3000/Usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ UID_Usuario: user.uid, Email: email }),
+      });
     } catch (error) {
       console.log("Error al regitrar cuenta", error);
     }
@@ -43,15 +49,17 @@ export default function Formulario({ Logeado, setLogeado }) {
     setLogeado(true);
     navigate("/products");
   };
+
   const IngresarUser = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log(" ingresastes a la cuneta");
+      console.log("Ingresaste a la cuenta");
     } catch (error) {
       console.log("Error al ingresar a la cuenta", error);
     }
   };
+
   const handleGoogleSignIn = async () => {
     try {
       await signInWithPopup(auth, providerGogle);
@@ -71,8 +79,8 @@ export default function Formulario({ Logeado, setLogeado }) {
   return (
     <>
       <div className="bg-white absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30">
-        <div className="flex items-center w-1/3 h-5/6 bg-[#EFF8F6] rounded-[60px] z-50 flex-col justify-center">
-          <h1 className="text-black text-center mb-6">
+        <div className="flex flex-col items-center w-full max-w-md p-8 bg-[#EFF8F6] rounded-lg shadow-lg z-50">
+          <h1 className="text-2xl font-bold text-black text-center mb-6">
             ¡Hola! Para agregar al <br />
             carrito, ingresa a tu cuenta
           </h1>
@@ -87,7 +95,7 @@ export default function Formulario({ Logeado, setLogeado }) {
               placeholder="Correo Electrónico"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
+              className="w-full p-3 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               required
             />
             <input
@@ -95,32 +103,32 @@ export default function Formulario({ Logeado, setLogeado }) {
               placeholder="Contraseña"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-3/4 p-2 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500  text-black "
+              className="w-full p-3 mb-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
               required
             />
             <button
               type="submit"
-              className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition"
+              className="w-full bg-[#0067B8] text-white py-3 rounded-lg mb-4 hover:bg-blue-700 transition"
             >
-              Ingresar
+              {registrar ? "Registrar" : "Ingresar"}
             </button>
             <button
               type="button"
               onClick={() => setRegistar(!registrar)}
-              className="bg-[#0067B8] text-white py-2 px-4 rounded-lg mb-4 hover:bg-blue-700 transition"
+              className="w-full bg-gray-100 text-gray-800 py-3 rounded-lg mb-4 hover:bg-gray-200 transition"
             >
-              {registrar ? "¿quieres Ingresar?" : "¿quieres Registrate?"}
+              {registrar ? "¿Ya tienes cuenta? Ingresar" : "¿No tienes cuenta? Registrate"}
             </button>
           </form>
           {first && (
-            <Link to="/products" className="mb-4">
-              <button className="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition">
+            <Link to="/products" className="w-full">
+              <button className="w-full bg-green-500 text-white py-3 rounded-lg mb-4 hover:bg-green-700 transition">
                 Ver Productos
               </button>
             </Link>
           )}
-          <div className="text-center">
-            <p className="mb-2 text-gray-950">
+          <div className="text-center w-full">
+            <p className="mb-2 text-gray-600">
               ¿No Tienes Cuenta?{" "}
               <Link to="/register" className="text-blue-600 hover:underline">
                 Crear Cuenta
@@ -128,7 +136,7 @@ export default function Formulario({ Logeado, setLogeado }) {
             </p>
             <button
               onClick={handleGoogleSignIn}
-              className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-700 transition"
+              className="w-full bg-red-500 text-white py-3 rounded-lg hover:bg-red-700 transition"
             >
               Iniciar sesión con Google
             </button>

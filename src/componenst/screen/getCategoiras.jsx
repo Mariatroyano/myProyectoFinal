@@ -10,6 +10,7 @@ function GetCategoiras({ category, handleAddItem, products }) {
         .map((product, index) => {
           return (
             <div key={index} className="contend ">
+              {console.log(product)}
               <FinalCardComponent
                 {...product}
                 isAdded={getLocalStorage()?.some(

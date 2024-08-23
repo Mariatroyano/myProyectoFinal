@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFetch } from "../../index.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
-import img from "../../../public/imagenpersonaje.webp";
+import img from "../../../public/imagenPersonaje.webp";
 import img2 from "../../../public/imagen2.jpg";
 import img3 from "../../../public/imagen3.webp";
 import electrodomesticos from "../../../public/electrodomesticos.png";
@@ -12,17 +12,16 @@ import ropahombre from "../../../public/ropahombre.webp";
 import joyeria from "../../../public/joyeria.jpg";
 import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
-import products from "../../data/data-product.js";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../../fireBase/credenciales.js";
 
 function MainScreen() {
-  console.log(products);
-
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "http://localhost:5814/productos";
   const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setActivo] = useState(false);
-  // const { data, loading, error } = useFetch(url)
+  const [products, setproducts] = useState([]);
   const loading = false;
   const error = null;
 
@@ -62,7 +61,24 @@ function MainScreen() {
   const handleIndicatorClick = (index) => {
     setCurrentSlide(index);
   };
-
+  useEffect(() => {
+    //.............................................aquiiiiiiii
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user);
+        console.log("Usuario Registrado");
+      } else {
+        console.log("Usuario no encontradoooooooooo");
+      }
+    });
+  }, []);
+  useEffect(() => {
+    fetch(`http://localhost:5814/productos`)
+      .then((res) => res.json())
+      .then((data) => {
+        setproducts(data);
+      });
+  }, []);
   return (
     <>
       <p className="text-4xl text-center mb-8 ">Categorías de Eleganza</p>

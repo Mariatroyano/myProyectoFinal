@@ -10,78 +10,78 @@ export function Register() {
   };
 
   return (
-    <div className="bg-black flex justify-center items-center min-h-screen p-4">
-      <div className="w-full max-w-md bg-[#D6E3E3] rounded-lg shadow-lg p-8 z-50">
-        <h2 className="text-[#111315] text-2xl font-bold text-center mb-6">
-          Registro
+    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black flex justify-center items-center min-h-screen p-4">
+      <div className="w-full max-w-lg bg-white bg-opacity-90 rounded-2xl shadow-xl p-8">
+        <h2 className="text-gray-800 text-3xl font-bold text-center mb-8">
+          Crear Cuenta
         </h2>
         <form onSubmit={handleRegister} className="space-y-6">
           <div className="flex flex-col">
-            <label className="text-[#17191B] mb-2" htmlFor="nombres">
+            <label className="text-gray-700 mb-2" htmlFor="nombres">
               Nombres:
             </label>
             <input
               id="nombres"
               type="text"
               required
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none text-zinc-950"
+              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[#17191B] mb-2" htmlFor="apellidos">
+            <label className="text-gray-700 mb-2" htmlFor="apellidos">
               Apellidos:
             </label>
             <input
               id="apellidos"
               type="text"
               required
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none  text-zinc-950"
+              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[#17191B] mb-2" htmlFor="edad">
+            <label className="text-gray-700 mb-2" htmlFor="edad">
               Edad:
             </label>
             <input
               id="edad"
               type="number"
               required
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none  text-zinc-950"
+              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[#17191B] mb-2" htmlFor="email">
+            <label className="text-gray-700 mb-2" htmlFor="email">
               Email:
             </label>
             <input
               id="email"
               type="email"
               required
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none  text-zinc-950"
+              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-[#17191B] mb-2" htmlFor="password">
+            <label className="text-gray-700 mb-2" htmlFor="password">
               Password:
             </label>
             <input
               id="password"
               type="password"
               required
-              className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-500 focus:outline-none  text-zinc-950"
+              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
             />
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500  text-zinc-950"
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-transform transform hover:scale-105"
           >
             Registrarse
           </button>
         </form>
-        <div className="text-center mt-4">
+        <div className="text-center mt-6">
           <Link
-            to="/products"
-            className="text-blue-600 hover:underline focus:outline-none focus:ring-2 focus:ring-blue-500  text-zinc-950"
+            to="/login"
+            className="text-indigo-600 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"
           >
             Iniciar sesión
           </Link>
@@ -90,5 +90,3 @@ export function Register() {
     </div>
   );
 }
-
-// export Register;

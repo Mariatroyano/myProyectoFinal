@@ -1,77 +1,64 @@
-import React, { useState } from 'react'
+import React from "react";
 
-// const tallas
-
-
-
-
-export const CardDetall = ({//.....................
-    title,
-    price,
-    description,
-    image,
-    category,
-    isAdded,
-    onAddProduct,
-    onRemoveProduct,
-    quantity,
-    onSelectQuantity,
-  }) => {
-    return (
-      <div className="flex justify-center items-center min-h-screen">
-        <div className="card bg-white p-4 w-[800px] h-[500px] rounded-md shadow-lg transition-transform duration-300 flex flex-col justify-between m-2">
-          <div className="flex flex-col h-full">
-            <div className="flex justify-center mb-4">
-              <img
-                src={image}
-                alt={title}
-                className="max-w-[150px] max-h-[150px] rounded-md"
-              />
-            </div>
-            <div className="flex flex-col flex-grow">
-              <h3 className="title text-blue-900 text-xl font-semibold mb-2 truncate justify-center items-center">
-                {title}
-              </h3>
-              <p className="card-descripcion text-black text-center text-sm overflow-hidden">
-                {description}
-              </p>
-              <p className="card-price-add text-black text-center text-lg font-bold mb-4">
-                {price}
-              </p>
-            </div>
-            <div className="flex justify-between items-center">
-              <button
-                className={`${
-                  isAdded ? 'bg-gray-800 text-gray-200' : 'bg-black text-gray-100'
-                } w-[45%] h-[32px] rounded-md mt-2 text-sm`}
-                onClick={onAddProduct}
-              >
-                {isAdded ? 'Agregado' : 'AGREGAR AL CARRITO'}
-              </button>
-            
-            </div>
-            <div className="flex justify-center items-center mt-4">
-              <select
-                value={quantity}
-                onChange={(e) => onSelectQuantity(e.target.value)}
-                className="bg-gray-300 text-black w-[10%] h-[42px] rounded-md text-sm text-center"
-              >
-                {[...Array(10).keys()].map((num) => (
-                  <option key={num + 1} value={num + 1}>
-                    {num + 1}
-                  </option>
-                ))}
-              </select>
-            </div>
+export const CardDetall = ({
+  title,
+  price,
+  description,
+  image,
+  category,
+  onAddProduct,
+  isAdded,
+  onRemoveProduct,
+  quantity,
+  onSelectQuantity,
+}) => {
+  return (
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="bg-white p-8 w-full max-w-4xl rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 flex">
+        <div className="w-1/2 flex justify-center items-center">
+          <img
+            src={image}
+            alt={title}
+            className="w-64 h-64 object-cover rounded-lg shadow-md"
+          />
+        </div>
+        <div className="w-1/2 flex flex-col justify-between p-6">
+          <h3 className="text-3xl font-bold text-blue-800 mb-4">{title}</h3>
+          <p className="text-gray-700 text-lg mb-6">{description}</p>
+          <p className="text-2xl font-semibold text-gray-900 mb-8">${price}</p>
+          <div className="flex justify-between items-center mb-4">
             <button
-                className="bg-red-500 text-white w-[45%] h-[32px] rounded-md mt-2 text-sm"
-                onClick={onRemoveProduct}
-              >
-                Eliminar
-              </button>
+              className={`${
+                isAdded
+                  ? "bg-gray-700 text-gray-200"
+                  : "bg-green-600 text-white"
+              } py-2 px-6 rounded-lg transition-transform transform hover:scale-105`}
+              onClick={onAddProduct}
+            >
+              {isAdded ? "Agregado" : "Agregar al Carrito"}
+            </button>
+            <button
+              className="bg-red-500 text-white py-2 px-6 rounded-lg transition-transform transform hover:scale-105"
+              onClick={onRemoveProduct}
+            >
+              Eliminar
+            </button>
+          </div>
+          <div className="flex justify-center w-full mt-4">
+            <select
+              value={quantity}
+              onChange={(e) => onSelectQuantity(e.target.value)}
+              className="bg-gray-200 text-gray-800 w-24 py-2 rounded-lg text-center shadow-inner"
+            >
+              {[...Array(10).keys()].map((num) => (
+                <option key={num + 1} value={num + 1}>
+                  {num + 1}
+                </option>
+              ))}
+            </select>
           </div>
         </div>
       </div>
-    );
-  };
-  
+    </div>
+  );
+};

@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { CardDetall } from "../../componenst/card/CardDetall";
+import { HeaderComponent } from "../../componenst/header/HeaderComponent";
 
 export default function ProductoDetal() {
   const { id } = useParams();
-  const [Producto, setProducto] = useState(null);
+  const [Producto, setProducto] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5813/${id - 1}`)
+    fetch(`http://localhost:5814/productos/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProducto(data);
@@ -16,8 +17,12 @@ export default function ProductoDetal() {
   console.log(Producto);
 
   return (
-    <div>
-      <CardDetall {...Producto} />
-    </div>
+    <>
+    <HeaderComponent/>
+      <div>
+        <CardDetall {...Producto} />
+      </div>
+      
+    </>
   );
 }
