@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 
 
 
-export const CardDetall = ({
+export const CardDetall = ({//.....................
     title,
     price,
     description,
