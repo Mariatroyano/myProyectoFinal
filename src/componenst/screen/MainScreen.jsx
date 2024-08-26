@@ -19,11 +19,11 @@ function MainScreen() {
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "http://localhost:5814/productos";
-  const addProducToCart = useCartStore((state) => state.addProducToCart);
   const [activo, setActivo] = useState(false);
   const [products, setproducts] = useState([]);
   const loading = false;
   const error = null;
+  const addProducToCart = useCartStore((state) => state.addProducToCart);
 
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
@@ -43,7 +43,6 @@ function MainScreen() {
   const handleCategory = (value) => {
     setCategory(value);
     setActivo(!activo);
-    console.log("Categoria seleccionada", value);
   };
 
   const slides = [img, img2, img3];
@@ -61,6 +60,7 @@ function MainScreen() {
   const handleIndicatorClick = (index) => {
     setCurrentSlide(index);
   };
+  
   useEffect(() => {
     //.............................................aquiiiiiiii
     onAuthStateChanged(auth, (user) => {

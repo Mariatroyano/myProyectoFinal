@@ -1,11 +1,16 @@
+import { useContext, useState } from "react";
+import { CartContext } from "../../context/CartContext";
+
 export const FinalCardComponent = ({
   title,
   price,
   description,
   image,
   isAdded,
-  onAddProduct,
+  product
 }) => {
+  const [Cantidad, setCantidad] = useState();
+  const { addToCart } = useContext(CartContext);
   return (
     <div className="card bg-white p-4 w-[300px] h-[400px] rounded-md shadow-lg transition-transform duration-300 flex flex-col justify-between m-2">
       <div className="flex flex-col h-full">
@@ -27,11 +32,16 @@ export const FinalCardComponent = ({
             {price}
           </p>
         </div>
+        <input
+          type="number"
+          value={Cantidad}
+          onChange={(e) => setCantidad(e.target.value)}
+        />
         <button
           className={`${
             isAdded ? "bg-gray-800 text-gray-200" : "bg-black text-gray-100"
           } w-full h-[40px] rounded-md mt-2`}
-          onClick={onAddProduct}
+          onClick={() => addToCart(product.id, Cantidad)}
         >
           {isAdded ? "Agregado" : "Comprar"}
         </button>

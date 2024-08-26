@@ -1,11 +1,11 @@
 import imgen from "../../../public/logo.jpg";
 import React from "react";
-import { CartButtonComponent } from "../Cart-Button/Cart-Button.jsx";
 import { CartModalComponent } from "../Carcarrito/CarCarrito.jsx";
 import Search from "../search/search.jsx";
 import { useFetch } from "../../index.js";
 import { signOut } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
+import { CartButtonComponent } from "../Cart-Button/ProductList.jsx";
 
 export const HeaderComponent = ({
   notifications,

@@ -14,15 +14,13 @@ export default function ProductoDetal() {
         setProducto(data);
       });
   }, [id]);
-  console.log(Producto);
 
   return (
     <>
-    <HeaderComponent/>
+      <HeaderComponent />
       <div>
         <CardDetall {...Producto} />
       </div>
-      
     </>
   );
 }

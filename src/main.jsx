@@ -1,9 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import Routers from "./Router/Routers";
+import { CartProvider } from "./context/CartProvider";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Routers />
+    <CartProvider>
+      <Routers />
+    </CartProvider>
   </React.StrictMode>
 );

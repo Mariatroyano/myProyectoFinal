@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from 'zustand/middleware';
+import { persist, createJSONStorage } from "zustand/middleware";
 
 const useCartStore = create(
   persist(
@@ -8,9 +8,7 @@ const useCartStore = create(
       addProducToCart: (newProduct) =>
         set((state) => ({ cart: [...state.cart, newProduct] })),
       removeItem: (id) =>
-        set((state) => ({
-          cart: state.cart.filter(item => item.id !== id),
-        })),
+        set((state) => ({ cart: state.cart.filter((item) => item.id !== id) })),
     }),
     {
       name: "CART",

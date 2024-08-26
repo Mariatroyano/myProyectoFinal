@@ -6,11 +6,11 @@ import { Register } from "../componenst/Formulario";
 import Terminos from "../componenst/Footer/Terminos";
 import PolitPrivacidad from "../componenst/Footer/PolitPrivacidad";
 import ProductoDetal from "../pages/ProductoDetal/ProductoDetal";
-import Factura from "../componenst/Factura/Factura"
+import Factura from "../componenst/Factura/Factura";
 
 export default function Routers() {
   const [Logeado, setLogeado] = useState(true);
-  
+
   return (
     <Router>
       <Routes>
@@ -20,9 +20,9 @@ export default function Routers() {
         />
         <Route path="/register" element={<Register />} />
         <Route path="/Terminos" element={<Terminos />} />
-        <Route path="/PolitPrivacidad" element={<PolitPrivacidad/>} />
-        <Route path="/producto/:id" element={<ProductoDetal/>} />
-        <Route path="/Factura" element={<Factura/>} />
+        <Route path="/PolitPrivacidad" element={<PolitPrivacidad />} />
+        <Route path="/producto/:id" element={<ProductoDetal />} />
+        <Route path="/Factura" element={<Factura />} />
         <Route
           path="/products"
           element={<App Logeado={Logeado} setLogeado={setLogeado} />}

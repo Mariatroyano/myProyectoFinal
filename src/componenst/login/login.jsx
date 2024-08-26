@@ -12,7 +12,7 @@ export default function Formulario({ Logeado, setLogeado }) {
   const [first, setFirst] = useState(false);
   const [registrar, setRegistar] = useState(false);
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -27,22 +27,29 @@ export default function Formulario({ Logeado, setLogeado }) {
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    const usarioCredenciales = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const { uid } = usarioCredenciales.user;
     try {
-      const usarioCredenciales = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      console.log(usarioCredenciales);
-
-      const user = usarioCredenciales.user;
       await fetch("http://localhost:3000/Usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UID_Usuario: user.uid, Email: email }),
+        body: JSON.stringify({ UID_Usuario: uid, Email: email }),
       });
     } catch (error) {
       console.log("Error al regitrar cuenta", error);
+    }
+    try {
+      await fetch("http://localhost:3000/carritoCompras", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
+      });
+    } catch (error) {
+      console.log("Error al crear carrito de compras ", error);
     }
 
     setFirst(true);
@@ -117,7 +124,9 @@ export default function Formulario({ Logeado, setLogeado }) {
               onClick={() => setRegistar(!registrar)}
               className="w-full bg-gray-100 text-gray-800 py-3 rounded-lg mb-4 hover:bg-gray-200 transition"
             >
-              {registrar ? "¿Ya tienes cuenta? Ingresar" : "¿No tienes cuenta? Registrate"}
+              {registrar
+                ? "¿Ya tienes cuenta? Ingresar"
+                : "¿No tienes cuenta? Registrate"}
             </button>
           </form>
           {first && (
