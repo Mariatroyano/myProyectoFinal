@@ -54,6 +54,7 @@ export default function Formulario({ Logeado, setLogeado }) {
 
     setFirst(true);
     setLogeado(true);
+    location.reload();
     navigate("/products");
   };
 
@@ -62,6 +63,7 @@ export default function Formulario({ Logeado, setLogeado }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Ingresaste a la cuenta");
+      location.reload();
     } catch (error) {
       console.log("Error al ingresar a la cuenta", error);
     }
@@ -71,6 +73,8 @@ export default function Formulario({ Logeado, setLogeado }) {
     try {
       await signInWithPopup(auth, providerGogle);
       setLogeado(true);
+      location.reload();
+
       navigate("/products");
     } catch (error) {
       console.error("Error al iniciar con Google:", error);

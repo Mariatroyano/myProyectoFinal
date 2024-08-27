@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [Productoscart, setProductosCart] = useState([]);
   const [user, setuser] = useState([]);
-  
+
   const CartUsuario = async () => {
     await fetch(`http://localhost:3000/carritoCompras/UID_Usuario/${user.uid}`)
       .then((res) => res.json())
