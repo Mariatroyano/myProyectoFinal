@@ -20,7 +20,7 @@ export const HeaderComponent = ({
   ...props
 }) => {
   const { data: products } = useFetch(
-    "https://api-productos-categorias.vercel.app/products"
+    "http://localhost:5814/productos"
   );
   const cerrarSesion = async () => {
     try {

@@ -60,7 +60,7 @@ function MainScreen() {
   const handleIndicatorClick = (index) => {
     setCurrentSlide(index);
   };
-  
+
   useEffect(() => {
     //.............................................aquiiiiiiii
     onAuthStateChanged(auth, (user) => {

@@ -10,65 +10,70 @@ export function Register() {
   };
 
   return (
-    <div className="bg-gradient-to-br from-gray-900 via-gray-800 to-black flex justify-center items-center min-h-screen p-4">
-      <div className="w-full max-w-lg bg-white bg-opacity-90 rounded-2xl shadow-xl p-8">
-        <h2 className="text-gray-800 text-3xl font-bold text-center mb-8">
+    <div className="bg-gradient-to-br from-teal-800 via-blue-300 to-purple-600 flex justify-center items-center min-h-screen p-4">
+      <div className="w-full max-w-lg bg-white bg-opacity-90 rounded-3xl shadow-lg p-8">
+        <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-8">
           Crear Cuenta
         </h2>
         <form onSubmit={handleRegister} className="space-y-6">
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-2" htmlFor="nombres">
-              Nombres:
+            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="nombres">
+              Nombres
             </label>
             <input
               id="nombres"
               type="text"
               required
-              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese sus nombres"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-2" htmlFor="apellidos">
-              Apellidos:
+            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="apellidos">
+              Apellidos
             </label>
             <input
               id="apellidos"
               type="text"
               required
-              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese sus apellidos"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-2" htmlFor="edad">
-              Edad:
+            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="edad">
+              Edad
             </label>
             <input
               id="edad"
               type="number"
               required
-              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese su edad"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-2" htmlFor="email">
-              Email:
+            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="email">
+              Email
             </label>
             <input
               id="email"
               type="email"
               required
-              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese su email"
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 mb-2" htmlFor="password">
-              Password:
+            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="password">
+              Password
             </label>
             <input
               id="password"
               type="password"
               required
-              className="border border-gray-300 rounded-lg p-3 focus:ring-4 focus:ring-indigo-300 focus:outline-none text-gray-800"
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese su contraseña"
             />
           </div>
           <button
@@ -83,7 +88,7 @@ export function Register() {
             to="/login"
             className="text-indigo-600 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"
           >
-            Iniciar sesión
+            Ya tengo cuenta. Iniciar sesión
           </Link>
         </div>
       </div>

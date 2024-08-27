@@ -1,17 +1,12 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 export default function PolitPrivacidad() {
-//   const navigate = useNavigate();
-
-//   const handleBackToHome = () => {
-//     navigate('/');
-
-
   return (
     <div className="bg-white text-black px-6 py-8 max-w-3xl mx-auto rounded-lg shadow-lg">
-      <h2 className="text-2xl font-bold mb-4">Política de Tratamiento de Datos Personales</h2>
-      <p className="text-base leading-relaxed mb-4">
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Política de Tratamiento de Datos Personales
+      </h2>
+      <p className="text-base leading-relaxed mb-6">
         Con el objetivo de dar cumplimiento a la legislación vigente en materia de protección de datos,
         en especial la Ley 1581 de 2012 (y demás normas que la modifiquen, adicionen, complementen o
         desarrollen) y al Decreto 1377 de 2013, a continuación lo ponemos al tanto de los aspectos
@@ -30,10 +25,10 @@ export default function PolitPrivacidad() {
         Compañía, incluyendo a Clientes, Empleados o Proveedores, a menos que estos la hayan suministrado
         voluntariamente mediante su consentimiento previo, expreso y calificado.
       </p>
-      <div className=" text-black p-4 flex justify-center items-center ">
+      <div className="flex justify-center">
         <button
           onClick={() => window.history.back()}
-          className="bg-blue-500 text-black px-6 py-2  hover:bg-blue-600 rounded-md shadow-lg hover:bg-gray-200 transition duration-300 ease-in-out"
+          className="bg-blue-500 text-white px-6 py-2 rounded-md shadow-lg hover:bg-blue-600 transition-colors duration-200 ease-in-out"
         >
           Volver a la página
         </button>

@@ -7,7 +7,7 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [Productoscart, setProductosCart] = useState([]);
   const [user, setuser] = useState([]);
-
+  
   const CartUsuario = async () => {
     await fetch(`http://localhost:3000/carritoCompras/UID_Usuario/${user.uid}`)
       .then((res) => res.json())
@@ -33,13 +33,9 @@ export const CartProvider = ({ children }) => {
       console.log("se hizo un put");
       CartUsuario();
     } catch (error) {
-      console.log("Error al actualizar el carrito");
+      console.log("Error al actualizar el carrito", error);
     }
   };
-
-  //   const removeFromCart = (product) => {};
-  //   const clearCart = () => {};
-  //   const eliminarProductoCantidad = (id) => {};
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
@@ -80,9 +76,6 @@ export const CartProvider = ({ children }) => {
         cart,
         addToCart,
         Productoscart,
-        // removeFromCart,
-        // clearCart,
-        // eliminarProductoCantidad,
       }}
     >
       {children}

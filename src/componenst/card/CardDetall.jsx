@@ -5,7 +5,7 @@ export const CardDetall = ({
   price,
   description,
   image,
-  category,
+ 
   onAddProduct,
   isAdded,
   onRemoveProduct,

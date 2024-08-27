@@ -40,7 +40,7 @@ export default function Formulario({ Logeado, setLogeado }) {
         body: JSON.stringify({ UID_Usuario: uid, Email: email }),
       });
     } catch (error) {
-      console.log("Error al regitrar cuenta", error);
+      console.log("Error al registrar cuenta", error);
     }
     try {
       await fetch("http://localhost:3000/carritoCompras", {
@@ -49,7 +49,7 @@ export default function Formulario({ Logeado, setLogeado }) {
         body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
       });
     } catch (error) {
-      console.log("Error al crear carrito de compras ", error);
+      console.log("Error al crear carrito de compras", error);
     }
 
     setFirst(true);
@@ -85,8 +85,8 @@ export default function Formulario({ Logeado, setLogeado }) {
 
   return (
     <>
-      <div className="bg-white absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30">
-        <div className="flex flex-col items-center w-full max-w-md p-8 bg-[#EFF8F6] rounded-lg shadow-lg z-50">
+      <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30 bg-gradient-to-br from-teal-400 via-blue-500 to-purple-600">
+        <div className="flex flex-col items-center w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg z-10">
           <h1 className="text-2xl font-bold text-black text-center mb-6">
             ¡Hola! Para agregar al <br />
             carrito, ingresa a tu cuenta
@@ -126,7 +126,7 @@ export default function Formulario({ Logeado, setLogeado }) {
             >
               {registrar
                 ? "¿Ya tienes cuenta? Ingresar"
-                : "¿No tienes cuenta? Registrate"}
+                : "¿No tienes cuenta? Regístrate"}
             </button>
           </form>
           {first && (
