@@ -1,5 +1,5 @@
 import imgen from "../../../public/logo.jpg";
-import React from "react";
+import React, { useState } from "react";
 import { CartModalComponent } from "../Carcarrito/CarCarrito.jsx";
 import Search from "../search/search.jsx";
 import { useFetch } from "../../index.js";
@@ -17,11 +17,13 @@ export const HeaderComponent = ({
   isModalOpen,
   openModal,
   closeModal,
+  setProductsFiltrados,
   ...props
 }) => {
-  const { data: products } = useFetch(
-    "http://localhost:5814/productos"
-  );
+  const { data: products } = useFetch("http://localhost:5814/productos");
+
+  const [value, setValue] = useState("");
+
   const cerrarSesion = async () => {
     try {
       await signOut(auth);
@@ -30,10 +32,15 @@ export const HeaderComponent = ({
       console.log("no Se cerro la sesion");
     }
   };
+
+  const userInitial = username ? username.charAt(0).toUpperCase() : "";
+
   return (
     <nav className="bg-white p-6 flex items-center justify-between shadow-lg">
       <div className="flex items-center">
-        <button onClick={cerrarSesion} className="text-black">Cerrar Sesion</button>
+        <button onClick={cerrarSesion} className="text-black">
+          Cerrar Sesion
+        </button>
         <img
           src={imgen}
           alt="Logo"
@@ -43,10 +50,20 @@ export const HeaderComponent = ({
       </div>
       <div className="flex-1 mx-8">
         <div className="flex justify-center">
-          <Search products={products} />
+          <Search
+            products={products}
+            value={value}
+            setValue={setValue}
+            setProductsFiltrados={setProductsFiltrados}
+          />
         </div>
       </div>
       <div className="flex items-center space-x-6">
+        {username && (
+          <div className=" text-black rounded-full w-10 h-10 flex items-center justify-center text-2xl font-bold">
+            {userInitial}
+          </div>
+        )}
         <CartButtonComponent onCartClick={openModal} />
         {isModalOpen && <CartModalComponent onClose={closeModal} />}
       </div>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import imagen from "../../../public/carrito.png";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../context/contextCarrito/CartContext";
 
 export const CartButtonComponent = ({ onCartClick }) => {
   const { Productoscart } = useContext(CartContext);
@@ -16,9 +16,9 @@ export const CartButtonComponent = ({ onCartClick }) => {
       onClick={onCartClick}
     >
       <img className="w-10 h-10" src={imagen} alt="Cart" />
-        <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-          {Productoslength}
-        </span>
+      <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
+        {Productoslength}
+      </span>
     </button>
   );
 };

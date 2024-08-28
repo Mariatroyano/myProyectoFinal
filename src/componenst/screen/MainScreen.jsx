@@ -14,8 +14,9 @@ import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
+import Buscador from "../search/Buscador.jsx";
 
-function MainScreen() {
+function MainScreen({ value, productsFiltrados }) {
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
   const url = "http://localhost:5814/productos";
@@ -79,8 +80,12 @@ function MainScreen() {
         setproducts(data);
       });
   }, []);
+
   return (
     <>
+      {productsFiltrados.length > 0 && (
+        <Buscador value={value} productsFiltrados={productsFiltrados} />
+      )}
       <p className="text-4xl text-center mb-8 ">Categorías de Eleganza</p>
       <div className="flex justify-center items-center mb-2 space-x-6">
         {categories.map((cat) => (
@@ -97,7 +102,6 @@ function MainScreen() {
           </button>
         ))}
       </div>
-
       <nav className="relative">
         {!activo && (
           <>

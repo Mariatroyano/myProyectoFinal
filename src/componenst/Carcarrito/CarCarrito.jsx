@@ -1,9 +1,13 @@
 import React, { useContext } from "react";
-import { CartContext } from "../../context/CartContext";
+import { CartContext } from "../../context/contextCarrito/CartContext";
 
 export const CartModalComponent = ({ onClose }) => {
-  const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } = useContext(CartContext);
-  const totalProducts = Productoscart.reduce((total, item) => total + item.quantity, 0);
+  const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } =
+    useContext(CartContext);
+  const totalProducts = Productoscart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <div className="fixed inset-0 z-10 bg-black bg-opacity-40 overflow-auto">
@@ -17,9 +21,13 @@ export const CartModalComponent = ({ onClose }) => {
         <h2 className="text-5xl font-semibold mb-12 text-black font-serif">
           Carrito de Compras
         </h2>
-        <p className="text-lg text-black mb-4">Total de productos: {totalProducts}</p>
+        <p className="text-lg text-black mb-4">
+          Total de productos: {totalProducts}
+        </p>
         {Productoscart.length === 0 ? (
-          <p className="text-black">No hay productos en el carrito.</p>
+          <p className="text-black text-2xl font-serif ">
+            Tu carrito de Eleganza está vacío.
+          </p>
         ) : (
           <ul className="space-y-4">
             {Productoscart.map((item) => (
@@ -38,7 +46,7 @@ export const CartModalComponent = ({ onClose }) => {
                   </div>
                   <div className="text-gray-600">${item.price}</div>
                 </div>
-          
+
                 <div className="flex items-center space-x-2">
                   <button
                     className="px-2 py-1 bg-gray-200 rounded-md"

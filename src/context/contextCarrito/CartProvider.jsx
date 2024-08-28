@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { CartContext } from "./CartContext";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../fireBase/credenciales";
+import { auth } from "../../fireBase/credenciales";
 
 export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);

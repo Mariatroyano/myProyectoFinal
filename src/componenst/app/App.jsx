@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 function App({ Logeado = false, setLogeado }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [Usuario, setUsuario] = useState(null);
+  const [productsFiltrados, setProductsFiltrados] = useState([]);
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -39,9 +40,11 @@ function App({ Logeado = false, setLogeado }) {
               isModalOpen={isModalOpen}
               openModal={openModal}
               closeModal={closeModal}
+              setProductsFiltrados={setProductsFiltrados}
+
             />
 
-            <MainScreen />
+            <MainScreen productsFiltrados={productsFiltrados}  />
           </>
         ) : (
           <h1>Error..No Te Encuentras Logeado </h1>

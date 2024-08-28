@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { FinalCardComponent } from "../card/FinalCardComponent";
+import Buscador from "./Buscador";
 
-const Search = ({ products }) => {
-  const [value, setValue] = useState("");
-  const [productsFiltrados, setProductsFiltrados] = useState([]);
+const Search = ({ products, value, setValue, setProductsFiltrados }) => {
+  // const [value, setValue] = useState("");
+  // const [productsFiltrados, setProductsFiltrados] = useState([]);
 
   const onChangeData = (e) => {
     const searchValue = e.target.value;
@@ -13,7 +14,7 @@ const Search = ({ products }) => {
     const filteredProducts = products.filter((product) =>
       product.title.toLowerCase().includes(searchValue.toLowerCase())
     );
-    setProductsFiltrados(filteredProducts);
+    setProductsFiltrados(searchValue ? filteredProducts : []);
   };
 
   return (
@@ -26,21 +27,22 @@ const Search = ({ products }) => {
           value={value}
           onChange={onChangeData}
         />
-        {value && (
+        {/* <Buscador value={value} productsFiltrados={productsFiltrados} /> */}
+        {/* {value && (
           <div className="flex flex-col max-w-xs overflow-y-scroll h-[70%] scrollbar-thin scrollbar-track-transparent scrollbar-thumb-transparent">
             {productsFiltrados.map((item, i) => (
               <button
                 key={i}
-                className="border-b-2 border-r-2 border-[#828181] border-t border-[#d2d2d2] rounded-tr-lg w-full min-h-[40px] mt-1 bg-[#ffffffec] text-left truncate"
+                // className="border-b-2 border-r-2 border-[#828181] border-t border-[#d2d2d2] rounded-tr-lg w-full min-h-[40px] mt-1 bg-[#ffffffec] text-left truncate"
               >
                 {item.title}
               </button>
             ))}
           </div>
-        )}
+        )} */}
       </div>
 
-      {value && (
+      {/* {value && (
         <div className="flex flex-wrap max-w-[70%] overflow-auto">
           {productsFiltrados.length > 0 ? (
             productsFiltrados.map((item, i) => (
@@ -52,7 +54,7 @@ const Search = ({ products }) => {
             <div className="w-full text-center text-black">No se encontraron los productos</div>
           )}
         </div>
-      )}
+      )} */}
     </div>
   );
 };
