@@ -4,7 +4,7 @@ import { FinalCardComponent } from "../card/FinalCardComponent";
 
 function GetCategoiras({ category, handleAddItem, products }) {
   return (
-    <div className="flex overflow-x-auto">
+    <div className="flex overflow-x-auto scroll-none">
       {products
         .filter((item) => item.category == category)
         .map((product, index) => {

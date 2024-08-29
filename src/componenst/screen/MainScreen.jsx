@@ -86,7 +86,7 @@ function MainScreen({ value, productsFiltrados }) {
       {productsFiltrados.length > 0 && (
         <Buscador value={value} productsFiltrados={productsFiltrados} />
       )}
-      <p className="text-4xl text-center mb-8 ">Categorías de Eleganza</p>
+      <p className="text-4xl text-center mb-8  text-black font-serif">Categorías de Eleganza</p>
       <div className="flex justify-center items-center mb-2 space-x-6">
         {categories.map((cat) => (
           <button
@@ -108,7 +108,7 @@ function MainScreen({ value, productsFiltrados }) {
             <div className="flex justify-center items-center h-24 gap-x-0.5">
               {categories.map((categ, index) => (
                 <button
-                  className="text-white px-12 py-2 rounded-tr-lg hover:bg-blue-700"
+                  className="text-black  font-serif px-12 py-2 rounded-tr-lg hover:bg-blue-700"
                   key={index}
                   onClick={() => handleCategory(categ.value)}
                 >
@@ -167,9 +167,9 @@ function MainScreen({ value, productsFiltrados }) {
         )}
       </nav>
       <div className="text-center my-8">
-        <h1 className="text-white text-6xl">Ofertas</h1>
+        <h1 className="text-white text-8xl bg-black">Ofertas</h1>
       </div>
-      <div className="bg-gray-200 p-8">
+      <div className="from-teal-90 via-blue-100 to-purple-90-8">
         {loading && <p className="text-white">Cargando.....</p>}
         {error && <p className="text-white">Ocurrió un error.</p>}
         {(!products || products.length <= 0) && !loading && (

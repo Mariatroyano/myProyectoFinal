@@ -1,12 +1,48 @@
-import React from "react";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, providerGogle } from "../../fireBase/credenciales";
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export function Register() {
   const navigate = useNavigate();
+  const [nombres, setNombres] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [age, setAge] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
     navigate("/login");
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    const usarioCredenciales = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const { uid } = usarioCredenciales.user;
+    try {
+      await fetch("http://localhost:3000/Usuarios", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ UID_Usuario: uid, Email: email }),
+      });
+    } catch (error) {
+      console.log("Error al registrar cuenta", error);
+    }
+    try {
+      await fetch("http://localhost:3000/carritoCompras", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
+      });
+    } catch (error) {
+      console.log("Error al crear carrito de compras", error);
+    }
+    navigate("/products");
   };
 
   return (
@@ -17,7 +53,10 @@ export function Register() {
         </h2>
         <form onSubmit={handleRegister} className="space-y-6">
           <div className="flex flex-col">
-            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="nombres">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="nombres"
+            >
               Nombres
             </label>
             <input
@@ -26,10 +65,15 @@ export function Register() {
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
               placeholder="Ingrese sus nombres"
+              value={nombres}
+              onChange={(e) => setNombres(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="apellidos">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="apellidos"
+            >
               Apellidos
             </label>
             <input
@@ -38,10 +82,15 @@ export function Register() {
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
               placeholder="Ingrese sus apellidos"
+              value={lastname}
+              onChange={(e) => setLastname(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="edad">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="edad"
+            >
               Edad
             </label>
             <input
@@ -50,10 +99,15 @@ export function Register() {
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
               placeholder="Ingrese su edad"
+              value={age}
+              onChange={(e) => setAge(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="email">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="email"
+            >
               Email
             </label>
             <input
@@ -62,10 +116,15 @@ export function Register() {
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
               placeholder="Ingrese su email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="flex flex-col">
-            <label className="text-gray-700 text-sm font-medium mb-2" htmlFor="password">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="password"
+            >
               Password
             </label>
             <input
@@ -74,11 +133,14 @@ export function Register() {
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
               placeholder="Ingrese su contraseña"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-transform transform hover:scale-105"
+            onClick={handleFormSubmit}
           >
             Registrarse
           </button>

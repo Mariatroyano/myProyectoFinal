@@ -1,16 +1,31 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export const CartModalComponent = ({ onClose }) => {
+  const navigate = useNavigate();
   const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } =
     useContext(CartContext);
-  const totalProducts = Productoscart.reduce(
+
+  const productMap = Productoscart.reduce((acc, item) => {
+    if (!acc[item.id]) {
+      acc[item.id] = { ...item, quantity: 0 };
+    }
+    acc[item.id].quantity += item.quantity;
+    return acc;
+  }, {});
+
+  const products = Object.values(productMap);
+
+  console.log(products);
+
+  const totalProducts = products.reduce(
     (total, item) => total + item.quantity,
     0
   );
 
   return (
-    <div className="fixed inset-0 z-10 bg-black bg-opacity-40 overflow-auto">
+    <div className="fixed left-[-99px] inset-0  z-10 bg-black bg-opacity-70 overflow-auto">
       <div className="bg-white mx-auto my-16 p-6 border border-gray-300 w-11/12 md:w-4/5 max-w-3xl rounded-lg shadow-lg">
         <span
           className="text-gray-400 float-right text-2xl font-bold cursor-pointer hover:text-black"
@@ -18,22 +33,19 @@ export const CartModalComponent = ({ onClose }) => {
         >
           &times;
         </span>
-        <h2 className="text-5xl font-semibold mb-12 text-black font-serif">
+        <h2 className="text-5xl font-semibold mb-12 text-black font-serif text-center">
           Carrito de Compras
         </h2>
-        <p className="text-lg text-black mb-4">
-          Total de productos: {totalProducts}
-        </p>
-        {Productoscart.length === 0 ? (
-          <p className="text-black text-2xl font-serif ">
+        {products.length === 0 ? (
+          <p className="text-black text-2xl font-serif">
             Tu carrito de Eleganza está vacío.
           </p>
         ) : (
-          <ul className="space-y-4">
-            {Productoscart.map((item) => (
+          <ul className="space-y-4 mb-6">
+            {products.map((item) => (
               <li
                 key={item.id}
-                className="flex items-center border border-violet-600 p-12 rounded-md shadow-sm"
+                className="flex items-center border border-violet-600 p-4 rounded-md shadow-sm"
               >
                 <img
                   src={item.image}
@@ -74,6 +86,22 @@ export const CartModalComponent = ({ onClose }) => {
             ))}
           </ul>
         )}
+        <div className="flex justify-between items-center mt-6">
+          <div className="flex-1">
+            <input
+              type="text"
+              value={`Total productos: ${totalProducts}`}
+              readOnly
+              className="w-full px-4 py-2 border border-violet-600 rounded-md text-lg font-medium text-black"
+            />
+          </div>
+          <button
+            className="ml-4 px-6 py-3 bg-green-500 text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300"
+            onClick={() => navigate("/factura")}
+          >
+            Comprar Productos
+          </button>
+        </div>
       </div>
     </div>
   );

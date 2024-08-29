@@ -89,7 +89,7 @@ export default function Formulario({ Logeado, setLogeado }) {
 
   return (
     <>
-      <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30 bg-gradient-to-br from-teal-400 via-blue-500 to-purple-600">
+      <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30 bg-gradient-to-br from-teal-800 via-blue-300 to-purple-600 ">
         <div className="flex flex-col items-center w-full max-w-md p-8 bg-white bg-opacity-90 rounded-lg shadow-lg z-10">
           <h1 className="text-2xl font-bold text-black text-center mb-6">
             ¡Hola! Para agregar al <br />

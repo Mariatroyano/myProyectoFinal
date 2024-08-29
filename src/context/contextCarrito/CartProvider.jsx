@@ -17,9 +17,9 @@ export const CartProvider = ({ children }) => {
       });
   };
 
-  const addToCart = async (id_producto, cantidad = 1) => {
+  const addToCart = async (id_producto, Cantidad = 1) => {
     try {
-      const updatedProducts = [{ id_producto, cantidad }, ...cart.ID_Productos];
+      const updatedProducts = [{ id_producto, Cantidad }, ...cart.ID_Productos];
       await fetch(
         `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
         {
