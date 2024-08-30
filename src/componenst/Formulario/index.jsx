@@ -21,6 +21,9 @@ export function Register() {
     const usarioCredenciales = await createUserWithEmailAndPassword(
       auth,
       email,
+      nombres,
+      Telefono,
+      Direccion,
       password
     );
     const { uid } = usarioCredenciales.user;
@@ -28,7 +31,7 @@ export function Register() {
       await fetch("http://localhost:3000/Usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UID_Usuario: uid, Email: email }),
+        body: JSON.stringify({ UID_Usuario: uid, Email: email,Nombre:nombres,Telefono:Telefono,Direccion:Direccion }),
       });
     } catch (error) {
       console.log("Error al registrar cuenta", error);

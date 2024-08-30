@@ -19,7 +19,7 @@ import Buscador from "../search/Buscador.jsx";
 function MainScreen({ value, productsFiltrados }) {
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const url = "http://localhost:5814/productos";
+  const url = "http://localhost:5813/productos";
   const [activo, setActivo] = useState(false);
   const [products, setproducts] = useState([]);
   const loading = false;
@@ -74,7 +74,7 @@ function MainScreen({ value, productsFiltrados }) {
     });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5814/productos`)
+    fetch(`http://localhost:5813/productos`)
       .then((res) => res.json())
       .then((data) => {
         setproducts(data);
@@ -86,7 +86,9 @@ function MainScreen({ value, productsFiltrados }) {
       {productsFiltrados.length > 0 && (
         <Buscador value={value} productsFiltrados={productsFiltrados} />
       )}
-      <p className="text-4xl text-center mb-8  text-black font-serif">Categorías de Eleganza</p>
+      <p className="text-4xl text-center mb-8  text-black font-serif">
+        Categorías de Eleganza
+      </p>
       <div className="flex justify-center items-center mb-2 space-x-6">
         {categories.map((cat) => (
           <button
@@ -167,7 +169,7 @@ function MainScreen({ value, productsFiltrados }) {
         )}
       </nav>
       <div className="text-center my-8">
-        <h1 className="text-white text-8xl bg-black">Ofertas</h1>
+        <h1 className="text-white text-8xl bg-[#0005]">Ofertas</h1>
       </div>
       <div className="from-teal-90 via-blue-100 to-purple-90-8">
         {loading && <p className="text-white">Cargando.....</p>}

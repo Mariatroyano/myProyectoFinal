@@ -20,7 +20,7 @@ export const HeaderComponent = ({
   setProductsFiltrados,
   ...props
 }) => {
-  const { data: products } = useFetch("http://localhost:5814/productos");
+  const { data: products } = useFetch("http://localhost:5813/productos");
 
   const [value, setValue] = useState("");
 

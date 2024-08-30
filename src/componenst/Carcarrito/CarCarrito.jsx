@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const CartModalComponent = ({ onClose }) => {
   const navigate = useNavigate();
@@ -9,9 +11,9 @@ export const CartModalComponent = ({ onClose }) => {
 
   const productMap = Productoscart.reduce((acc, item) => {
     if (!acc[item.id]) {
-      acc[item.id] = { ...item, quantity: 0 };
+      acc[item.id] = { ...item, cantidad: 0 };
     }
-    acc[item.id].quantity += item.quantity;
+    acc[item.id].cantidad += item.cantidad;
     return acc;
   }, {});
 
@@ -20,7 +22,7 @@ export const CartModalComponent = ({ onClose }) => {
   console.log(products);
 
   const totalProducts = products.reduce(
-    (total, item) => total + item.quantity,
+    (total, item) => total + item.cantidad,
     0
   );
 
@@ -67,7 +69,7 @@ export const CartModalComponent = ({ onClose }) => {
                     -
                   </button>
                   <span className="text-lg font-medium text-black">
-                    {item.quantity}
+                    {item.cantidad}
                   </span>
                   <button
                     className="px-2 py-1 bg-gray-200 rounded-md"

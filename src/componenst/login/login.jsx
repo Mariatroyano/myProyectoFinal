@@ -123,7 +123,7 @@ export default function Formulario({ Logeado, setLogeado }) {
             >
               {registrar ? "Registrar" : "Ingresar"}
             </button>
-            <button
+            {/* <button
               type="button"
               onClick={() => setRegistar(!registrar)}
               className="w-full bg-gray-100 text-gray-800 py-3 rounded-lg mb-4 hover:bg-gray-200 transition"
@@ -131,7 +131,7 @@ export default function Formulario({ Logeado, setLogeado }) {
               {registrar
                 ? "¿Ya tienes cuenta? Ingresar"
                 : "¿No tienes cuenta? Regístrate"}
-            </button>
+            </button> */}
           </form>
           {first && (
             <Link to="/products" className="w-full">

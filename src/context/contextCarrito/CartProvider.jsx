@@ -51,24 +51,26 @@ export const CartProvider = ({ children }) => {
     CartUsuario();
   }, [user]);
   useEffect(() => {
-    if (cart && cart.ID_Productos) {
-      const fetchProducts = cart.ID_Productos.map((item) =>
-        fetch(`http://localhost:5814/productos/${item.id_producto}`).then(
-          (res) => res.json()
-        )
-      );
+    const fetchProductDetails = async () => {
+      if (cart) {
+        const productos = await Promise.all(
+          cart.ID_Productos.map(async (item) => {
+            const res = await fetch(
+              `http://localhost:5813/productos/${item.id_producto}`
+            );
+            const product = await res.json();
+            return { ...product, cantidad: item.Cantidad };
+          })
+        );
+        setProductosCart(productos);
+      } else {
+        setProductosCart([]);
+      }
+    };
 
-      Promise.all(fetchProducts)
-        .then((productos) => {
-          setProductosCart(productos);
-        })
-        .catch((error) => {
-          console.error("Error al obtener los productos:", error);
-        });
-    } else {
-      setProductosCart([]);
-    }
+    fetchProductDetails();
   }, [cart]);
+  console.log(cart);
 
   return (
     <CartContext.Provider

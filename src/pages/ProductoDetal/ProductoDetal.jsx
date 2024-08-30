@@ -8,7 +8,7 @@ export default function ProductoDetal() {
   const [Producto, setProducto] = useState({});
 
   useEffect(() => {
-    fetch(`http://localhost:5814/productos/${id}`)
+    fetch(`http://localhost:5813/productos/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProducto(data);
