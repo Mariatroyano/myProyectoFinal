@@ -39,6 +39,7 @@ export default function Formulario({ Logeado, setLogeado }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ UID_Usuario: uid, Email: email }),
       });
+      console.log("Usuario creado en la base de datos ");
     } catch (error) {
       console.log("Error al registrar cuenta", error);
     }
@@ -48,6 +49,7 @@ export default function Formulario({ Logeado, setLogeado }) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
       });
+      console.log("Carrito creado en la base de datos ");
     } catch (error) {
       console.log("Error al crear carrito de compras", error);
     }

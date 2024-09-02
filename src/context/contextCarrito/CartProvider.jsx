@@ -15,11 +15,13 @@ export const CartProvider = ({ children }) => {
         setCart(res);
         console.log(res);
       });
-  };
+  };  
 
   const addToCart = async (id_producto, Cantidad = 1) => {
     try {
-      const updatedProducts = [{ id_producto, Cantidad }, ...cart.ID_Productos];
+      console.log(cart);
+      
+      const updatedProducts = [{ id_producto, Cantidad }, ...cart?.ID_Productos];
       await fetch(
         `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
         {

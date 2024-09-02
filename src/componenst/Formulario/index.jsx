@@ -6,10 +6,12 @@ import { Link, useNavigate } from "react-router-dom";
 export function Register() {
   const navigate = useNavigate();
   const [nombres, setNombres] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [age, setAge] = useState("");
+  // const [lastname, setLastname] = useState("");
+  const [Telefono, setTelefono] = useState("");
+  // const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [direccion, setDireccion] = useState("");
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -23,16 +25,24 @@ export function Register() {
       email,
       nombres,
       Telefono,
-      Direccion,
-      password
+      password,
+      direccion
+
     );
     const { uid } = usarioCredenciales.user;
     try {
       await fetch("http://localhost:3000/Usuarios", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UID_Usuario: uid, Email: email,Nombre:nombres,Telefono:Telefono,Direccion:Direccion }),
+        body: JSON.stringify({
+          UID_Usuario: uid,
+          Email: email,
+          Nombre: nombres,
+          Telefono: Telefono,
+          Direccion:direccion,
+        }),
       });
+      console.log("Usuario creado en la base de datos ");
     } catch (error) {
       console.log("Error al registrar cuenta", error);
     }
@@ -42,6 +52,7 @@ export function Register() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
       });
+      console.log("Usuario creado en la base de datos ");
     } catch (error) {
       console.log("Error al crear carrito de compras", error);
     }
@@ -72,7 +83,7 @@ export function Register() {
               onChange={(e) => setNombres(e.target.value)}
             />
           </div>
-          <div className="flex flex-col">
+          {/* <div className="flex flex-col">
             <label
               className="text-gray-700 text-sm font-medium mb-2"
               htmlFor="apellidos"
@@ -88,8 +99,45 @@ export function Register() {
               value={lastname}
               onChange={(e) => setLastname(e.target.value)}
             />
-          </div>
+          </div> */}
+
           <div className="flex flex-col">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="Direción"
+            >
+              Dirección
+            </label>
+            <input
+              id="Direccion"
+              type="text"
+              required
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese su Dirección"
+              value={direccion}
+              onChange={(e) => setDireccion(e.target.value)}
+            />
+          </div>
+
+          <div className="flex flex-col">
+            <label
+              className="text-gray-700 text-sm font-medium mb-2"
+              htmlFor="Telefono"
+            >
+              Telefono
+            </label>
+            <input
+              id="Telefono"
+              type="text"
+              required
+              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
+              placeholder="Ingrese su Teloefono"
+              value={Telefono}
+              onChange={(e) => setTelefono(e.target.value)}
+            />
+          </div>
+
+          {/* <div className="flex flex-col">
             <label
               className="text-gray-700 text-sm font-medium mb-2"
               htmlFor="edad"
@@ -105,7 +153,7 @@ export function Register() {
               value={age}
               onChange={(e) => setAge(e.target.value)}
             />
-          </div>
+          </div> */}
           <div className="flex flex-col">
             <label
               className="text-gray-700 text-sm font-medium mb-2"

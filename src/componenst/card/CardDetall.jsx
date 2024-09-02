@@ -13,7 +13,7 @@ export const CardDetall = ({
   onSelectQuantity,
 }) => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+    <div className="flex justify-center items-center min-h-screen from-teal-800 via-blue-300 to-purple-600">
       <div className="bg-white p-8 w-full max-w-4xl rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 flex">
         <div className="w-1/2 flex justify-center items-center">
           <img
