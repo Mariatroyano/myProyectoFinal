@@ -9,8 +9,8 @@ import {
 } from "firebase/auth";
 
 export default function Formulario({ Logeado, setLogeado }) {
-  const [first, setFirst] = useState(false);
-  const [registrar, setRegistar] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -24,41 +24,6 @@ export default function Formulario({ Logeado, setLogeado }) {
       }
     });
   }, [navigate]);
-
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
-    const usarioCredenciales = await createUserWithEmailAndPassword(
-      auth,
-      email,
-      password
-    );
-    const { uid } = usarioCredenciales.user;
-    try {
-      await fetch("http://localhost:3000/Usuarios", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ UID_Usuario: uid, Email: email }),
-      });
-      console.log("Usuario creado en la base de datos ");
-    } catch (error) {
-      console.log("Error al registrar cuenta", error);
-    }
-    try {
-      await fetch("http://localhost:3000/carritoCompras", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ID_Productos: [], UID_Usuario: uid }),
-      });
-      console.log("Carrito creado en la base de datos ");
-    } catch (error) {
-      console.log("Error al crear carrito de compras", error);
-    }
-
-    setFirst(true);
-    setLogeado(true);
-    location.reload();
-    navigate("/products");
-  };
 
   const IngresarUser = async (e) => {
     e.preventDefault();
@@ -86,9 +51,6 @@ export default function Formulario({ Logeado, setLogeado }) {
     }
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   return (
     <>
       <div className="absolute top-0 left-0 h-screen w-screen flex justify-center items-center z-30 bg-gradient-to-br from-teal-800 via-blue-300 to-purple-600 ">
@@ -98,9 +60,7 @@ export default function Formulario({ Logeado, setLogeado }) {
             carrito, ingresa a tu cuenta
           </h1>
           <form
-            onSubmit={(e) => {
-              registrar ? handleFormSubmit(e) : IngresarUser(e);
-            }}
+            onSubmit={IngresarUser}
             className="w-full flex flex-col items-center"
           >
             <input
@@ -123,25 +83,9 @@ export default function Formulario({ Logeado, setLogeado }) {
               type="submit"
               className="w-full bg-[#0067B8] text-white py-3 rounded-lg mb-4 hover:bg-blue-700 transition"
             >
-              {registrar ? "Registrar" : "Ingresar"}
+              { "Ingresar"}
             </button>
-            {/* <button
-              type="button"
-              onClick={() => setRegistar(!registrar)}
-              className="w-full bg-gray-100 text-gray-800 py-3 rounded-lg mb-4 hover:bg-gray-200 transition"
-            >
-              {registrar
-                ? "¿Ya tienes cuenta? Ingresar"
-                : "¿No tienes cuenta? Regístrate"}
-            </button> */}
           </form>
-          {first && (
-            <Link to="/products" className="w-full">
-              <button className="w-full bg-green-500 text-white py-3 rounded-lg mb-4 hover:bg-green-700 transition">
-                Ver Productos
-              </button>
-            </Link>
-          )}
           <div className="text-center w-full">
             <p className="mb-2 text-gray-600">
               ¿No Tienes Cuenta?{" "}

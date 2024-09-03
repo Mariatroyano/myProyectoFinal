@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useFetch } from "../../index.js";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
@@ -63,7 +62,7 @@ function MainScreen({ value, productsFiltrados }) {
   };
 
   useEffect(() => {
-    //.............................................aquiiiiiiii
+ 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
@@ -169,7 +168,7 @@ function MainScreen({ value, productsFiltrados }) {
         )}
       </nav>
       <div className="text-center my-8">
-        <h1 className="text-white text-8xl bg-[#0005]">Ofertas</h1>
+        <h1 className="text-white text-8xl bg-[#0009]">Ofertas</h1>
       </div>
       <div className="from-teal-90 via-blue-100 to-purple-90-8">
         {loading && <p className="text-white">Cargando.....</p>}

@@ -9,7 +9,7 @@ export const FinalCardComponent = ({
   isAdded,
   product,
 }) => {
-  // const [Cantidad, setCantidad] = useState();
+
   const Cantidad = 1;
   const { addToCart } = useContext(CartContext);
   return (
@@ -33,11 +33,7 @@ export const FinalCardComponent = ({
             {price}
           </p>
         </div>
-        {/* <input
-          type="number"
-          value={Cantidad}
-          onChange={(e) => setCantidad(e.target.value)}
-        /> */}
+       
         <button
           className={`${
             isAdded ? "bg-gray-800 text-gray-200" : "bg-blue-600  text-gray-100"

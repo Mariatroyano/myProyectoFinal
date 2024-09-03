@@ -1,33 +1,33 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth, providerGogle } from "../../fireBase/credenciales";
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function Register() {
   const navigate = useNavigate();
   const [nombres, setNombres] = useState("");
-  // const [lastname, setLastname] = useState("");
   const [Telefono, setTelefono] = useState("");
-  // const [age, setAge] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [direccion, setDireccion] = useState("");
 
-  const handleRegister = (e) => {
-    e.preventDefault();
-    navigate("/login");
-  };
+ 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        navigate("/products");
+      }
+    });
+
+    return () => unsubscribe();
+  }, [navigate]);
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     const usarioCredenciales = await createUserWithEmailAndPassword(
       auth,
       email,
-      nombres,
-      Telefono,
       password,
-      direccion
-
     );
     const { uid } = usarioCredenciales.user;
     try {
@@ -56,6 +56,7 @@ export function Register() {
     } catch (error) {
       console.log("Error al crear carrito de compras", error);
     }
+    location.reload()//hhhh
     navigate("/products");
   };
 
@@ -65,7 +66,7 @@ export function Register() {
         <h2 className="text-gray-800 text-3xl font-extrabold text-center mb-8">
           Crear Cuenta
         </h2>
-        <form onSubmit={handleRegister} className="space-y-6">
+        <form onSubmit={handleFormSubmit} className="space-y-6">
           <div className="flex flex-col">
             <label
               className="text-gray-700 text-sm font-medium mb-2"
@@ -78,28 +79,11 @@ export function Register() {
               type="text"
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
-              placeholder="Ingrese sus nombres"
+              placeholder="Ingrese su nombre completo"
               value={nombres}
               onChange={(e) => setNombres(e.target.value)}
             />
           </div>
-          {/* <div className="flex flex-col">
-            <label
-              className="text-gray-700 text-sm font-medium mb-2"
-              htmlFor="apellidos"
-            >
-              Apellidos
-            </label>
-            <input
-              id="apellidos"
-              type="text"
-              required
-              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
-              placeholder="Ingrese sus apellidos"
-              value={lastname}
-              onChange={(e) => setLastname(e.target.value)}
-            />
-          </div> */}
 
           <div className="flex flex-col">
             <label
@@ -131,29 +115,12 @@ export function Register() {
               type="text"
               required
               className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
-              placeholder="Ingrese su Teloefono"
+              placeholder="Ingrese su Telefono"
               value={Telefono}
               onChange={(e) => setTelefono(e.target.value)}
             />
           </div>
 
-          {/* <div className="flex flex-col">
-            <label
-              className="text-gray-700 text-sm font-medium mb-2"
-              htmlFor="edad"
-            >
-              Edad
-            </label>
-            <input
-              id="edad"
-              type="number"
-              required
-              className="border border-gray-300 rounded-lg p-3 text-gray-800 placeholder-gray-400 focus:ring-4 focus:ring-teal-300 focus:outline-none"
-              placeholder="Ingrese su edad"
-              value={age}
-              onChange={(e) => setAge(e.target.value)}
-            />
-          </div> */}
           <div className="flex flex-col">
             <label
               className="text-gray-700 text-sm font-medium mb-2"
@@ -191,7 +158,6 @@ export function Register() {
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 focus:outline-none focus:ring-4 focus:ring-indigo-300 transition-transform transform hover:scale-105"
-            onClick={handleFormSubmit}
           >
             Registrarse
           </button>
