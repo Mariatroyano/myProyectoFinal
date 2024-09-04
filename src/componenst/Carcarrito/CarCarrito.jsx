@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
+import Factura from "../Factura/Factura";
 
 export const CartModalComponent = ({ onClose }) => {
   const navigate = useNavigate();
@@ -23,6 +24,14 @@ export const CartModalComponent = ({ onClose }) => {
     (total, item) => total + item.cantidad,
     0
   );
+
+  console.log("productos", productMap);
+
+  const sendDataCart = ({ productMap }) => {
+    navigate("/factura", {
+      state: { productos: products },
+    });
+  };
 
   return (
     <div className="fixed left-[-99px] inset-0  z-10 bg-black bg-opacity-70 overflow-auto">
@@ -97,7 +106,7 @@ export const CartModalComponent = ({ onClose }) => {
           </div>
           <button
             className="ml-4 px-6 py-3 bg-green-500 text-white font-semibold rounded-md shadow-md hover:bg-green-600 transition duration-300"
-            onClick={() => navigate("/factura")}
+            onClick={sendDataCart}
           >
             Comprar Productos
           </button>

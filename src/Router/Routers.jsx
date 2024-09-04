@@ -15,7 +15,7 @@ export default function Routers() {
     <Router>
       <Routes>
         <Route
-          path="/login"
+          path="/"
           element={<Formulario Logeado={Logeado} setLogeado={setLogeado} />}
         />
         <Route path="/register" element={<Register />} />
