@@ -13,11 +13,11 @@ const Search = ({ products, value, setValue, setProductsFiltrados }) => {
 
   return (
     <div className="flex flex-col md:flex-row max-h-[500px] ">
-      <div className="flex flex-col w-full md:w-auto  text-black mr-72">
+      <div className="flex flex-col w-full md:w-auto  text-black mr-100">
         <input
-          className="w-80 "
-          type="text"
-          placeholder="Busca Por Producto..                              🔍"
+          className="w-96 "
+          type="text" 
+          placeholder="Busca Por Producto..                                           🔍"
           value={value}
           onChange={onChangeData}
         />

@@ -5,6 +5,7 @@ import "../../index.css";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales";
 import { useNavigate } from "react-router-dom";
+import routes from "../../common/routes-constants";
 
 function App({ Logeado = false, setLogeado }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -26,8 +27,8 @@ function App({ Logeado = false, setLogeado }) {
       } else {
         console.log("Usuario no encontrado");
         setTimeout(() => {
-          return navigate("/login");
-        }, 1000);
+          return navigate(routes.PRODUCTS);
+        }, 3000);
       }
     });
   }, []);

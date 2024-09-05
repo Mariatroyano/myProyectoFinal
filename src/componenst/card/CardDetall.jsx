@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export const CardDetall = ({
   title,
@@ -11,6 +12,16 @@ export const CardDetall = ({
   quantity,
   onSelectQuantity,
 }) => {
+  
+  const navigate = useNavigate();
+  
+  
+  const regresarPaginaPrincipal = () => {
+    navigate(routes.LOGING);
+  };
+
+
+
   return (
     <div className="flex justify-center items-center min-h-screen from-teal-800 via-blue-300 to-purple-600">
       <div className="bg-white p-8 w-full max-w-4xl rounded-xl shadow-lg transition-transform duration-300 transform hover:scale-105 flex">
@@ -36,25 +47,15 @@ export const CardDetall = ({
             >
               {isAdded ? "Agregado" : "Agregar al Carrito"}
             </button>
-            <button
-              className="bg-red-500 text-white py-2 px-6 rounded-lg transition-transform transform hover:scale-105"
-              onClick={onRemoveProduct}
-            >
-              Eliminar
-            </button>
-          </div>
-          <div className="flex justify-center w-full mt-4">
-            <select
-              value={quantity}
-              onChange={(e) => onSelectQuantity(e.target.value)}
-              className="bg-gray-200 text-gray-800 w-24 py-2 rounded-lg text-center shadow-inner"
-            >
-              {[...Array(10).keys()].map((num) => (
-                <option key={num + 1} value={num + 1}>
-                  {num + 1}
-                </option>
-              ))}
-            </select>
+            <div className="text-center space-y-4">
+              <button
+                onClick={regresarPaginaPrincipal}
+                className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-500 transition duration-300"
+              >
+                Regresar a la Página Principal
+              </button>
+            </div>
+            
           </div>
         </div>
       </div>

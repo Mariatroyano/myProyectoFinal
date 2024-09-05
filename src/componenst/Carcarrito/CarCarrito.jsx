@@ -2,11 +2,13 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
 import Factura from "../Factura/Factura";
+import routes from "../../common/routes-constants";
 
 export const CartModalComponent = ({ onClose }) => {
   const navigate = useNavigate();
   const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } =
     useContext(CartContext);
+    // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const productMap = Productoscart.reduce((acc, item) => {
     if (!acc[item.id]) {
@@ -28,13 +30,16 @@ export const CartModalComponent = ({ onClose }) => {
   console.log("productos", productMap);
 
   const sendDataCart = ({ productMap }) => {
-    navigate("/factura", {
+    navigate(routes.FACTURA, {
       state: { productos: products },
     });
   };
 
   return (
-    <div className="fixed left-[-99px] inset-0  z-10 bg-black bg-opacity-70 overflow-auto">
+    <div
+      style={{ margin: 0 }}
+      className="fixed left-0 top-0  z-10 h-[100vh] w-[100vw] bg-black bg-opacity-70 overflow-auto "
+    >
       <div className="bg-white mx-auto my-16 p-6 border border-gray-300 w-11/12 md:w-4/5 max-w-3xl rounded-lg shadow-lg">
         <span
           className="text-gray-400 float-right text-2xl font-bold cursor-pointer hover:text-black"

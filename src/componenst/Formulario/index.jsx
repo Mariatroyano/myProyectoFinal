@@ -2,6 +2,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/aut
 import { auth, providerGogle } from "../../fireBase/credenciales";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import routes from '../../common/routes-constants'
 
 export function Register() {
   const navigate = useNavigate();
@@ -15,7 +16,7 @@ export function Register() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate("/products");
+        navigate(routes.PRODUCTS);
       }
     });
 
@@ -57,7 +58,7 @@ export function Register() {
       console.log("Error al crear carrito de compras", error);
     }
     location.reload()//hhhh
-    navigate("/products");
+    navigate(routes.PRODUCTS);
   };
 
   return (
@@ -164,7 +165,7 @@ export function Register() {
         </form>
         <div className="text-center mt-6">
           <Link
-            to="/login"
+            to="/"
             className="text-indigo-600 hover:underline focus:outline-none focus:ring-2 focus:ring-indigo-300 transition"
           >
             Ya tengo cuenta. Iniciar sesión

@@ -7,6 +7,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+import routes from "../../common/routes-constants";
 
 export default function Formulario({ Logeado, setLogeado }) {
   const [email, setEmail] = useState("");
@@ -17,7 +18,7 @@ export default function Formulario({ Logeado, setLogeado }) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
-        navigate("/products");
+        navigate(routes.PRODUCTS);
         console.log("Usuario Registrado");
       } else {
         console.log("Usuario no encontrado");
@@ -42,7 +43,7 @@ export default function Formulario({ Logeado, setLogeado }) {
       setLogeado(true);
       location.reload();
 
-      navigate("/products");
+      navigate(routes.PRODUCTS);
     } catch (error) {
       console.error("Error al iniciar con Google:", error);
       alert(
@@ -89,7 +90,7 @@ export default function Formulario({ Logeado, setLogeado }) {
           <div className="text-center w-full">
             <p className="mb-2 text-gray-600">
               ¿No Tienes Cuenta?{" "}
-              <Link to="/register" className="text-blue-600 hover:underline">
+              <Link to={routes.REGISTER} className="text-blue-600 hover:underline">
                 Crear Cuenta
               </Link>
             </p>

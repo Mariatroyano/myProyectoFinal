@@ -6,6 +6,14 @@ import { HeaderComponent } from "../../componenst/header/HeaderComponent";
 export default function ProductoDetal() {
   const { id } = useParams();
   const [Producto, setProducto] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+  const [productsFiltrados, setProductsFiltrados] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:5813/productos/${id}`)
@@ -17,10 +25,14 @@ export default function ProductoDetal() {
 
   return (
     <>
-      <HeaderComponent />
-      <div>
+         <HeaderComponent
+              isModalOpen={isModalOpen}
+              openModal={openModal}
+              closeModal={closeModal}
+              setProductsFiltrados={setProductsFiltrados}
+
+            />
         <CardDetall {...Producto} />
-      </div>
     </>
   );
 }

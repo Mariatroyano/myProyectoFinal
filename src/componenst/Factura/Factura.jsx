@@ -1,5 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import routes from "../../common/routes-constants";
 
 const Factura = () => {
   const location = useLocation();
@@ -18,7 +19,7 @@ const Factura = () => {
   const priceTotal = totalPrice();
 
   const regresarPaginaPrincipal = () => {
-    navigate("/");
+    navigate(routes.LOGING);
   };
 
   return (

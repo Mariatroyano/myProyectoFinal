@@ -62,7 +62,6 @@ function MainScreen({ value, productsFiltrados }) {
   };
 
   useEffect(() => {
- 
     onAuthStateChanged(auth, (user) => {
       if (user) {
         console.log(user);
@@ -92,7 +91,14 @@ function MainScreen({ value, productsFiltrados }) {
         {categories.map((cat) => (
           <button
             key={cat.value}
-            className="w-40 h-40 rounded-2xl overflow-hidden"
+            className="
+           w-24 h-24 
+           sm:w-32 sm:h-32 
+           md:w-40 md:h-40 
+           lg:w-48 lg:h-48 
+           rounded-2xl overflow-hidden 
+           shadow-lg hover:scale-105 transition-transform duration-300 ease-in-out
+         "
             onClick={() => handleCategory(cat.value)}
           >
             <img
@@ -106,10 +112,20 @@ function MainScreen({ value, productsFiltrados }) {
       <nav className="relative">
         {!activo && (
           <>
-            <div className="flex justify-center items-center h-24 gap-x-0.5">
+            <div className="flex  flex-wrap justify-center items-center gap-x-0.5">
               {categories.map((categ, index) => (
                 <button
-                  className="text-black  font-serif px-12 py-2 rounded-tr-lg hover:bg-blue-700"
+                  className="
+                text-black font-serif px-4 py-2 
+                sm:px-6 sm:py-2 
+                md:px-8 md:py-3 
+                lg:px-12 lg:py-3 
+                rounded-tr-lg 
+              //  bg-white hover:bg-blue-200 
+                transition-colors duration-300 ease-in-out 
+                text-sm sm:text-base md:text-lg lg:text-xl
+                w-full sm:w-auto
+              "
                   key={index}
                   onClick={() => handleCategory(categ.value)}
                 >

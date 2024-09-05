@@ -7,6 +7,9 @@ import Terminos from "../componenst/Footer/Terminos";
 import PolitPrivacidad from "../componenst/Footer/PolitPrivacidad";
 import ProductoDetal from "../pages/ProductoDetal/ProductoDetal";
 import Factura from "../componenst/Factura/Factura";
+import routes from "../common/routes-constants";
+
+const {LOGING, TERMINEMOS, POLIT_PRIVACIDAD, PRODUCT, FACTURA, PRODUCTS,  REGISTER} = routes
 
 export default function Routers() {
   const [Logeado, setLogeado] = useState(true);
@@ -15,16 +18,16 @@ export default function Routers() {
     <Router>
       <Routes>
         <Route
-          path="/"
+          path={LOGING}
           element={<Formulario Logeado={Logeado} setLogeado={setLogeado} />}
         />
-        <Route path="/register" element={<Register />} />
-        <Route path="/Terminos" element={<Terminos />} />
-        <Route path="/PolitPrivacidad" element={<PolitPrivacidad />} />
-        <Route path="/producto/:id" element={<ProductoDetal />} />
-        <Route path="/Factura" element={<Factura />} />
+        <Route path={ REGISTER} element={<Register />} />
+        <Route path={TERMINEMOS} element={<Terminos />} />
+        <Route path={POLIT_PRIVACIDAD} element={<PolitPrivacidad />} />
+        <Route path={`${PRODUCT}/:id`} element={<ProductoDetal />} />
+        <Route path={FACTURA} element={<Factura />} />
         <Route
-          path="/products"
+          path={PRODUCTS}
           element={<App Logeado={Logeado} setLogeado={setLogeado} />}
         />
       </Routes>

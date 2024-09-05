@@ -1,11 +1,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import routes from "../../common/routes-constants";
 
 export const ComponentPrincipal = ({ title, image, price, id }) => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate(`/producto/${id}`);
+    navigate(`${routes.PRODUCT}/${id}`);
   };
 
   return (
