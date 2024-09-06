@@ -1,27 +1,28 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import routes from "../../common/routes-constants";
+import { ButtonCarrito } from "./ButtonCarrito";
 
 export const CardDetall = ({
   title,
   price,
   description,
   image,
+  id,
+  Producto,
   onAddProduct,
   isAdded,
   onRemoveProduct,
   quantity,
   onSelectQuantity,
 }) => {
-  
   const navigate = useNavigate();
-  
-  
+
+  console.log(Producto);
+
   const regresarPaginaPrincipal = () => {
     navigate(routes.PRODUCTS);
   };
-
-
 
   return (
     <div className="flex justify-center items-center min-h-screen from-teal-800 via-blue-300 to-purple-600">
@@ -38,7 +39,7 @@ export const CardDetall = ({
           <p className="text-gray-700 text-lg mb-6">{description}</p>
           <p className="text-2xl font-semibold text-gray-900 mb-8">${price}</p>
           <div className="flex justify-between items-center mb-4">
-            <button
+            {/* <button
               className={`${
                 isAdded
                   ? "bg-gray-700 text-gray-200"
@@ -47,7 +48,8 @@ export const CardDetall = ({
               onClick={onAddProduct}
             >
               {isAdded ? "Agregado" : "Agregar al Carrito"}
-            </button>
+            </button> */}
+            <ButtonCarrito id={id} cantidad={1} />
             <div className="text-center space-y-4">
               <button
                 onClick={regresarPaginaPrincipal}
@@ -56,7 +58,6 @@ export const CardDetall = ({
                 Regresar a la Página Principal
               </button>
             </div>
-            
           </div>
         </div>
       </div>

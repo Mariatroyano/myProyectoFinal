@@ -25,14 +25,13 @@ export default function ProductoDetal() {
 
   return (
     <>
-         <HeaderComponent
-              isModalOpen={isModalOpen}
-              openModal={openModal}
-              closeModal={closeModal}
-              setProductsFiltrados={setProductsFiltrados}
-
-            />
-        <CardDetall {...Producto} />
+      <HeaderComponent
+        isModalOpen={isModalOpen}
+        openModal={openModal}
+        closeModal={closeModal}
+        setProductsFiltrados={setProductsFiltrados}
+      />
+      <CardDetall {...Producto} Producto={Producto}/>
     </>
   );
 }
