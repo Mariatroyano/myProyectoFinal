@@ -19,7 +19,7 @@ const Factura = () => {
   const priceTotal = totalPrice();
 
   const regresarPaginaPrincipal = () => {
-    navigate(routes.LOGING);
+    navigate(routes.PRODUCTS);
   };
 
   return (

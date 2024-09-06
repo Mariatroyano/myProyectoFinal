@@ -15,16 +15,15 @@ export default function Formulario({ Logeado, setLogeado }) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
+    onAuthStateChanged(auth, (usuario) => {
+      if (usuario) {
         navigate(routes.PRODUCTS);
-        console.log("Usuario Registrado");
       } else {
-        console.log("Usuario no encontrado");
+        console.log("no hay usuario logeado");
       }
+      setLoading(false);
     });
-  }, [navigate]);
+  }, []);
 
   const IngresarUser = async (e) => {
     e.preventDefault();
@@ -84,13 +83,16 @@ export default function Formulario({ Logeado, setLogeado }) {
               type="submit"
               className="w-full bg-[#0067B8] text-white py-3 rounded-lg mb-4 hover:bg-blue-700 transition"
             >
-              { "Ingresar"}
+              {"Ingresar"}
             </button>
           </form>
           <div className="text-center w-full">
             <p className="mb-2 text-gray-600">
               ¿No Tienes Cuenta?{" "}
-              <Link to={routes.REGISTER} className="text-blue-600 hover:underline">
+              <Link
+                to={routes.REGISTER}
+                className="text-blue-600 hover:underline"
+              >
                 Crear Cuenta
               </Link>
             </p>

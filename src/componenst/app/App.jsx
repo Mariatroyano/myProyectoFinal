@@ -27,8 +27,8 @@ function App({ Logeado = false, setLogeado }) {
       } else {
         console.log("Usuario no encontrado");
         setTimeout(() => {
-          return navigate(routes.PRODUCTS);
-        }, 3000);
+          return navigate(routes.LOGING);
+        }, 0);
       }
     });
   }, []);

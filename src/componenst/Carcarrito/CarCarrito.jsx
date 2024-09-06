@@ -8,8 +8,7 @@ export const CartModalComponent = ({ onClose }) => {
   const navigate = useNavigate();
   const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } =
     useContext(CartContext);
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-
+   
   const productMap = Productoscart.reduce((acc, item) => {
     if (!acc[item.id]) {
       acc[item.id] = { ...item, cantidad: 0 };

@@ -20,7 +20,7 @@ export const CartProvider = ({ children }) => {
   const addToCart = async (id_producto, Cantidad = 1) => {
     try {
       console.log(cart);
-      
+      console.log(  `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`)
       const updatedProducts = [{ id_producto, Cantidad }, ...cart?.ID_Productos];
       await fetch(
         `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
@@ -56,10 +56,11 @@ export const CartProvider = ({ children }) => {
     const fetchProductDetails = async () => {
       if (cart) {
         const productos = await Promise.all(
-          cart.ID_Productos.map(async (item) => {
+          cart.ID_Productos?.map(async (item) => {
             const res = await fetch(
               `http://localhost:5813/productos/${item.id_producto}`
             );
+            console.log(`http://localhost:5813/productos/${item.id_producto}`)
             const product = await res.json();
             return { ...product, cantidad: item.Cantidad };
           })

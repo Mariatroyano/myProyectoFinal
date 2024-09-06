@@ -6,6 +6,7 @@ import { useFetch } from "../../index.js";
 import { signOut } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
 import { CartButtonComponent } from "../Cart-Button/ProductList.jsx";
+import { useNavigate } from "react-router-dom"; // Importa el hook para navegación
 
 export const HeaderComponent = ({
   notifications,
@@ -24,14 +25,15 @@ export const HeaderComponent = ({
   const [value, setValue] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 
-  console.log({ menuOpen });
+  const navigate = useNavigate(); // Hook para redirigir
 
   const cerrarSesion = async () => {
     try {
       await signOut(auth);
-      console.log("Se cerro la sesion");
+      console.log("Se cerró la sesión");
+      navigate("/login"); // Redirige a la página de login
     } catch (error) {
-      console.log("no Se cerro la sesion");
+      console.log("No se cerró la sesión");
     }
   };
 
