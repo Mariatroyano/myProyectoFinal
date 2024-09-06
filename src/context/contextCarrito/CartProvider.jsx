@@ -15,13 +15,16 @@ export const CartProvider = ({ children }) => {
         setCart(res);
         console.log(res);
       });
-  };  
+  };
 
   const addToCart = async (id_producto, Cantidad = 1) => {
     try {
       console.log(cart);
-      
-      const updatedProducts = [{ id_producto, Cantidad }, ...cart?.ID_Productos];
+
+      const updatedProducts = [
+        { id_producto, Cantidad },
+        ...cart?.ID_Productos,
+      ];
       await fetch(
         `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
         {
@@ -55,13 +58,16 @@ export const CartProvider = ({ children }) => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       if (cart) {
+        console.log(cart);
         const productos = await Promise.all(
-          cart.ID_Productos.map(async (item) => {
-            const res = await fetch(
-              `http://localhost:5813/productos/${item.id_producto}`
-            );
-            const product = await res.json();
-            return { ...product, cantidad: item.Cantidad };
+          cart.ID_Productos?.map(async (item) => {
+            if (item.id_producto) {
+              const res = await fetch(
+                `http://localhost:5813/productos/${item.id_producto}`
+              );
+              const product = await res.json();
+              return { ...product, cantidad: item.Cantidad };
+            }
           })
         );
         setProductosCart(productos);
@@ -72,7 +78,6 @@ export const CartProvider = ({ children }) => {
 
     fetchProductDetails();
   }, [cart]);
-  console.log(cart);
 
   return (
     <CartContext.Provider
