@@ -18,24 +18,29 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (id_producto, Cantidad = 1) => {
+ 
     try {
-      console.log(cart);
+      console.log(id_producto, Cantidad)
+      if (cart) {
+        console.log(cart);
 
-      const updatedProducts = [
-        { id_producto, Cantidad },
-        ...cart?.ID_Productos,
-      ];
-      await fetch(
-        `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            ID_Productos: updatedProducts,
-          }),
-        }
-      );
-      console.log("se hizo un put");
+        const updatedProducts = [
+          { id_producto, Cantidad },
+          ...cart?.ID_Productos,
+        ];
+        await fetch(
+          `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ID_Productos: updatedProducts,
+            }),
+          }
+        );
+        console.log("se hizo un put");
+      }
+
       CartUsuario();
     } catch (error) {
       console.log("Error al actualizar el carrito", error);

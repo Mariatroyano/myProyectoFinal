@@ -39,16 +39,7 @@ export const CardDetall = ({
           <p className="text-gray-700 text-lg mb-6">{description}</p>
           <p className="text-2xl font-semibold text-gray-900 mb-8">${price}</p>
           <div className="flex justify-between items-center mb-4">
-            {/* <button
-              className={`${
-                isAdded
-                  ? "bg-gray-700 text-gray-200"
-                  : "bg-green-600 text-white"
-              } py-2 px-6 rounded-lg transition-transform transform hover:scale-105`}
-              onClick={onAddProduct}
-            >
-              {isAdded ? "Agregado" : "Agregar al Carrito"}
-            </button> */}
+           
             <ButtonCarrito id={id} cantidad={1} />
             <div className="text-center space-y-4">
               <button

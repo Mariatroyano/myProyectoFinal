@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
+import { ButtonCarrito } from "./ButtonCarrito";
 
 export const FinalCardComponent = ({
   title,
@@ -9,7 +10,6 @@ export const FinalCardComponent = ({
   isAdded,
   product,
 }) => {
-
   const Cantidad = 1;
   const { addToCart } = useContext(CartContext);
   return (
@@ -33,15 +33,16 @@ export const FinalCardComponent = ({
             {price}
           </p>
         </div>
-       
+
         <button
           className={`${
             isAdded ? "bg-gray-800 text-gray-200" : "bg-blue-600  text-gray-100"
           } w-full h-[40px] rounded-md mt-2`}
           onClick={() => addToCart(product.id, Cantidad)}
         >
-          {isAdded ? "Agregado" : "Comprar"}
+          {isAdded ? "Comprar" : "Comprar"}
         </button>
+    
       </div>
     </div>
   );

@@ -2,13 +2,18 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
 import Factura from "../Factura/Factura";
+import useCartStore from "../../store/cart/useCartStore";
 import routes from "../../common/routes-constants";
 
 export const CartModalComponent = ({ onClose }) => {
   const navigate = useNavigate();
-  const { Productoscart, increaseQuantity, decreaseQuantity, removeItem } =
+  const { Productoscart,  } =
     useContext(CartContext);
-   
+
+  const { removeItem } = useCartStore((state) => ({
+    removeItem: state.removeItem,
+  }));
+
   const productMap = Productoscart.reduce((acc, item) => {
     if (!acc[item.id]) {
       acc[item.id] = { ...item, cantidad: 0 };
@@ -73,21 +78,9 @@ export const CartModalComponent = ({ onClose }) => {
                 </div>
 
                 <div className="flex items-center space-x-2">
-                  <button
-                    className="px-2 py-1 bg-gray-200 rounded-md"
-                    onClick={() => decreaseQuantity(item.id)}
-                  >
-                    -
-                  </button>
                   <span className="text-lg font-medium text-black">
                     {item.cantidad}
                   </span>
-                  <button
-                    className="px-2 py-1 bg-gray-200 rounded-md"
-                    onClick={() => increaseQuantity(item.id)}
-                  >
-                    +
-                  </button>
                 </div>
                 <button
                   className="text-white bg-red-500 rounded-md px-4 py-2 ml-4"

@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
+import routes from "../../common/routes-constants";
 
 const Footer = () => {
   return (
@@ -13,7 +14,7 @@ const Footer = () => {
         <ul className="list-none p-0 m-0 flex flex-wrap justify-center space-x-4">
           <li>
             <Link
-              to="/PolitPrivacidad"
+              to={routes.POLIT_PRIVACIDAD}
               className="text-gray-200 hover:text-blue-400 transition-colors duration-200"
             >
               Políticas y Privacidad
@@ -21,7 +22,7 @@ const Footer = () => {
           </li>
           <li>
             <Link
-              to="/Terminos"
+              to={routes.TERMINEMOS}
               className="text-gray-200 hover:text-blue-400 transition-colors duration-200"
             >
               Términos y Condiciones

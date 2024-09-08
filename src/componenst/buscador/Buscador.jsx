@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { FinalCardComponent } from "../card/FinalCardComponent";
+import { FinalCardComponent } from "../cardProducDetal/FinalCardComponent";
 
 export default function Buscador({ value, productsFiltrados }) {
   useEffect(() => {

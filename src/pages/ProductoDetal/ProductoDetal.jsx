@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { CardDetall } from "../../componenst/card/CardDetall";
+import { CardDetall } from "../../componenst/cardProducDetal/CardDetall";
 import { HeaderComponent } from "../../componenst/header/HeaderComponent";
 
 export default function ProductoDetal() {
@@ -31,7 +31,7 @@ export default function ProductoDetal() {
         closeModal={closeModal}
         setProductsFiltrados={setProductsFiltrados}
       />
-      <CardDetall {...Producto} Producto={Producto}/>
+      <CardDetall {...Producto} Producto={Producto} />
     </>
   );
 }

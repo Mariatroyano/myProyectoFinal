@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
-// import img from "../../../public/imagenPersonaje.webp";
-import img from "../../../public/imagen2.jpg";
+import img from "../../../public/imagenPersonaje.webp";
 import img2 from "../../../public/imagen2.jpg";
 import img3 from "../../../public/imagen3.webp";
 import electrodomesticos from "../../../public/electrodomesticos.png";
@@ -14,7 +13,7 @@ import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
-import Buscador from "../search/Buscador.jsx";
+import Buscador from "../buscador/Buscador.jsx";
 
 function MainScreen({ value, productsFiltrados }) {
   const [category, setCategory] = useState(null);

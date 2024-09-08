@@ -1,7 +1,7 @@
 import imgen from "../../../public/logo.jpg";
 import React, { useState } from "react";
 import { CartModalComponent } from "../Carcarrito/CarCarrito.jsx";
-import Search from "../search/search.jsx";
+import Search from "../buscador/search.jsx";
 import { useFetch } from "../../index.js";
 import { signOut } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";

@@ -1,11 +1,12 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../../common/routes-constants";
+// import { useCartStore } from "../../store/cart/useCartStore";
 
 const Factura = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { productos } = location.state || { productos: [] };
+  const { productos = [], Usuario = {} } = location.state || {};
 
   const fechaPedido = Date.now();
   const fechaActual = new Date(fechaPedido).toLocaleDateString();
@@ -17,8 +18,10 @@ const Factura = () => {
   };
 
   const priceTotal = totalPrice();
+  // const clearCart = useCartStore((state) => state.clearCart);
 
   const regresarPaginaPrincipal = () => {
+    // clearCart(); // Limpia el carrito
     navigate(routes.PRODUCTS);
   };
 
@@ -27,8 +30,11 @@ const Factura = () => {
       <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 text-white text-center">
         <h1 className="text-2xl font-bold">Factura</h1>
       </div>
-      <div className="mb-4">
-        <p className="text-gray-700 font-medium mb-2">Usuario:</p>
+      <div className="mb-4 text-slate-950 ">
+        <h2 className="text-lg font-semibold caret-gray-950">
+          Nombre del cliente:
+        </h2>
+        <p>{Usuario.Usuario}</p>
       </div>
 
       <div className="p-6">

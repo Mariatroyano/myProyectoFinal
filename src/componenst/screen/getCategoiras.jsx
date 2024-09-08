@@ -1,6 +1,5 @@
-import { useEffect, useState } from "react";
 import getLocalStorage from "../../utils/getLocalStorage";
-import { FinalCardComponent } from "../card/FinalCardComponent";
+import { FinalCardComponent } from "../cardProducDetal/FinalCardComponent";
 
 function GetCategoiras({ category, handleAddItem, products }) {
   return (

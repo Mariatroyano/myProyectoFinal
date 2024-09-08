@@ -57,7 +57,7 @@ export function Register() {
     } catch (error) {
       console.log("Error al crear carrito de compras", error);
     }
-    location.reload()//hhhh
+    location.reload()
     navigate(routes.PRODUCTS);
   };
 

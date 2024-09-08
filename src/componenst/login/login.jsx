@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { auth, providerGogle } from "../../fireBase/credenciales";
@@ -12,6 +13,7 @@ import routes from "../../common/routes-constants";
 export default function Formulario({ Logeado, setLogeado }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,9 +21,9 @@ export default function Formulario({ Logeado, setLogeado }) {
       if (usuario) {
         navigate(routes.PRODUCTS);
       } else {
-        console.log("no hay usuario logeado");
+        console.log("No hay usuario logeado");
       }
-      setLoading(false);
+      // setLoading(false); 
     });
   }, []);
 
@@ -30,9 +32,22 @@ export default function Formulario({ Logeado, setLogeado }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       console.log("Ingresaste a la cuenta");
-      location.reload();
+      navigate(routes.PRODUCTS); 
     } catch (error) {
       console.log("Error al ingresar a la cuenta", error);
+
+     
+      if (error.code === "auth/user-not-found") {//un error que estad ya ´proporcionado de firebase
+        setErrorMessage(
+          "El usuario no está registrado. Por favor, regístrate."
+        );
+      } else if (error.code === "auth/wrong-password") {
+        setErrorMessage("Contraseña incorrecta. Inténtalo nuevamente.");
+      } else {
+        setErrorMessage(
+          "Ocurrió un error al iniciar sesión. Intenta nuevamente."
+        );
+      }
     }
   };
 
@@ -40,8 +55,6 @@ export default function Formulario({ Logeado, setLogeado }) {
     try {
       await signInWithPopup(auth, providerGogle);
       setLogeado(true);
-      location.reload();
-
       navigate(routes.PRODUCTS);
     } catch (error) {
       console.error("Error al iniciar con Google:", error);
@@ -59,6 +72,13 @@ export default function Formulario({ Logeado, setLogeado }) {
             ¡Hola! Para agregar al <br />
             carrito, ingresa a tu cuenta
           </h1>
+
+          {errorMessage && (
+            <div className="w-full mb-4 p-2 bg-red-200 text-red-700 text-center rounded">
+              {errorMessage}
+            </div>
+          )}
+
           <form
             onSubmit={IngresarUser}
             className="w-full flex flex-col items-center"
@@ -88,12 +108,12 @@ export default function Formulario({ Logeado, setLogeado }) {
           </form>
           <div className="text-center w-full">
             <p className="mb-2 text-gray-600">
-              ¿No Tienes Cuenta?{" "}
+              ¿No tienes cuenta?{" "}
               <Link
                 to={routes.REGISTER}
                 className="text-blue-600 hover:underline"
               >
-                Crear Cuenta
+                Crear cuenta
               </Link>
             </p>
             <button
