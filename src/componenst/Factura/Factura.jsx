@@ -1,13 +1,32 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import routes from "../../common/routes-constants";
-// import { useCartStore } from "../../store/cart/useCartStore";
+import { useContext } from "react";
+import { CartContext } from "../../context/contextCarrito/CartContext";
+import { auth } from "../../fireBase/credenciales";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Factura = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { productos = [], Usuario = {} } = location.state || {};
+  const { productos = [], usuario = {} } = location.state || {};
+  const [Usuario, setUsuario] = useState(null);
 
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUsuario(user);
+        console.log("Usuario Registrado");
+      } else {
+        console.log("Usuario no encontrado");
+        setTimeout(() => {
+          return navigate(routes.LOGING);
+        }, 0);
+      }
+    });
+  }, []);
+
+  const { deleteAllProductsCart } = useContext(CartContext);
   const fechaPedido = Date.now();
   const fechaActual = new Date(fechaPedido).toLocaleDateString();
 
@@ -18,23 +37,34 @@ const Factura = () => {
   };
 
   const priceTotal = totalPrice();
-  // const clearCart = useCartStore((state) => state.clearCart);
 
   const regresarPaginaPrincipal = () => {
-    // clearCart(); // Limpia el carrito
     navigate(routes.PRODUCTS);
   };
-
+  const buyProducts = () => {
+    deleteAllProductsCart();
+    navigate("/products");
+  };
   return (
     <div className="max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden">
       <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 text-white text-center">
         <h1 className="text-2xl font-bold">Factura</h1>
       </div>
-      <div className="mb-4 text-slate-950 ">
-        <h2 className="text-lg font-semibold caret-gray-950">
+      <div className="mb-6 p-4 bg-gray-100 rounded-lg shadow-md flex flex-col items-center">
+        <h2 className="text-xl font-semibold text-gray-800 mb-2">
           Nombre del cliente:
         </h2>
-        <p>{Usuario.Usuario}</p>
+        {Usuario ? (
+          Usuario.displayName ? (
+            <p className="text-lg text-gray-600">{Usuario.displayName}</p>
+          ) : (
+            <p className="text-lg text-gray-600">{Usuario.email}</p>
+          )
+        ) : (
+          <p className="text-lg text-gray-600 italic">
+            No hay información de usuario
+          </p>
+        )}
       </div>
 
       <div className="p-6">
@@ -66,13 +96,23 @@ const Factura = () => {
           </p>
         </div>
 
-        <div className="text-center space-y-4">
-          <button
-            onClick={regresarPaginaPrincipal}
-            className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-500 transition duration-300"
-          >
-            Regresar a la Página Principal
-          </button>
+        <div className="flex justify-between w-full mt-4">
+          <div className="text-center">
+            <button
+              onClick={regresarPaginaPrincipal}
+              className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-500 transition duration-300"
+            >
+              Regresar a la Página Principal
+            </button>
+          </div>
+          <div className="text-center">
+            <button
+              onClick={buyProducts}
+              className="bg-red-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg hover:bg-gray-800 focus:outline-none focus:ring-4 focus:ring-gray-500 transition duration-300"
+            >
+              Comprar
+            </button>
+          </div>
         </div>
       </div>
     </div>

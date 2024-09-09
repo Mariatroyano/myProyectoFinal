@@ -23,6 +23,7 @@ function App({ Logeado = false, setLogeado }) {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUsuario(user);
+        console.log(user);
         console.log("Usuario Registrado");
       } else {
         console.log("Usuario no encontrado");

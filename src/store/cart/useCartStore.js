@@ -10,8 +10,6 @@ const useCartStore = create(
       // Función para añadir un producto al carrito
       addProductToCart: (newProduct) =>
         set((state) => ({ cart: [...state.cart, newProduct] })),
-
-    
       removeItem: (id) =>
         set((state) => ({
           cart: state.cart.filter(item => item.id !== id),

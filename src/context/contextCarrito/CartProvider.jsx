@@ -7,7 +7,6 @@ export const CartProvider = ({ children }) => {
   const [cart, setCart] = useState([]);
   const [Productoscart, setProductosCart] = useState([]);
   const [user, setuser] = useState([]);
-
   const CartUsuario = async () => {
     await fetch(`http://localhost:3000/carritoCompras/UID_Usuario/${user.uid}`)
       .then((res) => res.json())
@@ -18,9 +17,8 @@ export const CartProvider = ({ children }) => {
   };
 
   const addToCart = async (id_producto, Cantidad = 1) => {
- 
     try {
-      console.log(id_producto, Cantidad)
+      console.log(id_producto, Cantidad);
       if (cart) {
         console.log(cart);
 
@@ -47,6 +45,27 @@ export const CartProvider = ({ children }) => {
     }
   };
 
+  const deleteAllProductsCart = async () => {
+    try {
+      if (cart) {
+        await fetch(
+          `http://localhost:3000/carritoCompras/id/${cart.ID_Carrito}`,
+          {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              ID_Productos: [],
+            }),
+          }
+        );
+        console.log("se hizo un put");
+      }
+
+      CartUsuario();
+    } catch (error) {
+      console.log("Error al eliminar el carrito", error);
+    }
+  };
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -62,34 +81,38 @@ export const CartProvider = ({ children }) => {
   }, [user]);
   useEffect(() => {
     const fetchProductDetails = async () => {
-      if (cart) {
-        console.log(cart);
-        const productos = await Promise.all(
-          cart.ID_Productos?.map(async (item) => {
-            if (item.id_producto) {
-              const res = await fetch(
-                `http://localhost:5813/productos/${item.id_producto}`
-              );
-              const product = await res.json();
-              return { ...product, cantidad: item.Cantidad };
-            }
-          })
-        );
-        setProductosCart(productos);
-      } else {
-        setProductosCart([]);
+      try {
+        if (cart && Array.isArray(cart.ID_Productos) && cart.ID_Productos.length > 0) {
+          const productos = await Promise.all(
+            cart.ID_Productos.map(async (item) => {
+              if (item.id_producto) {
+                const res = await fetch(
+                  `http://localhost:5813/productos/${item.id_producto}`
+                );
+                const product = await res.json();
+                return { ...product, cantidad: item.Cantidad };
+              }
+            })
+          );
+          setProductosCart(productos);
+        } else {
+          setProductosCart([]);
+        }
+      } catch (error) {
+        console.log("error al traer datos ", error);
       }
     };
-
+  
     fetchProductDetails();
   }, [cart]);
-
+  
   return (
     <CartContext.Provider
       value={{
         cart,
         addToCart,
         Productoscart,
+        deleteAllProductsCart,
       }}
     >
       {children}
