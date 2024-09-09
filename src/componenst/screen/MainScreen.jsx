@@ -18,7 +18,7 @@ import Buscador from "../buscador/Buscador.jsx";
 function MainScreen({ value, productsFiltrados }) {
   const [category, setCategory] = useState(null);
   const [currentSlide, setCurrentSlide] = useState(0);
-  const url = "http://localhost:5813/productos";
+  const url = "https://fakestoreapi.com/products";
   const [activo, setActivo] = useState(false);
   const [products, setproducts] = useState([]);
   const loading = false;
@@ -72,7 +72,7 @@ function MainScreen({ value, productsFiltrados }) {
     });
   }, []);
   useEffect(() => {
-    fetch(`http://localhost:5813/productos`)
+    fetch(url)
       .then((res) => res.json())
       .then((data) => {
         setproducts(data);
@@ -103,7 +103,7 @@ function MainScreen({ value, productsFiltrados }) {
           >
             <img
               src={cat.image}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain"
               alt={cat.name}
             />
           </button>

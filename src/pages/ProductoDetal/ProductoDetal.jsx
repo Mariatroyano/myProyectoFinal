@@ -16,7 +16,7 @@ export default function ProductoDetal() {
   const [productsFiltrados, setProductsFiltrados] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5813/productos/${id}`)
+      fetch(`https://fakestoreapi.com/products/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setProducto(data);

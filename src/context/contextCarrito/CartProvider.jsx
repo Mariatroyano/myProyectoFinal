@@ -87,7 +87,7 @@ export const CartProvider = ({ children }) => {
             cart.ID_Productos.map(async (item) => {
               if (item.id_producto) {
                 const res = await fetch(
-                  `http://localhost:5813/productos/${item.id_producto}`
+                  `https://fakestoreapi.com/products/${item.id_producto}`
                 );
                 const product = await res.json();
                 return { ...product, cantidad: item.Cantidad };

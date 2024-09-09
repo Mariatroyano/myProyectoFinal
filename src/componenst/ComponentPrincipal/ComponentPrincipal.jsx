@@ -18,7 +18,7 @@ export const ComponentPrincipal = ({ title, image, price, id }) => {
         <img
           src={image}
           alt={title}
-          className="w-40 h-40 object-cover rounded-lg mb-4"
+          className="w-40 h-40 object-contain rounded-lg mb-4"
         />
         <h2 className="text-xl font-semibold text-blue-800 text-center mb-2">
           {title}

@@ -15,12 +15,15 @@ export const CartModalComponent = ({ onClose }) => {
   }));
 
   const productMap = Productoscart.reduce((acc, item) => {
-    if (!acc[item.id]) {
-      acc[item.id] = { ...item, cantidad: 0 };
+    if (item && item.id !== undefined) {
+      if (!acc[item.id]) {
+        acc[item.id] = { ...item, cantidad: 0 };
+      }
+      acc[item.id].cantidad += item.cantidad;
     }
-    acc[item.id].cantidad += item.cantidad;
     return acc;
   }, {});
+  
 
   const products = Object.values(productMap);
 
@@ -68,7 +71,7 @@ export const CartModalComponent = ({ onClose }) => {
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-20 h-20 object-cover rounded-md mr-4"
+                  className="w-20 h-20 object-contain rounded-md mr-4"
                 />
                 <div className="flex-1">
                   <div className="text-lg font-medium text-black">

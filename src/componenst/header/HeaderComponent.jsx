@@ -21,7 +21,7 @@ export const HeaderComponent = ({
   setProductsFiltrados,
   ...props
 }) => {
-  const { data: products } = useFetch("http://localhost:5813/productos");
+  const { data: products } = useFetch("https://fakestoreapi.com/products");
   const [value, setValue] = useState("");
   const [menuOpen, setMenuOpen] = useState(false);
 

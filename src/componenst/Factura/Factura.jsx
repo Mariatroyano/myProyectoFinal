@@ -29,6 +29,7 @@ const Factura = () => {
   const { deleteAllProductsCart } = useContext(CartContext);
   const fechaPedido = Date.now();
   const fechaActual = new Date(fechaPedido).toLocaleDateString();
+  
 
   const totalPrice = () => {
     return productos.reduce((total, producto) => {
@@ -74,6 +75,7 @@ const Factura = () => {
           </p>
           <p className="text-gray-900 text-base">{fechaActual}</p>
         </div>
+       
 
         <div className="mb-6">
           <p className="text-gray-700 text-lg font-semibold mb-2">Productos:</p>
