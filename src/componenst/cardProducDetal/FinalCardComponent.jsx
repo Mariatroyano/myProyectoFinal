@@ -7,7 +7,7 @@ export const FinalCardComponent = ({
   price,
   description,
   image,
-  isAdded,
+  // isAdded,
   product,
 }) => {
   const Cantidad = 1;
@@ -35,14 +35,11 @@ export const FinalCardComponent = ({
         </div>
 
         <button
-          className={`${
-            isAdded ? "bg-gray-800 text-gray-200" : "bg-blue-600  text-gray-100"
-          } w-full h-[40px] rounded-md mt-2`}
+          className={`${"bg-blue-600  text-gray-100"} w-full h-[40px] rounded-md mt-2`}
           onClick={() => addToCart(product.id, Cantidad)}
         >
-          {isAdded ? "Comprar" : "Comprar"}
+          Comprar
         </button>
-    
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
 import Factura from "../Factura/Factura";
-import useCartStore from "../../store/cart/useCartStore";
+// import useCartStore from "../../store/cart/useCartStore";
 import routes from "../../common/routes-constants";
 
 export const CartModalComponent = ({ onClose }) => {
@@ -10,9 +10,9 @@ export const CartModalComponent = ({ onClose }) => {
   const { Productoscart,  } =
     useContext(CartContext);
 
-  const { removeItem } = useCartStore((state) => ({
-    removeItem: state.removeItem,
-  }));
+  // const { removeItem } = useCartStore((state) => ({
+  //   removeItem: state.removeItem,
+  // }));
 
   const productMap = Productoscart.reduce((acc, item) => {
     if (item && item.id !== undefined) {
@@ -87,7 +87,7 @@ export const CartModalComponent = ({ onClose }) => {
                 </div>
                 <button
                   className="text-white bg-red-500 rounded-md px-4 py-2 ml-4"
-                  onClick={() => removeItem(item.id)}
+                  // onClick={() => removeItem(item.id)}
                 >
                   ✘
                 </button>

@@ -1,8 +1,11 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  onAuthStateChanged,
+} from "firebase/auth";
 import { auth, providerGogle } from "../../fireBase/credenciales";
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import routes from '../../common/routes-constants'
+import routes from "../../common/routes-constants";
 
 export function Register() {
   const navigate = useNavigate();
@@ -12,9 +15,9 @@ export function Register() {
   const [password, setPassword] = useState("");
   const [direccion, setDireccion] = useState("");
 
- 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      //onAuthStateChanged para verificar si el usuario estad logueado o no
       if (user) {
         navigate(routes.PRODUCTS);
       }
@@ -28,7 +31,7 @@ export function Register() {
     const usarioCredenciales = await createUserWithEmailAndPassword(
       auth,
       email,
-      password,
+      password
     );
     const { uid } = usarioCredenciales.user;
     try {
@@ -40,7 +43,7 @@ export function Register() {
           Email: email,
           Nombre: nombres,
           Telefono: Telefono,
-          Direccion:direccion,
+          Direccion: direccion,
         }),
       });
       console.log("Usuario creado en la base de datos ");
@@ -57,7 +60,7 @@ export function Register() {
     } catch (error) {
       console.log("Error al crear carrito de compras", error);
     }
-    location.reload()
+    location.reload();
     navigate(routes.PRODUCTS);
   };
 

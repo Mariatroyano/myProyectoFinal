@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import getLocalStorage from "../../utils/getLocalStorage.js";
+// import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
 import img from "../../../public/imagenPersonaje.webp";
@@ -9,7 +9,7 @@ import electrodomesticos from "../../../public/electrodomesticos.png";
 import ropamujer from "../../../public/ropamujer.webp";
 import ropahombre from "../../../public/ropahombre.webp";
 import joyeria from "../../../public/joyeria.jpg";
-import useCartStore from "../../store/cart/useCartStore.js";
+// import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
@@ -23,7 +23,7 @@ function MainScreen({ value, productsFiltrados }) {
   const [products, setproducts] = useState([]);
   const loading = false;
   const error = null;
-  const addProducToCart = useCartStore((state) => state.addProducToCart);
+  // const addProducToCart = useCartStore((state) => state.addProducToCart);
 
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
@@ -36,9 +36,9 @@ function MainScreen({ value, productsFiltrados }) {
     { name: "Moda Mujer", value: "women's clothing", image: ropamujer },
   ];
 
-  const handleAddItem = (newProduct) => {
-    addProducToCart(newProduct);
-  };
+  // const handleAddItem = (newProduct) => {
+  //   // addProducToCart(newProduct);
+  // };
 
   const handleCategory = (value) => {
     setCategory(value);
@@ -177,7 +177,7 @@ function MainScreen({ value, productsFiltrados }) {
             </button>
             <GetCategoiras
               category={category}
-              handleAddItem={handleAddItem}
+              // handleAddItem={handleAddItem}
               products={products}
             />
           </>
@@ -198,10 +198,10 @@ function MainScreen({ value, productsFiltrados }) {
               <div key={i} className="w-96 mb-4">
                 <ComponentPrincipal
                   {...product}
-                  isAdded={getLocalStorage()?.some(
-                    (productInCart) => productInCart?.id === product?.id
-                  )}
-                  onAddProduct={() => handleAddItem(product)}
+                  // isAdded={getLocalStorage()?.some(
+                  //   (productInCart) => productInCart?.id === product?.id
+                  // )}
+                  // onAddProduct={() => handleAddItem(product)}
                 />
               </div>
             ))}
