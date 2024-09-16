@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import getLocalStorage from "../../utils/getLocalStorage.js";
 import GetCategoiras from "./getCategoiras.jsx";
 import { ComponentPrincipal } from "../ComponentPrincipal/ComponentPrincipal.jsx";
 import img from "../../../public/imagenPersonaje.webp";
@@ -9,7 +8,6 @@ import electrodomesticos from "../../../public/electrodomesticos.png";
 import ropamujer from "../../../public/ropamujer.webp";
 import ropahombre from "../../../public/ropahombre.webp";
 import joyeria from "../../../public/joyeria.jpg";
-// import useCartStore from "../../store/cart/useCartStore.js";
 import Footer from "../Footer/Footer.jsx";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
@@ -23,7 +21,6 @@ function MainScreen({ value, productsFiltrados }) {
   const [products, setproducts] = useState([]);
   const loading = false;
   const error = null;
-  // const addProducToCart = useCartStore((state) => state.addProducToCart);
 
   const categories = [
     { name: "Joyas", value: "jewelery", image: joyeria },
@@ -36,41 +33,17 @@ function MainScreen({ value, productsFiltrados }) {
     { name: "Moda Mujer", value: "women's clothing", image: ropamujer },
   ];
 
-  // const handleAddItem = (newProduct) => {
-  //   // addProducToCart(newProduct);
-  // };
-
   const handleCategory = (value) => {
     setCategory(value);
-    setActivo(!activo);
+    setActivo(!activo); //Controla si se debe mostrar la vista de la categoría seleccionada o no.
   };
 
   const slides = [img, img2, img3];
-
-  const handleNextSlide = () => {
-    setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-  };
-
-  const handlePrevSlide = () => {
-    setCurrentSlide(
-      (prevSlide) => (prevSlide - 1 + slides.length) % slides.length
-    );
-  };
 
   const handleIndicatorClick = (index) => {
     setCurrentSlide(index);
   };
 
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        console.log(user);
-        console.log("Usuario Registrado");
-      } else {
-        console.log("Usuario no encontradoooooooooo");
-      }
-    });
-  }, []);
   useEffect(() => {
     fetch(url)
       .then((res) => res.json())
@@ -112,7 +85,7 @@ function MainScreen({ value, productsFiltrados }) {
       <nav className="relative">
         {!activo && (
           <>
-            <div className="flex  flex-wrap justify-center items-center gap-x-0.5">
+            <div className="flex  flex-wrap justify-center items-center gap-2 p-5">
               {categories.map((categ, index) => (
                 <button
                   className="
@@ -121,7 +94,7 @@ function MainScreen({ value, productsFiltrados }) {
                 md:px-8 md:py-3 
                 lg:px-12 lg:py-3 
                 rounded-tr-lg 
-              //  bg-white hover:bg-blue-200 
+                bg-white hover:bg-blue-200 
                 transition-colors duration-300 ease-in-out 
                 text-sm sm:text-base md:text-lg lg:text-xl
                 w-full sm:w-auto
@@ -133,7 +106,7 @@ function MainScreen({ value, productsFiltrados }) {
                 </button>
               ))}
             </div>
-            <div className="relative h-[1000px] overflow-hidden rounded-lg">
+            <div className="relative h-[1000px] overflow-hidden rounded-lg gap-x-0.5 ma">
               {slides.map((slide, index) => (
                 <div
                   key={index}
@@ -149,7 +122,7 @@ function MainScreen({ value, productsFiltrados }) {
                 </div>
               ))}
 
-              <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
+              <div className="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse gap-x-0.5">
                 {slides.map((_, index) => (
                   <button
                     key={index}
@@ -159,7 +132,7 @@ function MainScreen({ value, productsFiltrados }) {
                     }`}
                     aria-current={currentSlide === index ? "true" : "false"}
                     aria-label={`Slide ${index + 1}`}
-                    onClick={() => handleIndicatorClick(index)}
+                    onClick={() => handleIndicatorClick(index)} //Controla el cambio de imágenes en el carrusel al hacer clic en los indicadore
                   ></button>
                 ))}
               </div>
@@ -175,11 +148,7 @@ function MainScreen({ value, productsFiltrados }) {
             >
               X
             </button>
-            <GetCategoiras
-              category={category}
-              // handleAddItem={handleAddItem}
-              products={products}
-            />
+            <GetCategoiras category={category} products={products} />
           </>
         )}
       </nav>
@@ -196,13 +165,7 @@ function MainScreen({ value, productsFiltrados }) {
           {products &&
             products.map((product, i) => (
               <div key={i} className="w-96 mb-4">
-                <ComponentPrincipal
-                  {...product}
-                  // isAdded={getLocalStorage()?.some(
-                  //   (productInCart) => productInCart?.id === product?.id
-                  // )}
-                  // onAddProduct={() => handleAddItem(product)}
-                />
+                <ComponentPrincipal {...product} />
               </div>
             ))}
         </div>

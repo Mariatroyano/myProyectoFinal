@@ -4,11 +4,11 @@ import { CartContext } from "../../context/contextCarrito/CartContext";
 
 export const CartButtonComponent = ({ onCartClick }) => {
   const { Productoscart } = useContext(CartContext);
-  const [Productoslength, setProductoslength] = useState(0);
-
-  useEffect(() => {
-    setProductoslength(Productoscart.length);
-  }, [Productoscart]);
+  const initialValue = 0;
+  const cantidadInicial = Productoscart.reduce(
+    (accumulator, product) => accumulator + product.cantidad,
+    initialValue
+  );
 
   return (
     <button
@@ -17,7 +17,7 @@ export const CartButtonComponent = ({ onCartClick }) => {
     >
       <img className="w-10 h-10" src={imagen} alt="Cart" />
       <span className="absolute top-[-10px] right-[-10px] bg-red-500 text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-        {Productoslength}
+        {cantidadInicial}
       </span>
     </button>
   );

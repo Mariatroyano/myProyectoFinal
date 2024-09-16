@@ -1,47 +1,20 @@
 import React, { useContext } from "react";
 import { CartContext } from "../../context/contextCarrito/CartContext";
 import { useNavigate } from "react-router-dom";
-import Factura from "../Factura/Factura";
-// import useCartStore from "../../store/cart/useCartStore";
 import routes from "../../common/routes-constants";
 
-export const CartModalComponent = ({ onClose }) => {
+export const CartCarrito = ({ onClose }) => {
   const navigate = useNavigate();
-  const { Productoscart,  } =
-    useContext(CartContext);
-
-  // const { removeItem } = useCartStore((state) => ({
-  //   removeItem: state.removeItem,
-  // }));
-
-  const productMap = Productoscart.reduce((acc, item) => {
-    if (item && item.id !== undefined) {
-      if (!acc[item.id]) {
-        acc[item.id] = { ...item, cantidad: 0 };
-      }
-      acc[item.id].cantidad += item.cantidad;
-    }
-    return acc;
-  }, {});
-  
-
-  const products = Object.values(productMap);
-
-  console.log(products);
-
-  const totalProducts = products.reduce(
+  const { Productoscart, deleteProduct } = useContext(CartContext);
+  const totalProducts = Productoscart.reduce(
     (total, item) => total + item.cantidad,
     0
   );
-
-  console.log("productos", productMap);
-
-  const sendDataCart = ({ productMap }) => {
+  const sendDataCart = () => {
     navigate(routes.FACTURA, {
-      state: { productos: products },
+      state: { productos: Productoscart },
     });
   };
-
   return (
     <div
       style={{ margin: 0 }}
@@ -57,13 +30,13 @@ export const CartModalComponent = ({ onClose }) => {
         <h2 className="text-5xl font-semibold mb-12 text-black font-serif text-center">
           Carrito de Compras
         </h2>
-        {products.length === 0 ? (
+        {Productoscart.length === 0 ? (
           <p className="text-black text-2xl font-serif">
             Tu carrito de Eleganza está vacío.
           </p>
         ) : (
           <ul className="space-y-4 mb-6">
-            {products.map((item) => (
+            {Productoscart.map((item) => (
               <li
                 key={item.id}
                 className="flex items-center border border-violet-600 p-4 rounded-md shadow-sm"
@@ -87,7 +60,7 @@ export const CartModalComponent = ({ onClose }) => {
                 </div>
                 <button
                   className="text-white bg-red-500 rounded-md px-4 py-2 ml-4"
-                  // onClick={() => removeItem(item.id)}
+                  onClick={() => deleteProduct(item)}
                 >
                   ✘
                 </button>

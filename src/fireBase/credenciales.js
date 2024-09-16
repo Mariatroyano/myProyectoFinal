@@ -14,3 +14,4 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const providerGogle = new GoogleAuthProvider();
 export { auth, providerGogle, app };
+//nos permite mayo seguridad de los usuarios 

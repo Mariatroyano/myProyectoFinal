@@ -14,7 +14,7 @@ export default function Buscador({ value, productsFiltrados }) {
           {productsFiltrados.length > 0 ? (
             productsFiltrados.map((item, i) => (
               <div key={i} className="w-full md:w-1/3 lg:w-1/4 p-2">
-                <FinalCardComponent {...item} />
+                <FinalCardComponent  product={item} {...item} />
               </div>
             ))
           ) : (

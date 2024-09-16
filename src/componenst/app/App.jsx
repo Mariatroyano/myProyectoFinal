@@ -8,8 +8,8 @@ import { useNavigate } from "react-router-dom";
 import routes from "../../common/routes-constants";
 
 function App({ Logeado = false, setLogeado }) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [Usuario, setUsuario] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);//mira si estad abierto o no 
+  const [Usuario, setUsuario] = useState(null);//almacena autenticasion
   const [productsFiltrados, setProductsFiltrados] = useState([]);
   const openModal = () => {
     setIsModalOpen(true);
@@ -18,12 +18,11 @@ function App({ Logeado = false, setLogeado }) {
   const closeModal = () => {
     setIsModalOpen(false);
   };
-  const navigate = useNavigate();
+  const navigate = useNavigate();// es un hook
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         setUsuario(user);
-        console.log(user);
         console.log("Usuario Registrado");
       } else {
         console.log("Usuario no encontrado");

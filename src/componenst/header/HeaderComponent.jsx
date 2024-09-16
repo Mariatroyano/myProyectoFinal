@@ -1,11 +1,11 @@
 import imgen from "../../../public/logo.jpg";
 import React, { useState } from "react";
-import { CartModalComponent } from "../Carcarrito/CarCarrito.jsx";
+import { CartCarrito } from "../Cart-Button/CarCarrito.jsx";
 import Search from "../buscador/search.jsx";
 import { useFetch } from "../../index.js";
 import { signOut } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
-import { CartButtonComponent } from "../Cart-Button/ProductList.jsx";
+import { CartButtonComponent } from "../Cart-Button/BotonCarrito.jsx";
 import { useNavigate } from "react-router-dom"; // Importa el hook para navegación
 
 export const HeaderComponent = ({
@@ -96,15 +96,6 @@ export const HeaderComponent = ({
               {userInitial}
             </div>
           )}
-          <CartButtonComponent onCartClick={openModal} />
-          {isModalOpen && <CartModalComponent onClose={closeModal} />}
-
-          <button
-            onClick={cerrarSesion}
-            className="bg-red-500 text-white font-semibold py-2 px-4 rounded hover:bg-red-600 transition-colors duration-300 shadow-md focus:outline-none focus:ring-2 focus:ring-red-300 mt-4"
-          >
-            Cerrar Sesión
-          </button>
         </div>
       )}
 
@@ -115,7 +106,7 @@ export const HeaderComponent = ({
           </div>
         )}
         <CartButtonComponent onCartClick={openModal} />
-        {isModalOpen && <CartModalComponent onClose={closeModal} />}
+        {isModalOpen && <CartCarrito onClose={closeModal} />}
 
         <button
           onClick={cerrarSesion}

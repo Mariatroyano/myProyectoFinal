@@ -8,13 +8,8 @@ export const CardDetall = ({
   price,
   description,
   image,
-  id,
   Producto,
-  onAddProduct,
-  isAdded,
-  onRemoveProduct,
-  quantity,
-  onSelectQuantity,
+
 }) => {
   const navigate = useNavigate();
 
@@ -40,7 +35,7 @@ export const CardDetall = ({
           <p className="text-2xl font-semibold text-gray-900 mb-8">${price}</p>
           <div className="flex justify-between items-center mb-4">
            
-            <ButtonCarrito id={id} cantidad={1} />
+            <ButtonCarrito product={Producto} cantidad={1} />
             <div className="text-center space-y-4">
               <button
                 onClick={regresarPaginaPrincipal}

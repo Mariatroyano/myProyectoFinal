@@ -28,7 +28,7 @@ const Factura = () => {
 
   const { deleteAllProductsCart } = useContext(CartContext);
   const fechaPedido = Date.now();
-  const fechaActual = new Date(fechaPedido).toLocaleDateString();
+  const fechaActual = new Date(fechaPedido).toLocaleDateString();//pa convertir una fecha en formato cadena
   
 
   const totalPrice = () => {
@@ -94,7 +94,8 @@ const Factura = () => {
             Precio Total:
           </p>
           <p className="text-gray-900 text-2xl font-bold">
-            ${priceTotal.toFixed(2)}
+            ${priceTotal.toFixed(2)} 
+        
           </p>
         </div>
 

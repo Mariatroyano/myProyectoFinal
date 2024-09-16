@@ -1,4 +1,4 @@
-// import getLocalStorage from "../../utils/getLocalStorage";
+
 import { FinalCardComponent } from "../cardProducDetal/FinalCardComponent";
 
 function GetCategoiras({ category, handleAddItem, products }) {
@@ -12,9 +12,7 @@ function GetCategoiras({ category, handleAddItem, products }) {
               <FinalCardComponent
                 {...product}
                 product={product}
-                // isAdded={getLocalStorage()?.some(
-                //   (productInCart) => productInCart.id == product.id
-                // )}
+                
                 onAddProduct={() => handleAddItem(product)}
               />
             </div>
