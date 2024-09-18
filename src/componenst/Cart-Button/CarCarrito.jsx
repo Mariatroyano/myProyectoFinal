@@ -6,7 +6,7 @@ import routes from "../../common/routes-constants";
 export const CartCarrito = ({ onClose }) => {
   const navigate = useNavigate();
   const { Productoscart, deleteProduct } = useContext(CartContext);
-  const totalProducts = Productoscart.reduce(
+  const totalProducts = Productoscart?.reduce(
     (total, item) => total + item.cantidad,
     0
   );
@@ -30,13 +30,13 @@ export const CartCarrito = ({ onClose }) => {
         <h2 className="text-5xl font-semibold mb-12 text-black font-serif text-center">
           Carrito de Compras
         </h2>
-        {Productoscart.length === 0 ? (
+        {Productoscart?.length === 0 ? (
           <p className="text-black text-2xl font-serif">
             Tu carrito de Eleganza está vacío.
           </p>
         ) : (
           <ul className="space-y-4 mb-6">
-            {Productoscart.map((item) => (
+            {Productoscart?.map((item) => (
               <li
                 key={item.id}
                 className="flex items-center border border-violet-600 p-4 rounded-md shadow-sm"

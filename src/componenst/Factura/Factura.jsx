@@ -41,26 +41,31 @@ const Factura = () => {
   const regresarPaginaPrincipal = () => {
     navigate(routes.PRODUCTS);
   };
-
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   const guardarFacturaEnDB = async () => {
     try {
-
+      if (!Usuario) return;
       const facturaData = {
         UID_Usuario: Usuario.uid,
-        FechaPedido: fechaPedido,
         PrecioTotal: priceTotal,
-        ID_Productos: productos.map((producto) => ({
-          id: producto.id,
-          cantidad: producto.cantidad,
-          precio: producto.price,
-        })),
+        EstadoFactura: 0,
+        ID_Productos: productos.map((producto) => {
+          let d = {
+            id: producto.id,
+            cantidad: producto.cantidad,
+            precio: producto.price,
+          };
+          return d;
+        }),
       };
+     
 
-      const response = await fetch("http://localhost:3000/facturaVentas", {
+      const response = await fetch("http://localhost:3000/factura_ventas", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(facturaData),
       });
+      navigate("listo");
 
       if (response) {
         console.log("Factura guardada exitosamente en la base de datos");
@@ -71,15 +76,16 @@ const Factura = () => {
       console.error("Error en la petición para guardar la factura:", error);
     }
   };
+  //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
   const buyProducts = async () => {
-    await guardarFacturaEnDB(); 
-    deleteAllProductsCart(); 
+    await guardarFacturaEnDB();
+    deleteAllProductsCart();
     navigate("/products");
   };
   return (
     <div className="max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden">
-      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 text-white text-center">
+      <div className="bg-gradient-to-r from-blue-500 to-teal-500 p-6 text-white text-center ">
         <h1 className="text-2xl font-bold">Factura</h1>
       </div>
       <div className="mb-6 p-4 bg-gray-100 rounded-lg shadow-md flex flex-col items-center">

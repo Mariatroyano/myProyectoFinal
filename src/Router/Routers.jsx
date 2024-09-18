@@ -8,8 +8,17 @@ import PolitPrivacidad from "../componenst/Footer/PolitPrivacidad";
 import ProductoDetal from "../pages/ProductoDetal/ProductoDetal";
 import Factura from "../componenst/Factura/Factura";
 import routes from "../common/routes-constants";
+import InfoUsuario from "../componenst/InfoUsuario/InfoUsuario";
 
-const {LOGING, TERMINEMOS, POLIT_PRIVACIDAD, PRODUCT, FACTURA, PRODUCTS,  REGISTER} = routes
+const {
+  LOGING,
+  TERMINEMOS,
+  POLIT_PRIVACIDAD,
+  PRODUCT,
+  FACTURA,
+  PRODUCTS,
+  REGISTER,
+} = routes;
 
 export default function Routers() {
   const [Logeado, setLogeado] = useState(true);
@@ -21,7 +30,8 @@ export default function Routers() {
           path={LOGING}
           element={<Formulario Logeado={Logeado} setLogeado={setLogeado} />}
         />
-        <Route path={ REGISTER} element={<Register />} />
+        <Route path={REGISTER} element={<Register />} />
+        <Route path={"/inf"} element={<InfoUsuario />} />
         <Route path={TERMINEMOS} element={<Terminos />} />
         <Route path={POLIT_PRIVACIDAD} element={<PolitPrivacidad />} />
         <Route path={`${PRODUCT}/:id`} element={<ProductoDetal />} />

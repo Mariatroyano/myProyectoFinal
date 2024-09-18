@@ -2,6 +2,7 @@ import imgen from "../../../public/logo.jpg";
 import React, { useState } from "react";
 import { CartCarrito } from "../Cart-Button/CarCarrito.jsx";
 import Search from "../buscador/search.jsx";
+import InfoUsuario from "../InfoUsuario/InfoUsuario.jsx";
 import { useFetch } from "../../index.js";
 import { signOut } from "firebase/auth";
 import { auth } from "../../fireBase/credenciales.js";
@@ -107,6 +108,13 @@ export const HeaderComponent = ({
         )}
         <CartButtonComponent onCartClick={openModal} />
         {isModalOpen && <CartCarrito onClose={closeModal} />}
+
+        <button
+          className="bg-gradient-to-b from-blue-500 to-teal-500 p-6 text-white text-center "
+          onClick={() => navigate("/inf")}
+        >
+          Mi Cuenta
+        </button>
 
         <button
           onClick={cerrarSesion}

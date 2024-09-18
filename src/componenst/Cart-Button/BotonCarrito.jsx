@@ -5,7 +5,7 @@ import { CartContext } from "../../context/contextCarrito/CartContext";
 export const CartButtonComponent = ({ onCartClick }) => {
   const { Productoscart } = useContext(CartContext);
   const initialValue = 0;
-  const cantidadInicial = Productoscart.reduce(
+  const cantidadInicial = Productoscart?.reduce(
     (accumulator, product) => accumulator + product.cantidad,
     initialValue
   );

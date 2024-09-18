@@ -9,16 +9,23 @@ export const CartProvider = ({ children }) => {
   const [user, setuser] = useState([]);
 
   const CartUsuario = async () => {
-    await fetch(`http://localhost:3000/carritoCompras/UID_Usuario/${user.uid}`)
-      .then((res) => res.json())
-      .then((res) => {
-        setCart(res);
-        setProductosCart(res.ID_Productos);
-      });
+    if (user) {
+      await fetch(
+        `http://localhost:3000/carritoCompras/UID_Usuario/${user.uid}`
+      )
+        .then((res) => res.json())
+        .then((res) => {
+          setCart(res);
+          console.log(res);
+          setProductosCart(res?.ID_Productos);
+        });
+    }
   };
 
-  const addToCart = async (newProduct, Cantidad = 1) => {//verifica si un producto ya está en el carrito y, dependiendo de ello, o bien incrementa su cantidad o lo agrega como nuevo producto
+  const addToCart = async (newProduct, Cantidad = 1) => {
+    //verifica si un producto ya está en el carrito y, dependiendo de ello, o bien incrementa su cantidad o lo agrega como nuevo producto
     const { id } = newProduct;
+    console.log(cart);
     try {
       if (cart) {
         //va y mira si el carrito ya existe el carrito no continua
@@ -49,7 +56,6 @@ export const CartProvider = ({ children }) => {
         );
         console.log("se hizo un put");
       }
-
       CartUsuario(); //Esta línea invoca la función CartUsuario, la cual probablemente actualiza o recarga el carrito para reflejar los cambios recientes en la interfaz de usuario.
     } catch (error) {
       console.log("Error al actualizar el carrito", error);
