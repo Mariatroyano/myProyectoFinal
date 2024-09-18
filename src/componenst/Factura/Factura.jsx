@@ -28,8 +28,7 @@ const Factura = () => {
 
   const { deleteAllProductsCart } = useContext(CartContext);
   const fechaPedido = Date.now();
-  const fechaActual = new Date(fechaPedido).toLocaleDateString();//pa convertir una fecha en formato cadena
-  
+  const fechaActual = new Date(fechaPedido).toLocaleDateString(); //pa convertir una fecha en formato cadena
 
   const totalPrice = () => {
     return productos.reduce((total, producto) => {
@@ -42,8 +41,40 @@ const Factura = () => {
   const regresarPaginaPrincipal = () => {
     navigate(routes.PRODUCTS);
   };
-  const buyProducts = () => {
-    deleteAllProductsCart();
+
+  const guardarFacturaEnDB = async () => {
+    try {
+
+      const facturaData = {
+        UID_Usuario: Usuario.uid,
+        FechaPedido: fechaPedido,
+        PrecioTotal: priceTotal,
+        ID_Productos: productos.map((producto) => ({
+          id: producto.id,
+          cantidad: producto.cantidad,
+          precio: producto.price,
+        })),
+      };
+
+      const response = await fetch("http://localhost:3000/facturaVentas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(facturaData),
+      });
+
+      if (response) {
+        console.log("Factura guardada exitosamente en la base de datos");
+      } else {
+        console.log("Error al guardar la factura en la base de datos");
+      }
+    } catch (error) {
+      console.error("Error en la petición para guardar la factura:", error);
+    }
+  };
+
+  const buyProducts = async () => {
+    await guardarFacturaEnDB(); 
+    deleteAllProductsCart(); 
     navigate("/products");
   };
   return (
@@ -75,7 +106,6 @@ const Factura = () => {
           </p>
           <p className="text-gray-900 text-base">{fechaActual}</p>
         </div>
-       
 
         <div className="mb-6">
           <p className="text-gray-700 text-lg font-semibold mb-2">Productos:</p>
@@ -94,8 +124,7 @@ const Factura = () => {
             Precio Total:
           </p>
           <p className="text-gray-900 text-2xl font-bold">
-            ${priceTotal.toFixed(2)} 
-        
+            ${priceTotal.toFixed(2)}
           </p>
         </div>
 

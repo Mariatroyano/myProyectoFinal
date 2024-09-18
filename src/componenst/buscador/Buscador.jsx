@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import { FinalCardComponent } from "../cardProducDetal/FinalCardComponent";
 
 export default function Buscador({ value, productsFiltrados }) {
-  useEffect(() => {
-    console.log("Buscador Value:", value);
-    console.log("Buscador Filtered Products:", productsFiltrados);
-  }, [value, productsFiltrados]);
+
 
   return (
     <>

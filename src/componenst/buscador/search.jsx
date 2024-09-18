@@ -8,7 +8,7 @@ const Search = ({ products, value, setValue, setProductsFiltrados }) => {
     const filteredProducts = products.filter((product) =>
       product.title.toLowerCase().includes(searchValue.toLowerCase())
     );
-    setProductsFiltrados(searchValue ? filteredProducts : []);
+    setProductsFiltrados(searchValue ? filteredProducts : []);//que si exite me pase los productos y si no qme de el array
   };
 
   return (
