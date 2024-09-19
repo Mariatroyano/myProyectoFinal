@@ -10,19 +10,16 @@ const InfoUsuario = () => {
   const regresarPaginaPrincipal = () => {
     navigate(routes.PRODUCTS);
   };
-
-  const [User, setUser] = useState({});
-  const [UserDB, setUserDB] = useState({});
+  const [UsuarioBaseDatos, setUsuarioBaseDatos] = useState({});
   const getUsuario = async (user) => {
     await fetch(`http://localhost:3000/usuarios/id/${user.uid}`)
       .then((res) => res.json())
-      .then((res) => setUserDB(res));
+      .then((res) => setUsuarioBaseDatos(res));
   };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user);
         getUsuario(user);
         console.log("Usuario Registrado");
       } else {
@@ -33,37 +30,37 @@ const InfoUsuario = () => {
       }
     });
   }, []);
-  if (User && UserDB)
+  if ( UsuarioBaseDatos)
     return (
       <div className="max-w-4xl mx-auto my-8 bg-white rounded-lg shadow-lg overflow-hidden p-6">
         <div className="space-y-4">
           <div>
             <p className="text-gray-900 text-base font-semibold">Dirección:</p>
-            <p className="text-lg text-gray-600">{UserDB.Direccion}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.Direccion}</p>
           </div>
           <div>
             <p className="text-gray-900 text-base font-semibold">Email:</p>
-            <p className="text-lg text-gray-600">{UserDB.Email}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.Email}</p>
           </div>
           <div>
             <p className="text-gray-900 text-base font-semibold">
               Estado Cuenta:
             </p>
-            <p className="text-lg text-gray-600">{UserDB.EstadoCuenta}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.EstadoCuenta}</p>
           </div>
           <div>
             <p className="text-gray-900 text-base font-semibold">Nombre:</p>
-            <p className="text-lg text-gray-600">{UserDB.Nombre}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.Nombre}</p>
           </div>
           <div>
             <p className="text-gray-900 text-base font-semibold">Teléfono:</p>
-            <p className="text-lg text-gray-600">{UserDB.Telefono}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.Telefono}</p>
           </div>
           <div>
             <p className="text-gray-900 text-base font-semibold">
               UID Usuario:
             </p>
-            <p className="text-lg text-gray-600">{UserDB.UID_Usuario}</p>
+            <p className="text-lg text-gray-600">{UsuarioBaseDatos.UID_Usuario}</p>
           </div>
         </div>
 
